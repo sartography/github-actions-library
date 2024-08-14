@@ -23,7 +23,7 @@ outputs:
 
 runs:
   using: "docker"
-  image: "python:3.9"
+  image: "python:3.12"
   args:
     - "python"
     - "/wait-for-ecr-scan-and-get-sarif/main.py"

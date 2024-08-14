@@ -1,0 +1,34 @@
+name: "ECR Scan and Retrieve SARIF Report"
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  ecr-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Run ECR Scan and Get SARIF Report
+        uses: sartography/github-actions-library/wait-for-ecr-scan-and-get-sarif@main
+        with:
+          repository_name: "my-ecr-repository"
+          image_tag: "latest"
+          aws_region: "us-west-2"
+          output_file: "report.sarif"
+
+      - name: Upload SARIF report as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: sarif-report
+          path: report.sarif
+
+      # - name: Upload SARIF report to GitHub Code Scanning
+      #   uses: github/codeql-action/upload-sarif@v2
+      #   with:
+      #     sarif_file: report.sarif
