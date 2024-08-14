@@ -17,13 +17,6 @@ inputs:
     required: true
     default: "report.sarif"
 
-# runs:
-#   using: "docker"
-#   image: "python:3.12"
-#   args:
-#     - "python"
-#     - "/wait-for-ecr-scan-and-get-sarif/main.py"
-
 runs:
   using: "composite"
   steps:
@@ -48,5 +41,4 @@ runs:
           --image_tag ${{ inputs.image_tag }} \
           --aws_region ${{ inputs.aws_region }} \
           --output_file ${{ inputs.output_file }}
-        cp trivy-report-ubuntu.sarif ${{ inputs.output_file }}
       id: run_script
