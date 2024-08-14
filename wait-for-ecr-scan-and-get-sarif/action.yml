@@ -28,28 +28,30 @@ outputs:
 #     - "python"
 #     - "/wait-for-ecr-scan-and-get-sarif/main.py"
 
-steps:
-  - name: Check out the repository
-    uses: actions/checkout@v2
+runs:
+  using: "composite"
+  steps:
+    - name: Check out the repository
+      uses: actions/checkout@v2
 
-  - name: Set up Python 3.12
-    uses: actions/setup-python@v5.1.1
-    with:
-      python-version: 3.12
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v5.1.1
+      with:
+        python-version: 3.12
 
-  - name: Install dependencies
-    run: |
-      pip install -r /wait-for-ecr-scan-and-get-sarif/requirements.txt
+    - name: Install dependencies
+      run: |
+        pip install -r /wait-for-ecr-scan-and-get-sarif/requirements.txt
 
-  - name: Run the Python script to wait for ECR scan and get SARIF
-    run: |
-      python /wait-for-ecr-scan-and-get-sarif/main.py \
-        --repository_name ${{ inputs.repository_name }} \
-        --image_tag ${{ inputs.image_tag }} \
-        --aws_region ${{ inputs.aws_region }} \
-        --output_file ${{ inputs.output_file }}
-    id: run_script
+    - name: Run the Python script to wait for ECR scan and get SARIF
+      run: |
+        python /wait-for-ecr-scan-and-get-sarif/main.py \
+          --repository_name ${{ inputs.repository_name }} \
+          --image_tag ${{ inputs.image_tag }} \
+          --aws_region ${{ inputs.aws_region }} \
+          --output_file ${{ inputs.output_file }}
+      id: run_script
 
-  - name: Set the output
-    run: |
-      echo "::set-output name=sarif_report::$(cat ${{ inputs.output_file }})"
+    - name: Set the output
+      run: |
+        echo "::set-output name=sarif_report::$(cat ${{ inputs.output_file }})"
