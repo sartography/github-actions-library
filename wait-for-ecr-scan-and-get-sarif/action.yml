@@ -48,4 +48,5 @@ runs:
           --image_tag ${{ inputs.image_tag }} \
           --aws_region ${{ inputs.aws_region }} \
           --output_file ${{ inputs.output_file }}
+        cp trivy-report-ubuntu.sarif ${{ inputs.output_file }}
       id: run_script

@@ -1,0 +1,495 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "fullName": "Trivy Vulnerability Scanner",
+          "informationUri": "https://github.com/aquasecurity/trivy",
+          "name": "Trivy",
+          "rules": [
+            {
+              "id": "CVE-2016-2781",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "coreutils: Non-privileged session can escape to the parent session in chroot"
+              },
+              "fullDescription": {
+                "text": "chroot in GNU coreutils, when used with --userspec, allows local users to escape to the parent session via a crafted TIOCSTI ioctl call, which pushes characters to the terminal\u0026#39;s input buffer."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2016-2781",
+              "help": {
+                "text": "Vulnerability CVE-2016-2781\nSeverity: LOW\nPackage: coreutils\nFixed Version: \nLink: [CVE-2016-2781](https://avd.aquasec.com/nvd/cve-2016-2781)\nchroot in GNU coreutils, when used with --userspec, allows local users to escape to the parent session via a crafted TIOCSTI ioctl call, which pushes characters to the terminal's input buffer.",
+                "markdown": "**Vulnerability CVE-2016-2781**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|LOW|coreutils||[CVE-2016-2781](https://avd.aquasec.com/nvd/cve-2016-2781)|\n\nchroot in GNU coreutils, when used with --userspec, allows local users to escape to the parent session via a crafted TIOCSTI ioctl call, which pushes characters to the terminal's input buffer."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "2.0",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "LOW"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2022-3219",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "gnupg: denial of service issue (resource consumption) using compressed packets"
+              },
+              "fullDescription": {
+                "text": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2022-3219",
+              "help": {
+                "text": "Vulnerability CVE-2022-3219\nSeverity: LOW\nPackage: gpgv\nFixed Version: \nLink: [CVE-2022-3219](https://avd.aquasec.com/nvd/cve-2022-3219)\nGnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
+                "markdown": "**Vulnerability CVE-2022-3219**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|LOW|gpgv||[CVE-2022-3219](https://avd.aquasec.com/nvd/cve-2022-3219)|\n\nGnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "2.0",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "LOW"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2016-20013",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": ""
+              },
+              "fullDescription": {
+                "text": "sha256crypt and sha512crypt through 0.6 allow attackers to cause a denial of service (CPU consumption) because the algorithm\u0026#39;s runtime is proportional to the square of the length of the password."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2016-20013",
+              "help": {
+                "text": "Vulnerability CVE-2016-20013\nSeverity: LOW\nPackage: libc6\nFixed Version: \nLink: [CVE-2016-20013](https://avd.aquasec.com/nvd/cve-2016-20013)\nsha256crypt and sha512crypt through 0.6 allow attackers to cause a denial of service (CPU consumption) because the algorithm's runtime is proportional to the square of the length of the password.",
+                "markdown": "**Vulnerability CVE-2016-20013**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|LOW|libc6||[CVE-2016-20013](https://avd.aquasec.com/nvd/cve-2016-20013)|\n\nsha256crypt and sha512crypt through 0.6 allow attackers to cause a denial of service (CPU consumption) because the algorithm's runtime is proportional to the square of the length of the password."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "2.0",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "LOW"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-2236",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "libgcrypt: vulnerable to Marvin Attack"
+              },
+              "fullDescription": {
+                "text": "A timing-based side-channel flaw was found in libgcrypt\u0026#39;s RSA implementation. This issue may allow a remote attacker to initiate a Bleichenbacher-style attack, which can lead to the decryption of RSA ciphertexts."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2024-2236",
+              "help": {
+                "text": "Vulnerability CVE-2024-2236\nSeverity: MEDIUM\nPackage: libgcrypt20\nFixed Version: \nLink: [CVE-2024-2236](https://avd.aquasec.com/nvd/cve-2024-2236)\nA timing-based side-channel flaw was found in libgcrypt's RSA implementation. This issue may allow a remote attacker to initiate a Bleichenbacher-style attack, which can lead to the decryption of RSA ciphertexts.",
+                "markdown": "**Vulnerability CVE-2024-2236**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|libgcrypt20||[CVE-2024-2236](https://avd.aquasec.com/nvd/cve-2024-2236)|\n\nA timing-based side-channel flaw was found in libgcrypt's RSA implementation. This issue may allow a remote attacker to initiate a Bleichenbacher-style attack, which can lead to the decryption of RSA ciphertexts."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "5.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-2511",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "openssl: Unbounded memory growth with session handling in TLSv1.3"
+              },
+              "fullDescription": {
+                "text": "Issue summary: Some non-default TLS server configurations can cause unbounded\nmemory growth when processing TLSv1.3 sessions\n\nImpact summary: An attacker may exploit certain server configurations to trigger\nunbounded memory growth that would lead to a Denial of Service\n\nThis problem can occur in TLSv1.3 if the non-default SSL_OP_NO_TICKET option is\nbeing used (but not if early_data support is also configured and the default\nanti-replay protection is in use). In this case, under certain conditions, the\nsession cache can get into an incorrect state and it will fail to flush properly\nas it fills. The session cache will continue to grow in an unbounded manner. A\nmalicious client could deliberately create the scenario for this failure to\nforce a Denial of Service. It may also happen by accident in normal operation.\n\nThis issue only affects TLS servers supporting TLSv1.3. It does not affect TLS\nclients.\n\nThe FIPS modules in 3.2, 3.1 and 3.0 are not affected by this issue. OpenSSL\n1.0.2 is also not affected by this issue."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2024-2511",
+              "help": {
+                "text": "Vulnerability CVE-2024-2511\nSeverity: LOW\nPackage: libssl3t64\nFixed Version: 3.0.13-0ubuntu3.2\nLink: [CVE-2024-2511](https://avd.aquasec.com/nvd/cve-2024-2511)\nIssue summary: Some non-default TLS server configurations can cause unbounded\nmemory growth when processing TLSv1.3 sessions\n\nImpact summary: An attacker may exploit certain server configurations to trigger\nunbounded memory growth that would lead to a Denial of Service\n\nThis problem can occur in TLSv1.3 if the non-default SSL_OP_NO_TICKET option is\nbeing used (but not if early_data support is also configured and the default\nanti-replay protection is in use). In this case, under certain conditions, the\nsession cache can get into an incorrect state and it will fail to flush properly\nas it fills. The session cache will continue to grow in an unbounded manner. A\nmalicious client could deliberately create the scenario for this failure to\nforce a Denial of Service. It may also happen by accident in normal operation.\n\nThis issue only affects TLS servers supporting TLSv1.3. It does not affect TLS\nclients.\n\nThe FIPS modules in 3.2, 3.1 and 3.0 are not affected by this issue. OpenSSL\n1.0.2 is also not affected by this issue.",
+                "markdown": "**Vulnerability CVE-2024-2511**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|LOW|libssl3t64|3.0.13-0ubuntu3.2|[CVE-2024-2511](https://avd.aquasec.com/nvd/cve-2024-2511)|\n\nIssue summary: Some non-default TLS server configurations can cause unbounded\nmemory growth when processing TLSv1.3 sessions\n\nImpact summary: An attacker may exploit certain server configurations to trigger\nunbounded memory growth that would lead to a Denial of Service\n\nThis problem can occur in TLSv1.3 if the non-default SSL_OP_NO_TICKET option is\nbeing used (but not if early_data support is also configured and the default\nanti-replay protection is in use). In this case, under certain conditions, the\nsession cache can get into an incorrect state and it will fail to flush properly\nas it fills. The session cache will continue to grow in an unbounded manner. A\nmalicious client could deliberately create the scenario for this failure to\nforce a Denial of Service. It may also happen by accident in normal operation.\n\nThis issue only affects TLS servers supporting TLSv1.3. It does not affect TLS\nclients.\n\nThe FIPS modules in 3.2, 3.1 and 3.0 are not affected by this issue. OpenSSL\n1.0.2 is also not affected by this issue."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "2.0",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "LOW"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-4603",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "openssl: Excessive time spent checking DSA keys and parameters"
+              },
+              "fullDescription": {
+                "text": "Issue summary: Checking excessively long DSA keys or parameters may be very\nslow.\n\nImpact summary: Applications that use the functions EVP_PKEY_param_check()\nor EVP_PKEY_public_check() to check a DSA public key or DSA parameters may\nexperience long delays. Where the key or parameters that are being checked\nhave been obtained from an untrusted source this may lead to a Denial of\nService.\n\nThe functions EVP_PKEY_param_check() or EVP_PKEY_public_check() perform\nvarious checks on DSA parameters. Some of those computations take a long time\nif the modulus (`p` parameter) is too large.\n\nTrying to use a very large modulus is slow and OpenSSL will not allow using\npublic keys with a modulus which is over 10,000 bits in length for signature\nverification. However the key and parameter check functions do not limit\nthe modulus size when performing the checks.\n\nAn application that calls EVP_PKEY_param_check() or EVP_PKEY_public_check()\nand supplies a key or parameters obtained from an untrusted source could be\nvulnerable to a Denial of Service attack.\n\nThese functions are not called by OpenSSL itself on untrusted DSA keys so\nonly applications that directly call these functions may be vulnerable.\n\nAlso vulnerable are the OpenSSL pkey and pkeyparam command line applications\nwhen using the `-check` option.\n\nThe OpenSSL SSL/TLS implementation is not affected by this issue.\n\nThe OpenSSL 3.0 and 3.1 FIPS providers are affected by this issue."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2024-4603",
+              "help": {
+                "text": "Vulnerability CVE-2024-4603\nSeverity: LOW\nPackage: libssl3t64\nFixed Version: 3.0.13-0ubuntu3.2\nLink: [CVE-2024-4603](https://avd.aquasec.com/nvd/cve-2024-4603)\nIssue summary: Checking excessively long DSA keys or parameters may be very\nslow.\n\nImpact summary: Applications that use the functions EVP_PKEY_param_check()\nor EVP_PKEY_public_check() to check a DSA public key or DSA parameters may\nexperience long delays. Where the key or parameters that are being checked\nhave been obtained from an untrusted source this may lead to a Denial of\nService.\n\nThe functions EVP_PKEY_param_check() or EVP_PKEY_public_check() perform\nvarious checks on DSA parameters. Some of those computations take a long time\nif the modulus (`p` parameter) is too large.\n\nTrying to use a very large modulus is slow and OpenSSL will not allow using\npublic keys with a modulus which is over 10,000 bits in length for signature\nverification. However the key and parameter check functions do not limit\nthe modulus size when performing the checks.\n\nAn application that calls EVP_PKEY_param_check() or EVP_PKEY_public_check()\nand supplies a key or parameters obtained from an untrusted source could be\nvulnerable to a Denial of Service attack.\n\nThese functions are not called by OpenSSL itself on untrusted DSA keys so\nonly applications that directly call these functions may be vulnerable.\n\nAlso vulnerable are the OpenSSL pkey and pkeyparam command line applications\nwhen using the `-check` option.\n\nThe OpenSSL SSL/TLS implementation is not affected by this issue.\n\nThe OpenSSL 3.0 and 3.1 FIPS providers are affected by this issue.",
+                "markdown": "**Vulnerability CVE-2024-4603**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|LOW|libssl3t64|3.0.13-0ubuntu3.2|[CVE-2024-4603](https://avd.aquasec.com/nvd/cve-2024-4603)|\n\nIssue summary: Checking excessively long DSA keys or parameters may be very\nslow.\n\nImpact summary: Applications that use the functions EVP_PKEY_param_check()\nor EVP_PKEY_public_check() to check a DSA public key or DSA parameters may\nexperience long delays. Where the key or parameters that are being checked\nhave been obtained from an untrusted source this may lead to a Denial of\nService.\n\nThe functions EVP_PKEY_param_check() or EVP_PKEY_public_check() perform\nvarious checks on DSA parameters. Some of those computations take a long time\nif the modulus (`p` parameter) is too large.\n\nTrying to use a very large modulus is slow and OpenSSL will not allow using\npublic keys with a modulus which is over 10,000 bits in length for signature\nverification. However the key and parameter check functions do not limit\nthe modulus size when performing the checks.\n\nAn application that calls EVP_PKEY_param_check() or EVP_PKEY_public_check()\nand supplies a key or parameters obtained from an untrusted source could be\nvulnerable to a Denial of Service attack.\n\nThese functions are not called by OpenSSL itself on untrusted DSA keys so\nonly applications that directly call these functions may be vulnerable.\n\nAlso vulnerable are the OpenSSL pkey and pkeyparam command line applications\nwhen using the `-check` option.\n\nThe OpenSSL SSL/TLS implementation is not affected by this issue.\n\nThe OpenSSL 3.0 and 3.1 FIPS providers are affected by this issue."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "2.0",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "LOW"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-4741",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "openssl: Use After Free with SSL_free_buffers"
+              },
+              "fullDescription": {
+                "text": "A use-after-free vulnerability was found in OpenSSL. Calling the OpenSSL API SSL_free_buffers function may cause memory to be accessed that was previously freed in some situations."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2024-4741",
+              "help": {
+                "text": "Vulnerability CVE-2024-4741\nSeverity: LOW\nPackage: libssl3t64\nFixed Version: 3.0.13-0ubuntu3.2\nLink: [CVE-2024-4741](https://avd.aquasec.com/nvd/cve-2024-4741)\nA use-after-free vulnerability was found in OpenSSL. Calling the OpenSSL API SSL_free_buffers function may cause memory to be accessed that was previously freed in some situations.",
+                "markdown": "**Vulnerability CVE-2024-4741**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|LOW|libssl3t64|3.0.13-0ubuntu3.2|[CVE-2024-4741](https://avd.aquasec.com/nvd/cve-2024-4741)|\n\nA use-after-free vulnerability was found in OpenSSL. Calling the OpenSSL API SSL_free_buffers function may cause memory to be accessed that was previously freed in some situations."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "2.0",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "LOW"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-5535",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "openssl: SSL_select_next_proto buffer overread"
+              },
+              "fullDescription": {
+                "text": "Issue summary: Calling the OpenSSL API function SSL_select_next_proto with an\nempty supported client protocols buffer may cause a crash or memory contents to\nbe sent to the peer.\n\nImpact summary: A buffer overread can have a range of potential consequences\nsuch as unexpected application beahviour or a crash. In particular this issue\ncould result in up to 255 bytes of arbitrary private data from memory being sent\nto the peer leading to a loss of confidentiality. However, only applications\nthat directly call the SSL_select_next_proto function with a 0 length list of\nsupported client protocols are affected by this issue. This would normally never\nbe a valid scenario and is typically not under attacker control but may occur by\naccident in the case of a configuration or programming error in the calling\napplication.\n\nThe OpenSSL API function SSL_select_next_proto is typically used by TLS\napplications that support ALPN (Application Layer Protocol Negotiation) or NPN\n(Next Protocol Negotiation). NPN is older, was never standardised and\nis deprecated in favour of ALPN. We believe that ALPN is significantly more\nwidely deployed than NPN. The SSL_select_next_proto function accepts a list of\nprotocols from the server and a list of protocols from the client and returns\nthe first protocol that appears in the server list that also appears in the\nclient list. In the case of no overlap between the two lists it returns the\nfirst item in the client list. In either case it will signal whether an overlap\nbetween the two lists was found. In the case where SSL_select_next_proto is\ncalled with a zero length client list it fails to notice this condition and\nreturns the memory immediately following the client list pointer (and reports\nthat there was no overlap in the lists).\n\nThis function is typically called from a server side application callback for\nALPN or a client side application callback for NPN. In the case of ALPN the list\nof protocols supplied by the client is guaranteed by libssl to never be zero in\nlength. The list of server protocols comes from the application and should never\nnormally be expected to be of zero length. In this case if the\nSSL_select_next_proto function has been called as expected (with the list\nsupplied by the client passed in the client/client_len parameters), then the\napplication will not be vulnerable to this issue. If the application has\naccidentally been configured with a zero length server list, and has\naccidentally passed that zero length server list in the client/client_len\nparameters, and has additionally failed to correctly handle a \u0026#34;no overlap\u0026#34;\nresponse (which would normally result in a handshake failure in ALPN) then it\nwill be vulnerable to this problem.\n\nIn the case of NPN, the protocol permits the client to opportunistically select\na protocol when there is no overlap. OpenSSL returns the first client protocol\nin the no overlap case in support of this. The list of client protocols comes\nfrom the application and should never normally be expected to be of zero length.\nHowever if the SSL_select_next_proto function is accidentally called with a\nclient_len of 0 then an invalid memory pointer will be returned instead. If the\napplication uses this output as the opportunistic protocol then the loss of\nconfidentiality will occur.\n\nThis issue has been assessed as Low severity because applications are most\nlikely to be vulnerable if they are using NPN instead of ALPN - but NPN is not\nwidely used. It also requires an application configuration or programming error.\nFinally, this issue would not typically be under attacker control making active\nexploitation unlikely.\n\nThe FIPS modules in 3.3, 3.2, 3.1 and 3.0 are not affected by this issue.\n\nDue to the low severity of this issue we are not issuing new releases of\nOpenSSL at this time. The fix will be included in the next releases when they\nbecome available."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2024-5535",
+              "help": {
+                "text": "Vulnerability CVE-2024-5535\nSeverity: LOW\nPackage: libssl3t64\nFixed Version: 3.0.13-0ubuntu3.2\nLink: [CVE-2024-5535](https://avd.aquasec.com/nvd/cve-2024-5535)\nIssue summary: Calling the OpenSSL API function SSL_select_next_proto with an\nempty supported client protocols buffer may cause a crash or memory contents to\nbe sent to the peer.\n\nImpact summary: A buffer overread can have a range of potential consequences\nsuch as unexpected application beahviour or a crash. In particular this issue\ncould result in up to 255 bytes of arbitrary private data from memory being sent\nto the peer leading to a loss of confidentiality. However, only applications\nthat directly call the SSL_select_next_proto function with a 0 length list of\nsupported client protocols are affected by this issue. This would normally never\nbe a valid scenario and is typically not under attacker control but may occur by\naccident in the case of a configuration or programming error in the calling\napplication.\n\nThe OpenSSL API function SSL_select_next_proto is typically used by TLS\napplications that support ALPN (Application Layer Protocol Negotiation) or NPN\n(Next Protocol Negotiation). NPN is older, was never standardised and\nis deprecated in favour of ALPN. We believe that ALPN is significantly more\nwidely deployed than NPN. The SSL_select_next_proto function accepts a list of\nprotocols from the server and a list of protocols from the client and returns\nthe first protocol that appears in the server list that also appears in the\nclient list. In the case of no overlap between the two lists it returns the\nfirst item in the client list. In either case it will signal whether an overlap\nbetween the two lists was found. In the case where SSL_select_next_proto is\ncalled with a zero length client list it fails to notice this condition and\nreturns the memory immediately following the client list pointer (and reports\nthat there was no overlap in the lists).\n\nThis function is typically called from a server side application callback for\nALPN or a client side application callback for NPN. In the case of ALPN the list\nof protocols supplied by the client is guaranteed by libssl to never be zero in\nlength. The list of server protocols comes from the application and should never\nnormally be expected to be of zero length. In this case if the\nSSL_select_next_proto function has been called as expected (with the list\nsupplied by the client passed in the client/client_len parameters), then the\napplication will not be vulnerable to this issue. If the application has\naccidentally been configured with a zero length server list, and has\naccidentally passed that zero length server list in the client/client_len\nparameters, and has additionally failed to correctly handle a \"no overlap\"\nresponse (which would normally result in a handshake failure in ALPN) then it\nwill be vulnerable to this problem.\n\nIn the case of NPN, the protocol permits the client to opportunistically select\na protocol when there is no overlap. OpenSSL returns the first client protocol\nin the no overlap case in support of this. The list of client protocols comes\nfrom the application and should never normally be expected to be of zero length.\nHowever if the SSL_select_next_proto function is accidentally called with a\nclient_len of 0 then an invalid memory pointer will be returned instead. If the\napplication uses this output as the opportunistic protocol then the loss of\nconfidentiality will occur.\n\nThis issue has been assessed as Low severity because applications are most\nlikely to be vulnerable if they are using NPN instead of ALPN - but NPN is not\nwidely used. It also requires an application configuration or programming error.\nFinally, this issue would not typically be under attacker control making active\nexploitation unlikely.\n\nThe FIPS modules in 3.3, 3.2, 3.1 and 3.0 are not affected by this issue.\n\nDue to the low severity of this issue we are not issuing new releases of\nOpenSSL at this time. The fix will be included in the next releases when they\nbecome available.",
+                "markdown": "**Vulnerability CVE-2024-5535**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|LOW|libssl3t64|3.0.13-0ubuntu3.2|[CVE-2024-5535](https://avd.aquasec.com/nvd/cve-2024-5535)|\n\nIssue summary: Calling the OpenSSL API function SSL_select_next_proto with an\nempty supported client protocols buffer may cause a crash or memory contents to\nbe sent to the peer.\n\nImpact summary: A buffer overread can have a range of potential consequences\nsuch as unexpected application beahviour or a crash. In particular this issue\ncould result in up to 255 bytes of arbitrary private data from memory being sent\nto the peer leading to a loss of confidentiality. However, only applications\nthat directly call the SSL_select_next_proto function with a 0 length list of\nsupported client protocols are affected by this issue. This would normally never\nbe a valid scenario and is typically not under attacker control but may occur by\naccident in the case of a configuration or programming error in the calling\napplication.\n\nThe OpenSSL API function SSL_select_next_proto is typically used by TLS\napplications that support ALPN (Application Layer Protocol Negotiation) or NPN\n(Next Protocol Negotiation). NPN is older, was never standardised and\nis deprecated in favour of ALPN. We believe that ALPN is significantly more\nwidely deployed than NPN. The SSL_select_next_proto function accepts a list of\nprotocols from the server and a list of protocols from the client and returns\nthe first protocol that appears in the server list that also appears in the\nclient list. In the case of no overlap between the two lists it returns the\nfirst item in the client list. In either case it will signal whether an overlap\nbetween the two lists was found. In the case where SSL_select_next_proto is\ncalled with a zero length client list it fails to notice this condition and\nreturns the memory immediately following the client list pointer (and reports\nthat there was no overlap in the lists).\n\nThis function is typically called from a server side application callback for\nALPN or a client side application callback for NPN. In the case of ALPN the list\nof protocols supplied by the client is guaranteed by libssl to never be zero in\nlength. The list of server protocols comes from the application and should never\nnormally be expected to be of zero length. In this case if the\nSSL_select_next_proto function has been called as expected (with the list\nsupplied by the client passed in the client/client_len parameters), then the\napplication will not be vulnerable to this issue. If the application has\naccidentally been configured with a zero length server list, and has\naccidentally passed that zero length server list in the client/client_len\nparameters, and has additionally failed to correctly handle a \"no overlap\"\nresponse (which would normally result in a handshake failure in ALPN) then it\nwill be vulnerable to this problem.\n\nIn the case of NPN, the protocol permits the client to opportunistically select\na protocol when there is no overlap. OpenSSL returns the first client protocol\nin the no overlap case in support of this. The list of client protocols comes\nfrom the application and should never normally be expected to be of zero length.\nHowever if the SSL_select_next_proto function is accidentally called with a\nclient_len of 0 then an invalid memory pointer will be returned instead. If the\napplication uses this output as the opportunistic protocol then the loss of\nconfidentiality will occur.\n\nThis issue has been assessed as Low severity because applications are most\nlikely to be vulnerable if they are using NPN instead of ALPN - but NPN is not\nwidely used. It also requires an application configuration or programming error.\nFinally, this issue would not typically be under attacker control making active\nexploitation unlikely.\n\nThe FIPS modules in 3.3, 3.2, 3.1 and 3.0 are not affected by this issue.\n\nDue to the low severity of this issue we are not issuing new releases of\nOpenSSL at this time. The fix will be included in the next releases when they\nbecome available."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "2.0",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "LOW"
+                ]
+              }
+            }
+          ],
+          "version": "0.54.1"
+        }
+      },
+      "results": [
+        {
+          "ruleId": "CVE-2016-2781",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "Package: coreutils\nInstalled Version: 9.4-3ubuntu6\nVulnerability CVE-2016-2781\nSeverity: LOW\nFixed Version: \nLink: [CVE-2016-2781](https://avd.aquasec.com/nvd/cve-2016-2781)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "library/ubuntu",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "library/ubuntu: coreutils@9.4-3ubuntu6"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-3219",
+          "ruleIndex": 1,
+          "level": "note",
+          "message": {
+            "text": "Package: gpgv\nInstalled Version: 2.4.4-2ubuntu17\nVulnerability CVE-2022-3219\nSeverity: LOW\nFixed Version: \nLink: [CVE-2022-3219](https://avd.aquasec.com/nvd/cve-2022-3219)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "library/ubuntu",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "library/ubuntu: gpgv@2.4.4-2ubuntu17"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2016-20013",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "Package: libc-bin\nInstalled Version: 2.39-0ubuntu8.2\nVulnerability CVE-2016-20013\nSeverity: LOW\nFixed Version: \nLink: [CVE-2016-20013](https://avd.aquasec.com/nvd/cve-2016-20013)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "library/ubuntu",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "library/ubuntu: libc-bin@2.39-0ubuntu8.2"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2016-20013",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "Package: libc6\nInstalled Version: 2.39-0ubuntu8.2\nVulnerability CVE-2016-20013\nSeverity: LOW\nFixed Version: \nLink: [CVE-2016-20013](https://avd.aquasec.com/nvd/cve-2016-20013)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "library/ubuntu",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "library/ubuntu: libc6@2.39-0ubuntu8.2"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-2236",
+          "ruleIndex": 3,
+          "level": "warning",
+          "message": {
+            "text": "Package: libgcrypt20\nInstalled Version: 1.10.3-2build1\nVulnerability CVE-2024-2236\nSeverity: MEDIUM\nFixed Version: \nLink: [CVE-2024-2236](https://avd.aquasec.com/nvd/cve-2024-2236)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "library/ubuntu",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "library/ubuntu: libgcrypt20@1.10.3-2build1"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-2511",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "Package: libssl3t64\nInstalled Version: 3.0.13-0ubuntu3.1\nVulnerability CVE-2024-2511\nSeverity: LOW\nFixed Version: 3.0.13-0ubuntu3.2\nLink: [CVE-2024-2511](https://avd.aquasec.com/nvd/cve-2024-2511)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "library/ubuntu",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "library/ubuntu: libssl3t64@3.0.13-0ubuntu3.1"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-4603",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Package: libssl3t64\nInstalled Version: 3.0.13-0ubuntu3.1\nVulnerability CVE-2024-4603\nSeverity: LOW\nFixed Version: 3.0.13-0ubuntu3.2\nLink: [CVE-2024-4603](https://avd.aquasec.com/nvd/cve-2024-4603)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "library/ubuntu",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "library/ubuntu: libssl3t64@3.0.13-0ubuntu3.1"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-4741",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "Package: libssl3t64\nInstalled Version: 3.0.13-0ubuntu3.1\nVulnerability CVE-2024-4741\nSeverity: LOW\nFixed Version: 3.0.13-0ubuntu3.2\nLink: [CVE-2024-4741](https://avd.aquasec.com/nvd/cve-2024-4741)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "library/ubuntu",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "library/ubuntu: libssl3t64@3.0.13-0ubuntu3.1"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-5535",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Package: libssl3t64\nInstalled Version: 3.0.13-0ubuntu3.1\nVulnerability CVE-2024-5535\nSeverity: LOW\nFixed Version: 3.0.13-0ubuntu3.2\nLink: [CVE-2024-5535](https://avd.aquasec.com/nvd/cve-2024-5535)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "library/ubuntu",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "library/ubuntu: libssl3t64@3.0.13-0ubuntu3.1"
+              }
+            }
+          ]
+        }
+      ],
+      "columnKind": "utf16CodeUnits",
+      "originalUriBaseIds": {
+        "ROOTPATH": {
+          "uri": "file:///"
+        }
+      },
+      "properties": {
+        "imageID": "sha256:35a88802559dd2077e584394471ddaa1a2c5bfd16893b829ea57619301eb3908",
+        "imageName": "ubuntu",
+        "repoDigests": [
+          "ubuntu@sha256:2e863c44b718727c860746568e1d54afd13b2fa71b160f5cd9058fc436217b30"
+        ],
+        "repoTags": [
+          "ubuntu:latest"
+        ]
+      }
+    }
+  ]
+}
