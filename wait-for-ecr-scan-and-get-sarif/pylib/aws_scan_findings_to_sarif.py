@@ -10,17 +10,11 @@ def load_sarif_schema(schema_path):
         return json.load(f)
 
 
-def convert_to_sarif(input_file, output_file):
-    with open(input_file, "r") as f:
-        ecr_response = json.load(f)
-
+def convert_to_sarif(ecr_response):
     sarif_report = convert(ecr_response)
-
-    with open(output_file, "w") as f:
-        json.dump(sarif_report, f, indent=2)
-
     sarif_schema = load_sarif_schema(SCHEMA_FILE_PATH)
     validate_sarif(sarif_report, sarif_schema)
+    return sarif_report
 
 
 def convert(ecr_response):
@@ -224,7 +218,12 @@ def main():
     parser.add_argument("--output_file", required=True, help="The output SARIF file.")
     args = parser.parse_args()
 
-    sarif_report = convert_to_sarif(args.input_file, args.output_file)
+    with open(args.input_file, "r") as f:
+        ecr_response = json.load(f)
+    sarif_report = convert_to_sarif(ecr_response)
+
+    with open(args.output_file, "w") as f:
+        json.dump(sarif_report, f, indent=2)
 
 
 if __name__ == "__main__":

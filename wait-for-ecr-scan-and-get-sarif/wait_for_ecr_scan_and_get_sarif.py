@@ -1,7 +1,8 @@
+import json
 import argparse
 from pylib.aws_scan_findings_to_sarif import convert_to_sarif
 
-from pylib.wait_for_ecr_scan import get_image_scan_findings, wait_for_image_scan
+from pylib.wait_for_ecr_scan import wait_for_image_scan
 
 
 def main():
@@ -18,11 +19,13 @@ def main():
     parser.add_argument("--output_file", required=True, help="The output SARIF file.")
 
     args = parser.parse_args()
-    wait_for_image_scan(args.repository_name, args.image_tag, args.region)
-    ecr_scan_result_file = get_image_scan_findings(
-        args.repository_name, args.image_tag, args.region
+    ecr_scan_result = wait_for_image_scan(
+        args.repository_name, args.image_tag, args.aws_region
     )
-    convert_to_sarif(ecr_scan_result_file, args.output_file)
+    sarif_report = convert_to_sarif(ecr_scan_result)
+
+    with open(args.output_file, "w") as f:
+        json.dump(sarif_report, f, indent=2)
 
 
 if __name__ == "__main__":
