@@ -28,7 +28,16 @@ def convert_to_sarif(ecr_response):
             severity = finding["severity"]
             severity_for_level = severity
             if severity_for_level.lower() not in ["none", "note", "warning", "error"]:
-                severity_for_level = "none"
+                severity_map = {
+                    "untriaged": "none",
+                    "low": "note",
+                    "medium": "warning",
+                    "high": "error",
+                    "critical": "error",
+                }
+                severity_for_level = severity_map.get(
+                    severity_for_level.lower(), "none"
+                )
 
             if is_enhanced:
                 vulnerability_id = finding["packageVulnerabilityDetails"][
