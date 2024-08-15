@@ -69,7 +69,7 @@ def convert_to_sarif(ecr_response):
                     "ruleIndex": len(
                         sarif_report["runs"][0]["tool"]["driver"]["rules"]
                     ),
-                    "level": severity.lower(),
+                    "level": severity_for_level,
                     "message": {
                         "text": f"Package: {vulnerable_packages[0]['name']}\nInstalled Version: {vulnerable_packages[0]['version']}\nVulnerability {vulnerability_id}\nSeverity: {severity}\nFixed Version: \nLink: [{vulnerability_id}]({source_url})"
                     },
@@ -116,7 +116,7 @@ def convert_to_sarif(ecr_response):
                     "ruleIndex": len(
                         sarif_report["runs"][0]["tool"]["driver"]["rules"]
                     ),
-                    "level": severity.lower(),
+                    "level": severity_for_level,
                     "message": {
                         "text": f"Package: {finding['attributes'][1]['value']}\nInstalled Version: {finding['attributes'][0]['value']}\nVulnerability {finding['name']}\nSeverity: {severity}\nFixed Version: \nLink: [{finding['name']}]({finding['uri']})"
                     },
@@ -175,6 +175,7 @@ def update_schema_patterns(schema):
         # If the schema is a list, update each item
         for item in schema:
             update_schema_patterns(item)
+
 
 def main():
     def load_sarif_schema(schema_path):
