@@ -62,7 +62,7 @@ def convert_to_sarif(ecr_response):
                 {
                     "physicalLocation": {
                         "artifactLocation": {
-                            "uri": "library/ubuntu",
+                            "uri": ecr_response["repositoryName"],
                             "uriBaseId": "ROOTPATH"
                         },
                         "region": {
@@ -73,7 +73,7 @@ def convert_to_sarif(ecr_response):
                         }
                     },
                     "message": {
-                        "text": f"library/ubuntu: {finding['attributes'][1]['value']}@{finding['attributes'][0]['value']}"
+                        "text": f"{ecr_response['repositoryName']}: {finding['attributes'][1]['value']}@{finding['attributes'][0]['value']}"
                     }
                 }
             ]
