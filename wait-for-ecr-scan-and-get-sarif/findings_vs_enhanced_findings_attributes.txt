@@ -1,0 +1,269 @@
+findings -> (list)
+
+The findings from the image scan.
+
+(structure)
+
+Contains information about an image scan finding.
+
+name -> (string)
+
+The name associated with the finding, usually a CVE number.
+description -> (string)
+
+The description of the finding.
+uri -> (string)
+
+A link containing additional details about the security vulnerability.
+severity -> (string)
+
+The finding severity.
+attributes -> (list)
+
+A collection of attributes of the host from which the finding is generated.
+
+(structure)
+
+This data type is used in the ImageScanFinding data type.
+
+key -> (string)
+
+The attribute key.
+value -> (string)
+
+The value assigned to the attribute key.
+
+----
+
+enhancedFindings -> (list)
+
+Details about the enhanced scan findings from Amazon Inspector.
+
+(structure)
+
+The details of an enhanced image scan. This is returned when enhanced scanning is enabled for your private registry.
+
+awsAccountId -> (string)
+
+The Amazon Web Services account ID associated with the image.
+description -> (string)
+
+The description of the finding.
+findingArn -> (string)
+
+The Amazon Resource Number (ARN) of the finding.
+firstObservedAt -> (timestamp)
+
+The date and time that the finding was first observed.
+lastObservedAt -> (timestamp)
+
+The date and time that the finding was last observed.
+packageVulnerabilityDetails -> (structure)
+
+An object that contains the details of a package vulnerability finding.
+
+cvss -> (list)
+
+An object that contains details about the CVSS score of a finding.
+
+(structure)
+
+The CVSS score for a finding.
+
+baseScore -> (double)
+
+The base CVSS score used for the finding.
+scoringVector -> (string)
+
+The vector string of the CVSS score.
+source -> (string)
+
+The source of the CVSS score.
+version -> (string)
+
+The version of CVSS used for the score.
+referenceUrls -> (list)
+
+One or more URLs that contain details about this vulnerability type.
+
+(string)
+
+relatedVulnerabilities -> (list)
+
+One or more vulnerabilities related to the one identified in this finding.
+
+(string)
+
+source -> (string)
+
+The source of the vulnerability information.
+sourceUrl -> (string)
+
+A URL to the source of the vulnerability information.
+vendorCreatedAt -> (timestamp)
+
+The date and time that this vulnerability was first added to the vendor's database.
+vendorSeverity -> (string)
+
+The severity the vendor has given to this vulnerability type.
+vendorUpdatedAt -> (timestamp)
+
+The date and time the vendor last updated this vulnerability in their database.
+vulnerabilityId -> (string)
+
+The ID given to this vulnerability.
+vulnerablePackages -> (list)
+
+The packages impacted by this vulnerability.
+
+(structure)
+
+Information on the vulnerable package identified by a finding.
+
+arch -> (string)
+
+The architecture of the vulnerable package.
+epoch -> (integer)
+
+The epoch of the vulnerable package.
+filePath -> (string)
+
+The file path of the vulnerable package.
+name -> (string)
+
+The name of the vulnerable package.
+packageManager -> (string)
+
+The package manager of the vulnerable package.
+release -> (string)
+
+The release of the vulnerable package.
+sourceLayerHash -> (string)
+
+The source layer hash of the vulnerable package.
+version -> (string)
+
+The version of the vulnerable package.
+remediation -> (structure)
+
+An object that contains the details about how to remediate a finding.
+
+recommendation -> (structure)
+
+An object that contains information about the recommended course of action to remediate the finding.
+
+url -> (string)
+
+The URL address to the CVE remediation recommendations.
+text -> (string)
+
+The recommended course of action to remediate the finding.
+resources -> (list)
+
+Contains information on the resources involved in a finding.
+
+(structure)
+
+Details about the resource involved in a finding.
+
+details -> (structure)
+
+An object that contains details about the resource involved in a finding.
+
+awsEcrContainerImage -> (structure)
+
+An object that contains details about the Amazon ECR container image involved in the finding.
+
+architecture -> (string)
+
+The architecture of the Amazon ECR container image.
+author -> (string)
+
+The image author of the Amazon ECR container image.
+imageHash -> (string)
+
+The image hash of the Amazon ECR container image.
+imageTags -> (list)
+
+The image tags attached to the Amazon ECR container image.
+
+(string)
+
+platform -> (string)
+
+The platform of the Amazon ECR container image.
+pushedAt -> (timestamp)
+
+The date and time the Amazon ECR container image was pushed.
+registry -> (string)
+
+The registry the Amazon ECR container image belongs to.
+repositoryName -> (string)
+
+The name of the repository the Amazon ECR container image resides in.
+id -> (string)
+
+The ID of the resource.
+tags -> (map)
+
+The tags attached to the resource.
+
+key -> (string)
+
+value -> (string)
+
+type -> (string)
+
+The type of resource.
+score -> (double)
+
+The Amazon Inspector score given to the finding.
+scoreDetails -> (structure)
+
+An object that contains details of the Amazon Inspector score.
+
+cvss -> (structure)
+
+An object that contains details about the CVSS score given to a finding.
+
+adjustments -> (list)
+
+An object that contains details about adjustment Amazon Inspector made to the CVSS score.
+
+(structure)
+
+Details on adjustments Amazon Inspector made to the CVSS score for a finding.
+
+metric -> (string)
+
+The metric used to adjust the CVSS score.
+reason -> (string)
+
+The reason the CVSS score has been adjustment.
+score -> (double)
+
+The CVSS score.
+scoreSource -> (string)
+
+The source for the CVSS score.
+scoringVector -> (string)
+
+The vector for the CVSS score.
+version -> (string)
+
+The CVSS version used in scoring.
+severity -> (string)
+
+The severity of the finding.
+status -> (string)
+
+The status of the finding.
+title -> (string)
+
+The title of the finding.
+type -> (string)
+
+The type of the finding.
+updatedAt -> (timestamp)
+
+The date and time the finding was last updated at.
