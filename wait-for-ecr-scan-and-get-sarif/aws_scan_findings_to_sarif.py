@@ -159,6 +159,13 @@ def main():
             return json.load(f)
 
 
+    def validate_sarif(sarif_report, schema):
+         try:
+             jsonschema.validate(instance=sarif_report, schema=schema)
+             print("SARIF report is valid.")
+         except jsonschema.ValidationError as e:
+             print(f"SARIF report is invalid: {e.message}")
+
     parser = argparse.ArgumentParser(
         description="Convert ECR scan findings to SARIF format."
     )
@@ -177,7 +184,6 @@ def main():
         ecr_response = json.load(f)
 
     sarif_report = convert_to_sarif(ecr_response)
-
 
     validate_sarif(sarif_report, sarif_schema)
 
