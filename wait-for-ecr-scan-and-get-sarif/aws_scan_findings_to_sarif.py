@@ -99,7 +99,7 @@ def convert_to_sarif(ecr_response):
                     "name": "OsPackageVulnerability",
                     "shortDescription": {"text": finding["description"]},
                     "fullDescription": {"text": finding["description"]},
-                    "defaultConfiguration": {"level": severity.lower()},
+                    "defaultConfiguration": {"level": severity_for_level},
                     "helpUri": finding["uri"],
                     "help": {
                         "text": f"Vulnerability {finding['name']}\nSeverity: {severity}\nPackage: {finding['attributes'][1]['value']}\nFixed Version: \nLink: [{finding['name']}]({finding['uri']})",
@@ -166,11 +166,11 @@ def main():
             return json.load(f)
 
     def validate_sarif(sarif_report, schema):
-         try:
-             jsonschema.validate(instance=sarif_report, schema=schema)
-             print("SARIF report is valid.")
-         except jsonschema.ValidationError as e:
-             print(f"SARIF report is invalid: {e.message}")
+        try:
+            jsonschema.validate(instance=sarif_report, schema=schema)
+            print("SARIF report is valid.")
+        except jsonschema.ValidationError as e:
+            print(f"SARIF report is invalid: {e.message}")
 
     parser = argparse.ArgumentParser(
         description="Convert ECR scan findings to SARIF format."
@@ -191,10 +191,10 @@ def main():
 
     sarif_report = convert_to_sarif(ecr_response)
 
-    validate_sarif(sarif_report, sarif_schema)
-
     with open(args.output_file, "w") as f:
         json.dump(sarif_report, f, indent=2)
+
+    validate_sarif(sarif_report, sarif_schema)
 
 
 if __name__ == "__main__":
