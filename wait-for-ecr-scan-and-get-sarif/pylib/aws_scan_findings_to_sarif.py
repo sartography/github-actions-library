@@ -2,28 +2,8 @@ import json
 import argparse
 import jsonschema
 
-SCHEMA_FILE_PATH = "./wait-for-ecr-scan-and-get-sarif/sarif-schema-2.1.0.json"
 
-
-def load_sarif_schema(schema_path):
-    with open(schema_path, "r") as f:
-        return json.load(f)
-
-
-def convert_to_sarif(input_file, output_file):
-    with open(input_file, "r") as f:
-        ecr_response = json.load(f)
-
-    sarif_report = convert(ecr_response)
-
-    with open(output_file, "w") as f:
-        json.dump(sarif_report, f, indent=2)
-
-    sarif_schema = load_sarif_schema(SCHEMA_FILE_PATH)
-    validate_sarif(sarif_report, sarif_schema)
-
-
-def convert(ecr_response):
+def convert_to_sarif(ecr_response):
     image_tags = []
     if "imageTag" in ecr_response["imageId"]:
         image_tags.append(
@@ -213,6 +193,10 @@ def validate_sarif(sarif_report, schema):
 
 
 def main():
+    def load_sarif_schema(schema_path):
+        with open(schema_path, "r") as f:
+            return json.load(f)
+
     parser = argparse.ArgumentParser(
         description="Convert ECR scan findings to SARIF format."
     )
@@ -222,9 +206,20 @@ def main():
         help="The input JSON file with ECR scan findings.",
     )
     parser.add_argument("--output_file", required=True, help="The output SARIF file.")
+    SCHEMA_FILE_PATH = "./wait-for-ecr-scan-and-get-sarif/sarif-schema-2.1.0.json"
     args = parser.parse_args()
 
-    sarif_report = convert_to_sarif(args.input_file, args.output_file)
+    sarif_schema = load_sarif_schema(SCHEMA_FILE_PATH)
+
+    with open(args.input_file, "r") as f:
+        ecr_response = json.load(f)
+
+    sarif_report = convert_to_sarif(ecr_response)
+
+    with open(args.output_file, "w") as f:
+        json.dump(sarif_report, f, indent=2)
+
+    validate_sarif(sarif_report, sarif_schema)
 
 
 if __name__ == "__main__":

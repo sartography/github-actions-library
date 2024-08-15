@@ -3,7 +3,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-from aws_scan_findings_to_sarif import convert_to_sarif
+from pylib.aws_scan_findings_to_sarif import convert_to_sarif
 
 
 def test_convert_to_sarif_minimal_ecr_scan():

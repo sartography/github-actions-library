@@ -28,6 +28,12 @@ jobs:
           name: sarif-report
           path: report.sarif
 
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: report.sarif
+          category: my-analysis-tool
+
       # - name: Upload SARIF report to GitHub Code Scanning
       #   uses: github/codeql-action/upload-sarif@v2
       #   with:
