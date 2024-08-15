@@ -59,8 +59,18 @@ def convert_to_sarif(ecr_response):
                 ]
                 cvss = finding["packageVulnerabilityDetails"]["cvss"]
                 base_score = None
+                properties = {
+                    "precision": "very-high",
+                    "tags": [
+                        "vulnerability",
+                        "security",
+                        severity,
+                    ],
+                }
                 if len(cvss) > 0:
                     base_score = cvss[0]["baseScore"]
+                    if base_score is not None:
+                        properties["security-severity"] = base_score
 
                 rule = {
                     "id": vulnerability_id,
@@ -73,15 +83,7 @@ def convert_to_sarif(ecr_response):
                         "text": f"Vulnerability {vulnerability_id}\nSeverity: {severity}\nPackage: {vulnerable_packages[0]['name']}\nFixed Version: \nLink: [{vulnerability_id}]({source_url})",
                         "markdown": f"**Vulnerability {vulnerability_id}**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|{severity}|{vulnerable_packages[0]['name']}||[{vulnerability_id}]({source_url})\n\n{finding['description']}",
                     },
-                    "properties": {
-                        "precision": "very-high",
-                        "security-severity": base_score,
-                        "tags": [
-                            "vulnerability",
-                            "security",
-                            severity,
-                        ],
-                    },
+                    "properties": properties,
                 }
                 result = {
                     "ruleId": vulnerability_id,
