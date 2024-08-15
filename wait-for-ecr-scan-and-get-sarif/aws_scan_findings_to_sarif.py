@@ -4,6 +4,12 @@ import jsonschema
 
 
 def convert_to_sarif(ecr_response):
+    image_tags = []
+    if "imageTag" in ecr_response["imageId"]:
+        image_tags.append(
+            f"{ecr_response['repositoryName']}:{ecr_response['imageId']['imageTag']}"
+        )
+
     sarif_report = {
         "version": "2.1.0",
         "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json",
@@ -23,9 +29,7 @@ def convert_to_sarif(ecr_response):
                     "repoDigests": [
                         f"{ecr_response['repositoryName']}@{ecr_response['imageId']['imageDigest']}"
                     ],
-                    "repoTags": [
-                        f"{ecr_response['repositoryName']}:{ecr_response['imageId']['imageTag']}"
-                    ],
+                    "repoTags": image_tags,
                 },
             }
         ],
@@ -49,6 +53,8 @@ def convert_to_sarif(ecr_response):
                     severity_for_level.lower(), "none"
                 )
 
+            vulnerability_name = finding["type"]
+
             if is_enhanced:
                 vulnerability_id = finding["packageVulnerabilityDetails"][
                     "vulnerabilityId"
@@ -59,8 +65,7 @@ def convert_to_sarif(ecr_response):
                 ]
                 cvss = finding["packageVulnerabilityDetails"]["cvss"]
                 base_score = None
-                properties = {
-                    "precision": "very-high",
+                properties: dict = {
                     "tags": [
                         "vulnerability",
                         "security",
@@ -71,10 +76,11 @@ def convert_to_sarif(ecr_response):
                     base_score = cvss[0]["baseScore"]
                     if base_score is not None:
                         properties["security-severity"] = base_score
+                        properties["precision"] = "very-high"
 
                 rule = {
                     "id": vulnerability_id,
-                    "name": "OsPackageVulnerability",
+                    "name": vulnerability_name,
                     "shortDescription": {"text": finding["description"]},
                     "fullDescription": {"text": finding["description"]},
                     "defaultConfiguration": {"level": severity_for_level},
@@ -117,7 +123,7 @@ def convert_to_sarif(ecr_response):
             else:
                 rule = {
                     "id": finding["name"],
-                    "name": "OsPackageVulnerability",
+                    "name": vulnerability_name,
                     "shortDescription": {"text": finding["description"]},
                     "fullDescription": {"text": finding["description"]},
                     "defaultConfiguration": {"level": severity_for_level},
