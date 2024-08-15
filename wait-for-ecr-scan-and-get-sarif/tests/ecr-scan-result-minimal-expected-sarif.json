@@ -10,7 +10,7 @@
           "rules": [
             {
               "id": "CVE-2019-5188",
-              "name": "OsPackageVulnerability",
+              "name": "Unknown",
               "shortDescription": {
                 "text": "A code execution vulnerability exists in the directory rehashing functionality of E2fsprogs e2fsck 1.45.4. A specially crafted ext4 directory can cause an out-of-bounds write on the stack, resulting in code execution. An attacker can corrupt a partition to trigger this vulnerability."
               },
@@ -18,7 +18,7 @@
                 "text": "A code execution vulnerability exists in the directory rehashing functionality of E2fsprogs e2fsck 1.45.4. A specially crafted ext4 directory can cause an out-of-bounds write on the stack, resulting in code execution. An attacker can corrupt a partition to trigger this vulnerability."
               },
               "defaultConfiguration": {
-                "level": "medium"
+                "level": "warning"
               },
               "helpUri": "http://people.ubuntu.com/~ubuntu-security/cve/CVE-2019-5188",
               "help": {
@@ -26,13 +26,13 @@
                 "markdown": "**Vulnerability CVE-2019-5188**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|e2fsprogs||[CVE-2019-5188](http://people.ubuntu.com/~ubuntu-security/cve/CVE-2019-5188)\n\nA code execution vulnerability exists in the directory rehashing functionality of E2fsprogs e2fsck 1.45.4. A specially crafted ext4 directory can cause an out-of-bounds write on the stack, resulting in code execution. An attacker can corrupt a partition to trigger this vulnerability."
               },
               "properties": {
-                "precision": "very-high",
-                "security-severity": "4.6",
                 "tags": [
                   "vulnerability",
                   "security",
                   "MEDIUM"
-                ]
+                ],
+                "security-severity": "4.6",
+                "precision": "very-high"
               }
             }
           ]
@@ -42,7 +42,7 @@
         {
           "ruleId": "CVE-2019-5188",
           "ruleIndex": 0,
-          "level": "medium",
+          "level": "warning",
           "message": {
             "text": "Package: e2fsprogs\nInstalled Version: 1.44.1-1ubuntu1.1\nVulnerability CVE-2019-5188\nSeverity: MEDIUM\nFixed Version: \nLink: [CVE-2019-5188](http://people.ubuntu.com/~ubuntu-security/cve/CVE-2019-5188)"
           },
@@ -50,14 +50,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "sample-repo",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
+                  "uri": "sample-repo"
                 }
               },
               "message": {
@@ -66,7 +59,15 @@
             }
           ]
         }
-      ]
+      ],
+      "properties": {
+        "imageID": "sha256:74b2c688c700ec95a93e478cdb959737c148df3fbf5ea706abe0318726e885e6",
+        "imageName": "sample-repo",
+        "repoDigests": [
+          "sample-repo@sha256:74b2c688c700ec95a93e478cdb959737c148df3fbf5ea706abe0318726e885e6"
+        ],
+        "repoTags": []
+      }
     }
   ]
 }

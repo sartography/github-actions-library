@@ -53,7 +53,7 @@ def convert_to_sarif(ecr_response):
                     severity_for_level.lower(), "none"
                 )
 
-            vulnerability_name = finding["type"]
+            vulnerability_name = finding.get("type", "Unknown")
 
             if is_enhanced:
                 vulnerability_id = finding["packageVulnerabilityDetails"][
@@ -105,13 +105,6 @@ def convert_to_sarif(ecr_response):
                             "physicalLocation": {
                                 "artifactLocation": {
                                     "uri": ecr_response["repositoryName"],
-                                    "uriBaseId": "ROOTPATH",
-                                },
-                                "region": {
-                                    "startLine": 1,
-                                    "startColumn": 1,
-                                    "endLine": 1,
-                                    "endColumn": 1,
                                 },
                             },
                             "message": {
@@ -121,6 +114,21 @@ def convert_to_sarif(ecr_response):
                     ],
                 }
             else:
+                properties = {
+                    "tags": ["vulnerability", "security", severity],
+                }
+                base_score = next(
+                    (
+                        i["value"]
+                        for i in finding["attributes"]
+                        if i["key"].endswith("_SCORE")
+                    ),
+                    None,
+                )
+                if base_score is not None:
+                    properties["security-severity"] = base_score
+                    properties["precision"] = "very-high"
+
                 rule = {
                     "id": finding["name"],
                     "name": vulnerability_name,
@@ -132,11 +140,7 @@ def convert_to_sarif(ecr_response):
                         "text": f"Vulnerability {finding['name']}\nSeverity: {severity}\nPackage: {finding['attributes'][1]['value']}\nFixed Version: \nLink: [{finding['name']}]({finding['uri']})",
                         "markdown": f"**Vulnerability {finding['name']}**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|{severity}|{finding['attributes'][1]['value']}||[{finding['name']}]({finding['uri']})\n\n{finding['description']}",
                     },
-                    "properties": {
-                        "precision": "very-high",
-                        "security-severity": finding["attributes"][3]["value"],
-                        "tags": ["vulnerability", "security", severity],
-                    },
+                    "properties": properties,
                 }
                 result = {
                     "ruleId": finding["name"],
@@ -152,13 +156,6 @@ def convert_to_sarif(ecr_response):
                             "physicalLocation": {
                                 "artifactLocation": {
                                     "uri": ecr_response["repositoryName"],
-                                    "uriBaseId": "ROOTPATH",
-                                },
-                                "region": {
-                                    "startLine": 1,
-                                    "startColumn": 1,
-                                    "endLine": 1,
-                                    "endColumn": 1,
                                 },
                             },
                             "message": {
