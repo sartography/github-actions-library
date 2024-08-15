@@ -23,6 +23,13 @@ def convert_to_sarif(ecr_response):
 
     def process_findings(findings, is_enhanced=False):
         for finding in findings:
+            # make sure severity is an accepted value
+            # aws likes to use things lke "untriaged"
+            severity = finding["severity"]
+            severity_for_level = severity
+            if severity_for_level.lower() not in ["none", "note", "warning", "error"]:
+                severity_for_level = "none"
+
             if is_enhanced:
                 vulnerability_id = finding["packageVulnerabilityDetails"][
                     "vulnerabilityId"
@@ -35,16 +42,17 @@ def convert_to_sarif(ecr_response):
                 base_score = None
                 if len(cvss) > 0:
                     base_score = cvss[0]["baseScore"]
+
                 rule = {
                     "id": vulnerability_id,
                     "name": "OsPackageVulnerability",
                     "shortDescription": {"text": finding["description"]},
                     "fullDescription": {"text": finding["description"]},
-                    "defaultConfiguration": {"level": finding["severity"].lower()},
+                    "defaultConfiguration": {"level": severity_for_level},
                     "helpUri": source_url,
                     "help": {
-                        "text": f"Vulnerability {vulnerability_id}\nSeverity: {finding['severity']}\nPackage: {vulnerable_packages[0]['name']}\nFixed Version: \nLink: [{vulnerability_id}]({source_url})",
-                        "markdown": f"**Vulnerability {vulnerability_id}**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|{finding['severity']}|{vulnerable_packages[0]['name']}||[{vulnerability_id}]({source_url})\n\n{finding['description']}",
+                        "text": f"Vulnerability {vulnerability_id}\nSeverity: {severity}\nPackage: {vulnerable_packages[0]['name']}\nFixed Version: \nLink: [{vulnerability_id}]({source_url})",
+                        "markdown": f"**Vulnerability {vulnerability_id}**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|{severity}|{vulnerable_packages[0]['name']}||[{vulnerability_id}]({source_url})\n\n{finding['description']}",
                     },
                     "properties": {
                         "precision": "very-high",
@@ -52,7 +60,7 @@ def convert_to_sarif(ecr_response):
                         "tags": [
                             "vulnerability",
                             "security",
-                            finding["severity"],
+                            severity,
                         ],
                     },
                 }
@@ -61,9 +69,9 @@ def convert_to_sarif(ecr_response):
                     "ruleIndex": len(
                         sarif_report["runs"][0]["tool"]["driver"]["rules"]
                     ),
-                    "level": finding["severity"].lower(),
+                    "level": severity.lower(),
                     "message": {
-                        "text": f"Package: {vulnerable_packages[0]['name']}\nInstalled Version: {vulnerable_packages[0]['version']}\nVulnerability {vulnerability_id}\nSeverity: {finding['severity']}\nFixed Version: \nLink: [{vulnerability_id}]({source_url})"
+                        "text": f"Package: {vulnerable_packages[0]['name']}\nInstalled Version: {vulnerable_packages[0]['version']}\nVulnerability {vulnerability_id}\nSeverity: {severity}\nFixed Version: \nLink: [{vulnerability_id}]({source_url})"
                     },
                     "locations": [
                         {
@@ -91,16 +99,16 @@ def convert_to_sarif(ecr_response):
                     "name": "OsPackageVulnerability",
                     "shortDescription": {"text": finding["description"]},
                     "fullDescription": {"text": finding["description"]},
-                    "defaultConfiguration": {"level": finding["severity"].lower()},
+                    "defaultConfiguration": {"level": severity.lower()},
                     "helpUri": finding["uri"],
                     "help": {
-                        "text": f"Vulnerability {finding['name']}\nSeverity: {finding['severity']}\nPackage: {finding['attributes'][1]['value']}\nFixed Version: \nLink: [{finding['name']}]({finding['uri']})",
-                        "markdown": f"**Vulnerability {finding['name']}**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|{finding['severity']}|{finding['attributes'][1]['value']}||[{finding['name']}]({finding['uri']})\n\n{finding['description']}",
+                        "text": f"Vulnerability {finding['name']}\nSeverity: {severity}\nPackage: {finding['attributes'][1]['value']}\nFixed Version: \nLink: [{finding['name']}]({finding['uri']})",
+                        "markdown": f"**Vulnerability {finding['name']}**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|{severity}|{finding['attributes'][1]['value']}||[{finding['name']}]({finding['uri']})\n\n{finding['description']}",
                     },
                     "properties": {
                         "precision": "very-high",
                         "security-severity": finding["attributes"][3]["value"],
-                        "tags": ["vulnerability", "security", finding["severity"]],
+                        "tags": ["vulnerability", "security", severity],
                     },
                 }
                 result = {
@@ -108,9 +116,9 @@ def convert_to_sarif(ecr_response):
                     "ruleIndex": len(
                         sarif_report["runs"][0]["tool"]["driver"]["rules"]
                     ),
-                    "level": finding["severity"].lower(),
+                    "level": severity.lower(),
                     "message": {
-                        "text": f"Package: {finding['attributes'][1]['value']}\nInstalled Version: {finding['attributes'][0]['value']}\nVulnerability {finding['name']}\nSeverity: {finding['severity']}\nFixed Version: \nLink: [{finding['name']}]({finding['uri']})"
+                        "text": f"Package: {finding['attributes'][1]['value']}\nInstalled Version: {finding['attributes'][0]['value']}\nVulnerability {finding['name']}\nSeverity: {severity}\nFixed Version: \nLink: [{finding['name']}]({finding['uri']})"
                     },
                     "locations": [
                         {
@@ -153,11 +161,9 @@ def convert_to_sarif(ecr_response):
 
 
 def main():
-
     def load_sarif_schema(schema_path):
         with open(schema_path, "r") as f:
             return json.load(f)
-
 
     def validate_sarif(sarif_report, schema):
          try:
