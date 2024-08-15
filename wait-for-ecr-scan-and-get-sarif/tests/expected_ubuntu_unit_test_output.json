@@ -107,7 +107,7 @@
         {
           "ruleId": "CVE-2024-4603",
           "ruleIndex": 0,
-          "level": "none",
+          "level": "untriaged",
           "message": {
             "text": "Package: libssl3t64\nInstalled Version: 3.0.13\nVulnerability CVE-2024-4603\nSeverity: UNTRIAGED\nFixed Version: \nLink: [CVE-2024-4603](https://people.canonical.com/~ubuntu-security/cve/2024/CVE-2024-4603.html)"
           },
@@ -134,7 +134,7 @@
         {
           "ruleId": "CVE-2024-5535",
           "ruleIndex": 1,
-          "level": "none",
+          "level": "untriaged",
           "message": {
             "text": "Package: libssl3t64\nInstalled Version: 3.0.13\nVulnerability CVE-2024-5535\nSeverity: UNTRIAGED\nFixed Version: \nLink: [CVE-2024-5535](https://people.canonical.com/~ubuntu-security/cve/2024/CVE-2024-5535.html)"
           },
@@ -161,7 +161,7 @@
         {
           "ruleId": "CVE-2024-2511",
           "ruleIndex": 2,
-          "level": "none",
+          "level": "untriaged",
           "message": {
             "text": "Package: libssl3t64\nInstalled Version: 3.0.13\nVulnerability CVE-2024-2511\nSeverity: UNTRIAGED\nFixed Version: \nLink: [CVE-2024-2511](https://people.canonical.com/~ubuntu-security/cve/2024/CVE-2024-2511.html)"
           },
@@ -188,7 +188,7 @@
         {
           "ruleId": "CVE-2024-4741",
           "ruleIndex": 3,
-          "level": "none",
+          "level": "untriaged",
           "message": {
             "text": "Package: libssl3t64\nInstalled Version: 3.0.13\nVulnerability CVE-2024-4741\nSeverity: UNTRIAGED\nFixed Version: \nLink: [CVE-2024-4741](https://people.canonical.com/~ubuntu-security/cve/2024/CVE-2024-4741.html)"
           },
