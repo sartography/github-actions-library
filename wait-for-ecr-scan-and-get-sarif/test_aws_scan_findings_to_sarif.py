@@ -18,3 +18,17 @@ def test_convert_to_sarif():
     assert len(sarif_report["runs"][0]["results"]) == 1
     assert sarif_report["runs"][0]["results"][0]["ruleId"] == "CVE-2019-5188"
     assert sarif_report["runs"][0]["results"][0]["level"] == "medium"
+
+def test_convert_to_sarif_reduced_to_one_issue():
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    sample_file_path = os.path.join(base_dir, "tests/sample-api-response-ecr-scan-ubuntu-reduced-to-one-issue.json")
+    expected_output_path = os.path.join(base_dir, "tests/trivy-report-ubuntu-reduced-to-one-issue.sarif")
+    
+    with open(sample_file_path, "r") as f:
+        ecr_response = json.load(f)
+    with open(expected_output_path, "r") as f:
+        expected_output = json.load(f)
+
+    sarif_report = convert_to_sarif(ecr_response)
+
+    assert sarif_report == expected_output
