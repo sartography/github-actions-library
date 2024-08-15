@@ -21,6 +21,7 @@ jobs:
           image_tag: "latest"
           aws_region: "us-west-2"
           output_file: "report.sarif"
+          input_file: "wait-for-ecr-scan-and-get-sarif/test_aws_scan_findings_to_sarif.py"
 
       - name: Upload SARIF report as artifact
         uses: actions/upload-artifact@v3
