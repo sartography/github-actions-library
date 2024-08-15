@@ -17,6 +17,16 @@ def convert_to_sarif(ecr_response):
                     }
                 },
                 "results": [],
+                "properties": {
+                    "imageID": ecr_response["imageId"]["imageDigest"],
+                    "imageName": ecr_response["repositoryName"],
+                    "repoDigests": [
+                        f"{ecr_response['repositoryName']}@{ecr_response['imageId']['imageDigest']}"
+                    ],
+                    "repoTags": [
+                        f"{ecr_response['repositoryName']}:{ecr_response['imageId']['imageTag']}"
+                    ],
+                },
             }
         ],
     }
