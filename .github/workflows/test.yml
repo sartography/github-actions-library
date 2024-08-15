@@ -17,9 +17,9 @@ jobs:
       - name: Run ECR Scan and Get SARIF Report
         uses: sartography/github-actions-library/wait-for-ecr-scan-and-get-sarif@main
         with:
-          repository_name: "my-ecr-repository"
-          image_tag: "latest"
-          aws_region: "us-west-2"
+          repository_name: "infr/testcloud2202"
+          image_tag: "main"
+          aws_region: "us-east-2"
           output_file: "report.sarif"
 
       - name: Upload SARIF report as artifact
