@@ -160,12 +160,30 @@ def convert_to_sarif(ecr_response):
     return sarif_report
 
 
+# hack. python's validator doesn't like the regex in the sarif schema. use a slightly simpler regex to validate language.
+def update_schema_patterns(schema):
+    if isinstance(schema, dict):
+        # If the schema is a dictionary, check each key-value pair
+        for key, value in schema.items():
+            if key == "pattern" and value == "^(?i)[a-zA]{2}(-[a-z]{2})?$":
+                # Replace the pattern with the simplified version
+                schema[key] = "^[a-zA-Z]{2}(-[a-zA-Z]{2})?$"
+            else:
+                # Recursively update nested dictionaries or lists
+                update_schema_patterns(value)
+    elif isinstance(schema, list):
+        # If the schema is a list, update each item
+        for item in schema:
+            update_schema_patterns(item)
+
 def main():
     def load_sarif_schema(schema_path):
         with open(schema_path, "r") as f:
             return json.load(f)
 
     def validate_sarif(sarif_report, schema):
+        update_schema_patterns(schema)
+
         try:
             jsonschema.validate(instance=sarif_report, schema=schema)
             print("SARIF report is valid.")
