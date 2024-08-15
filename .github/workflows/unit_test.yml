@@ -1,0 +1,31 @@
+name: "Test AWS Scan Findings to SARIF"
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5.1.1
+        with:
+          python-version: 3.12
+
+      - name: Install dependencies
+        run: |
+          pip install -r wait-for-ecr-scan-and-get-sarif/requirements.txt
+          pip install pytest
+
+      - name: Run tests
+        run: |
+          pytest wait-for-ecr-scan-and-get-sarif/test_aws_scan_findings_to_sarif.py

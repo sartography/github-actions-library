@@ -36,7 +36,7 @@ runs:
     - name: Run the Python script to wait for ECR scan and get SARIF
       shell: bash
       run: |
-        python wait-for-ecr-scan-and-get-sarif/main.py \
+        python wait-for-ecr-scan-and-get-sarif/aws_scan_findings_to_sarif.py \
           --repository_name ${{ inputs.repository_name }} \
           --image_tag ${{ inputs.image_tag }} \
           --aws_region ${{ inputs.aws_region }} \
