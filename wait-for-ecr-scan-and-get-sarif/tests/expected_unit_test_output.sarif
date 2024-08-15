@@ -1,0 +1,72 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "AWS ECR",
+          "informationUri": "https://aws.amazon.com/ecr/",
+          "rules": [
+            {
+              "id": "CVE-2019-5188",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "A code execution vulnerability exists in the directory rehashing functionality of E2fsprogs e2fsck 1.45.4. A specially crafted ext4 directory can cause an out-of-bounds write on the stack, resulting in code execution. An attacker can corrupt a partition to trigger this vulnerability."
+              },
+              "fullDescription": {
+                "text": "A code execution vulnerability exists in the directory rehashing functionality of E2fsprogs e2fsck 1.45.4. A specially crafted ext4 directory can cause an out-of-bounds write on the stack, resulting in code execution. An attacker can corrupt a partition to trigger this vulnerability."
+              },
+              "defaultConfiguration": {
+                "level": "medium"
+              },
+              "helpUri": "http://people.ubuntu.com/~ubuntu-security/cve/CVE-2019-5188",
+              "help": {
+                "text": "Vulnerability CVE-2019-5188\nSeverity: MEDIUM\nPackage: e2fsprogs\nFixed Version: \nLink: [CVE-2019-5188](http://people.ubuntu.com/~ubuntu-security/cve/CVE-2019-5188)",
+                "markdown": "**Vulnerability CVE-2019-5188**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|e2fsprogs||[CVE-2019-5188](http://people.ubuntu.com/~ubuntu-security/cve/CVE-2019-5188)\n\nA code execution vulnerability exists in the directory rehashing functionality of E2fsprogs e2fsck 1.45.4. A specially crafted ext4 directory can cause an out-of-bounds write on the stack, resulting in code execution. An attacker can corrupt a partition to trigger this vulnerability."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "4.6",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "CVE-2019-5188",
+          "ruleIndex": 0,
+          "level": "medium",
+          "message": {
+            "text": "Package: e2fsprogs\nInstalled Version: 1.44.1-1ubuntu1.1\nVulnerability CVE-2019-5188\nSeverity: MEDIUM\nFixed Version: \nLink: [CVE-2019-5188](http://people.ubuntu.com/~ubuntu-security/cve/CVE-2019-5188)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "sample-repo",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "sample-repo: e2fsprogs@1.44.1-1ubuntu1.1"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
