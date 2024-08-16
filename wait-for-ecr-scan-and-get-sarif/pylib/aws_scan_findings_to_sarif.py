@@ -95,7 +95,7 @@ def convert(ecr_response):
                 rule = {
                     "id": vulnerability_id,
                     "name": vulnerability_name,
-                    "shortDescription": {"text": finding["description"]},
+                    "shortDescription": {"text": finding["title"]},
                     "fullDescription": {"text": finding["description"]},
                     "defaultConfiguration": {"level": severity_for_level},
                     "helpUri": source_url,
