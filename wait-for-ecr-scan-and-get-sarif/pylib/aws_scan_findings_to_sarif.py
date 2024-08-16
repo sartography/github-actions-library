@@ -34,8 +34,8 @@ def convert(ecr_response):
             {
                 "tool": {
                     "driver": {
-                        "name": "AWS ECR",
-                        "informationUri": "https://aws.amazon.com/ecr/",
+                        "name": "Amazon ECR Image Scanning",
+                        "informationUri": "https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-scanning.html",
                         "rules": [],
                     }
                 },
