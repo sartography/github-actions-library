@@ -1,6 +1,9 @@
 # Wait for ECR Scan and get Sarif GitHub Action
 
-### Easily upload coverage reports to Codecov from GitHub Actions
+This action is used for integrating AWS ECR Image Scanning with GitHub security.
+GitHub security integrates with the Sarif standard, allowing Sarif json files to be uploaded and displayed in the Security tab's code scanning results.
+The AWS API's describe-image-scan-findings response is not compatible with the Sarif standard.
+This GitHub action waits for AWS image scanning process to complete on a provided tag, takes the AWS API response from describe-image-scan-findings, and converts it to the standard Sarif format.
 
 ## Usage
 
@@ -18,21 +21,9 @@ steps:
       output_file: "report.sarif"
 ```
 
-After you run this shared workflow you might want to upload the results to github.
-That looks like this:
-
-```yaml
-steps:
-  - name: Upload SARIF file
-    uses: github/codeql-action/upload-sarif@v3
-    with:
-      sarif_file: report.sarif
-      category: security
-```
-
 ## Arguments
 
-This Action supports inputs from the user. These inputs, along with their descriptions and usage contexts, are listed in the table below:
+This Action supports inputs from the user. These inputs are listed in the table below:
 
 | Input             | Description                                                                                            |  Required  |
 | :---------------- | :----------------------------------------------------------------------------------------------------- | :--------: |
