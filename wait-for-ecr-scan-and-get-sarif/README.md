@@ -40,7 +40,7 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
+
 jobs:
   ecr-scan:
     runs-on: ubuntu-latest
@@ -48,19 +48,13 @@ jobs:
     steps:
       # [Probably build and push image to ECR here]
 
-      - name: Run ECR Scan and Get SARIF Report
+      - name: Wait for ECR Scan and Get SARIF Report
         uses: sartography/github-actions-library/wait-for-ecr-scan-and-get-sarif@main
         with:
           repository_name: "infr/testcloud2202"
           image_tag: "main"
           aws_region: "us-east-2"
           output_file: "report.sarif"
-
-      - name: Upload SARIF report as artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: sarif-report
-          path: report.sarif
 
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v3

@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       # - name: Run ECR Scan and Get SARIF Report
       #   uses: sartography/github-actions-library/wait-for-ecr-scan-and-get-sarif@main
@@ -40,7 +40,7 @@ jobs:
             --output_file report.sarif
 
       - name: Upload SARIF report as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: sarif-report
           path: report.sarif
