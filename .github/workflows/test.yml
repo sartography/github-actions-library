@@ -14,13 +14,30 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Run ECR Scan and Get SARIF Report
-        uses: sartography/github-actions-library/wait-for-ecr-scan-and-get-sarif@main
+      # - name: Run ECR Scan and Get SARIF Report
+      #   uses: sartography/github-actions-library/wait-for-ecr-scan-and-get-sarif@main
+      #   with:
+      #     repository_name: "infr/testcloud2202"
+      #     image_tag: "main"
+      #     aws_region: "us-east-2"
+      #     output_file: "report.sarif"
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5.1.1
         with:
-          repository_name: "infr/testcloud2202"
-          image_tag: "main"
-          aws_region: "us-east-2"
-          output_file: "report.sarif"
+          python-version: 3.12
+
+      - name: Install dependencies
+        shell: bash
+        run: |
+          pip install -r wait-for-ecr-scan-and-get-sarif/requirements.txt
+
+      - name: Run the Python script to convert ECR scan to SARIF
+        shell: bash
+        run: |
+          python wait-for-ecr-scan-and-get-sarif/pylib/aws_scan_findings_to_sarif.py \
+            --input_file wait-for-ecr-scan-and-get-sarif/tests/ecr-scan-result-ubuntu.json \
+            --output_file ${{ inputs.output_file }}
 
       - name: Upload SARIF report as artifact
         uses: actions/upload-artifact@v3
@@ -32,9 +49,4 @@ jobs:
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: report.sarif
-          category: my-analysis-tool
-
-      # - name: Upload SARIF report to GitHub Code Scanning
-      #   uses: github/codeql-action/upload-sarif@v2
-      #   with:
-      #     sarif_file: report.sarif
+          category: security
