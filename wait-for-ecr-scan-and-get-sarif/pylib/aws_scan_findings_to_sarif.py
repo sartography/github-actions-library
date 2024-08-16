@@ -1,8 +1,11 @@
+import os
 import json
 import argparse
 import jsonschema
 
-SCHEMA_FILE_PATH = "./wait-for-ecr-scan-and-get-sarif/sarif-schema-2.1.0.json"
+current_file_path = os.path.abspath(__file__)
+current_dir = os.path.dirname(current_file_path)
+SCHEMA_FILE_PATH = os.path.join(current_dir, "..", "sarif-schema-2.1.0.json")
 
 
 def load_sarif_schema(schema_path):
@@ -68,6 +71,7 @@ def convert(ecr_response):
                 )
 
             vulnerability_name = finding.get("type", "Unknown")
+            short_description = finding.get("title", finding["description"])
 
             if is_enhanced:
                 vulnerability_id = finding["packageVulnerabilityDetails"][
@@ -95,7 +99,7 @@ def convert(ecr_response):
                 rule = {
                     "id": vulnerability_id,
                     "name": vulnerability_name,
-                    "shortDescription": {"text": finding["title"]},
+                    "shortDescription": {"text": short_description},
                     "fullDescription": {"text": finding["description"]},
                     "defaultConfiguration": {"level": severity_for_level},
                     "helpUri": source_url,
@@ -146,7 +150,7 @@ def convert(ecr_response):
                 rule = {
                     "id": finding["name"],
                     "name": vulnerability_name,
-                    "shortDescription": {"text": finding["description"]},
+                    "shortDescription": {"text": short_description},
                     "fullDescription": {"text": finding["description"]},
                     "defaultConfiguration": {"level": severity_for_level},
                     "helpUri": finding["uri"],
@@ -201,7 +205,6 @@ def convert(ecr_response):
 def validate_sarif(sarif_report, schema):
     try:
         jsonschema.validate(instance=sarif_report, schema=schema)
-        print("SARIF report is valid.")
     except jsonschema.ValidationError as e:
         print(f"SARIF report is invalid: {e.message}")
 

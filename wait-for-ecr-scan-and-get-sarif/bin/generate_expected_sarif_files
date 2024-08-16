@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+function error_handler() {
+  echo >&2 "Exited with BAD EXIT CODE '${2}' in ${0} script at line: ${1}."
+  exit "$2"
+}
+trap 'error_handler ${LINENO} $?' ERR
+set -o errtrace -o errexit -o nounset -o pipefail
+script_dir="$(
+  cd -- "$(dirname "$0")" >/dev/null 2>&1
+  pwd -P
+)"
+
+input_file="${script_dir}/../tests/ecr-scan-result-ubuntu.json"
+output_file="${script_dir}/../tests/ecr-scan-result-ubuntu-expected-sarif.json"
+python "${script_dir}/../pylib/aws_scan_findings_to_sarif.py" --input_file "$input_file" --output_file "${output_file}"
+
+input_file="${script_dir}/../tests/ecr-scan-result-minimal.json"
+output_file="${script_dir}/../tests/ecr-scan-result-minimal-expected-sarif.json"
+python "${script_dir}/../pylib/aws_scan_findings_to_sarif.py" --input_file "$input_file" --output_file "${output_file}"
