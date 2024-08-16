@@ -118,18 +118,18 @@ def convert(ecr_response):
                     "message": {
                         "text": f"Package: {vulnerable_packages[0]['name']}\nInstalled Version: {vulnerable_packages[0]['version']}\nVulnerability {vulnerability_id}\nSeverity: {severity}\nFixed Version: \nLink: [{vulnerability_id}]({source_url})"
                     },
-                    # "locations": [
-                    #     {
-                    #         "physicalLocation": {
-                    #             "artifactLocation": {
-                    #                 "uri": ecr_response["repositoryName"],
-                    #             },
-                    #         },
-                    #         "message": {
-                    #             "text": f"{ecr_response['repositoryName']}: {vulnerable_packages[0]['name']}@{vulnerable_packages[0]['version']}"
-                    #         },
-                    #     }
-                    # ],
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": ecr_response["repositoryName"],
+                                },
+                            },
+                            "message": {
+                                "text": f"{ecr_response['repositoryName']}: {vulnerable_packages[0]['name']}@{vulnerable_packages[0]['version']}"
+                            },
+                        }
+                    ],
                 }
             else:
                 properties = {
@@ -169,18 +169,18 @@ def convert(ecr_response):
                     "message": {
                         "text": f"Package: {finding['attributes'][1]['value']}\nInstalled Version: {finding['attributes'][0]['value']}\nVulnerability {finding['name']}\nSeverity: {severity}\nFixed Version: \nLink: [{finding['name']}]({finding['uri']})"
                     },
-                    # "locations": [
-                    #     {
-                    #         "physicalLocation": {
-                    #             "artifactLocation": {
-                    #                 "uri": ecr_response["repositoryName"],
-                    #             },
-                    #         },
-                    #         "message": {
-                    #             "text": f"{ecr_response['repositoryName']}: {finding['attributes'][1]['value']}@{finding['attributes'][0]['value']}"
-                    #         },
-                    #     }
-                    # ],
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": ecr_response["repositoryName"],
+                                },
+                            },
+                            "message": {
+                                "text": f"{ecr_response['repositoryName']}: {finding['attributes'][1]['value']}@{finding['attributes'][0]['value']}"
+                            },
+                        }
+                    ],
                 }
             sarif_report["runs"][0]["tool"]["driver"]["rules"].append(rule)
             sarif_report["runs"][0]["results"].append(result)
