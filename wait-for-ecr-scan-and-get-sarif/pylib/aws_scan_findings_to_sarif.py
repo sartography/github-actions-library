@@ -74,6 +74,7 @@ def convert(ecr_response):
                     "vulnerability",
                     "security",
                     severity,
+                    ecr_response["repositoryName"],
                 ],
             }
 
