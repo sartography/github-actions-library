@@ -29,7 +29,8 @@
                 "tags": [
                   "vulnerability",
                   "security",
-                  "UNTRIAGED"
+                  "UNTRIAGED",
+                  "infr/testcloud2202"
                 ]
               }
             },
@@ -54,7 +55,8 @@
                 "tags": [
                   "vulnerability",
                   "security",
-                  "UNTRIAGED"
+                  "UNTRIAGED",
+                  "infr/testcloud2202"
                 ]
               }
             },
@@ -79,7 +81,8 @@
                 "tags": [
                   "vulnerability",
                   "security",
-                  "UNTRIAGED"
+                  "UNTRIAGED",
+                  "infr/testcloud2202"
                 ]
               }
             },
@@ -104,7 +107,8 @@
                 "tags": [
                   "vulnerability",
                   "security",
-                  "UNTRIAGED"
+                  "UNTRIAGED",
+                  "infr/testcloud2202"
                 ]
               }
             }

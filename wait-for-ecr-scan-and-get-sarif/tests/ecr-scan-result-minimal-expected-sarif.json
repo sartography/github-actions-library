@@ -29,7 +29,8 @@
                 "tags": [
                   "vulnerability",
                   "security",
-                  "MEDIUM"
+                  "MEDIUM",
+                  "sample-repo"
                 ],
                 "security-severity": "4.6",
                 "precision": "very-high"
