@@ -62,3 +62,11 @@ jobs:
           sarif_file: report.sarif
           category: security
 ```
+
+## Tests
+
+If changing the format of the output, remember to run the generate script to recreate the expected SARIF files.
+
+```bash
+./wait-for-ecr-scan-and-get-sarif/bin/generate_expected_sarif_files
+```
