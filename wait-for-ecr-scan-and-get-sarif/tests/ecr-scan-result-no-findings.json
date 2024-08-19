@@ -1,0 +1,14 @@
+{
+    "imageScanFindings": {
+        "findings": []
+    },
+    "registryId": "772215651096",
+    "repositoryName": "infr/testcloud2202",
+    "imageId": {
+        "imageDigest": "sha256:60f5317ec034730f044117f4661e61e6b35faeac4f7b853d0f048282a2201afc"
+    },
+    "imageScanStatus": {
+        "status": "ACTIVE",
+        "description": "Continuous scan is selected for image."
+    }
+}

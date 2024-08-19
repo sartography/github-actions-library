@@ -1,0 +1,24 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "Amazon ECR Image Scanning",
+          "informationUri": "https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-scanning.html",
+          "rules": []
+        }
+      },
+      "results": [],
+      "properties": {
+        "imageID": "sha256:60f5317ec034730f044117f4661e61e6b35faeac4f7b853d0f048282a2201afc",
+        "imageName": "infr/testcloud2202",
+        "repoDigests": [
+          "infr/testcloud2202@sha256:60f5317ec034730f044117f4661e61e6b35faeac4f7b853d0f048282a2201afc"
+        ],
+        "repoTags": []
+      }
+    }
+  ]
+}
