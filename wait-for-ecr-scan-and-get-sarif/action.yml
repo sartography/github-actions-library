@@ -31,12 +31,12 @@ runs:
     - name: Install dependencies
       shell: bash
       run: |
-        pip install -r wait-for-ecr-scan-and-get-sarif/requirements.txt
+        pip install -r ${{ github.action_path }}/requirements.txt
 
     - name: Run the Python script to wait for ECR scan and get SARIF
       shell: bash
       run: |
-        python wait-for-ecr-scan-and-get-sarif/wait_for_ecr_scan_and_get_sarif.py \
+        python ${{ github.action_path }}/wait_for_ecr_scan_and_get_sarif.py \
           --repository_name ${{ inputs.repository_name }} \
           --image_tag ${{ inputs.image_tag }} \
           --aws_region ${{ inputs.aws_region }} \

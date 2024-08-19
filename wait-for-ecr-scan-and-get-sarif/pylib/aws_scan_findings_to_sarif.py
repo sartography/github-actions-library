@@ -69,6 +69,13 @@ def convert(ecr_response):
                 severity_for_level = severity_map.get(
                     severity_for_level.lower(), "none"
                 )
+            properties: dict = {
+                "tags": [
+                    "vulnerability",
+                    "security",
+                    severity,
+                ],
+            }
 
             vulnerability_name = finding.get("type", "Unknown")
             short_description = finding.get("title", finding["description"])
@@ -83,13 +90,6 @@ def convert(ecr_response):
                 ]
                 cvss = finding["packageVulnerabilityDetails"]["cvss"]
                 base_score = None
-                properties: dict = {
-                    "tags": [
-                        "vulnerability",
-                        "security",
-                        severity,
-                    ],
-                }
                 if len(cvss) > 0:
                     base_score = cvss[0]["baseScore"]
                     if base_score is not None:
@@ -132,9 +132,6 @@ def convert(ecr_response):
                     ],
                 }
             else:
-                properties = {
-                    "tags": ["vulnerability", "security", severity],
-                }
                 base_score = next(
                     (
                         i["value"]
