@@ -33,28 +33,28 @@ jobs:
         run: |
           pip install -r wait-for-ecr-scan-and-get-sarif/requirements.txt
 
-      # - name: Run the Python script to convert ECR scan to SARIF
-      #   shell: bash
-      #   run: |
-      #     python wait-for-ecr-scan-and-get-sarif/pylib/aws_scan_findings_to_sarif.py \
-      #       --input_file wait-for-ecr-scan-and-get-sarif/tests/ecr-scan-result-ubuntu.json \
-      #       --output_file report.sarif
+      - name: Run the Python script to convert ECR scan to SARIF
+        shell: bash
+        run: |
+          python wait-for-ecr-scan-and-get-sarif/pylib/aws_scan_findings_to_sarif.py \
+            --input_file wait-for-ecr-scan-and-get-sarif/tests/ecr-scan-result-ubuntu.json \
+            --output_file report.sarif
       # - name: Run the Python script to convert ECR scan to SARIF
       #   shell: bash
       #   run: |
       #     python wait-for-ecr-scan-and-get-sarif/pylib/aws_scan_findings_to_sarif.py \
       #       --input_file wait-for-ecr-scan-and-get-sarif/tests/ecr-scan-result-no-findings.json \
       #       --output_file report.sarif
-      #
-      # - name: Upload SARIF report as artifact
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: sarif-report
-      #     path: report.sarif
+
+      - name: Upload SARIF report as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sarif-report
+          path: report.sarif
 
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v3
         with:
-          # sarif_file: report.sarif
-          sarif_file: "wait-for-ecr-scan-and-get-sarif/tests/bad-ecr-repot.sarif"
+          sarif_file: report.sarif
+          # sarif_file: "wait-for-ecr-scan-and-get-sarif/tests/bad-ecr-repot.sarif"
           category: security

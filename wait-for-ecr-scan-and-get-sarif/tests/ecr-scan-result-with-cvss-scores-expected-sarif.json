@@ -1,0 +1,1794 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "Amazon ECR Image Scanning",
+          "informationUri": "https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-scanning.html",
+          "rules": [
+            {
+              "id": "CVE-2024-4603",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2024-4603 - openssl"
+              },
+              "fullDescription": {
+                "text": "Issue summary: Checking excessively long DSA keys or parameters may be very slow.  Impact summary: Applications that use the functions EVP_PKEY_param_check() or EVP_PKEY_public_check() to check a DSA public key or DSA parameters may experience long delays. Where the key or parameters that are being checked have been obtained from an untrusted source this may lead to a Denial of Service.  The functions EVP_PKEY_param_check() or EVP_PKEY_public_check() perform various checks on DSA parameters. Some of those computations take a long time if the modulus (`p` parameter) is too large.  Trying to use a very large modulus is slow and OpenSSL will not allow using public keys with a modulus which is over 10,000 bits in length for signature verification. However the key and parameter check functions do not limit the modulus size when performing the checks.  An application that calls EVP_PKEY_param_check() or EVP_PKEY_public_check() and supplies a key or parameters obtained from an untrusted source could be vulnerable to"
+              },
+              "defaultConfiguration": {
+                "level": "none"
+              },
+              "helpUri": "https://security-tracker.debian.org/tracker/CVE-2024-4603",
+              "help": {
+                "text": "Vulnerability CVE-2024-4603\nSeverity: INFORMATIONAL\nPackage: openssl\nFixed Version: \nLink: [CVE-2024-4603](https://security-tracker.debian.org/tracker/CVE-2024-4603)",
+                "markdown": "**Vulnerability CVE-2024-4603**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|INFORMATIONAL|openssl||[CVE-2024-4603](https://security-tracker.debian.org/tracker/CVE-2024-4603)\n\nIssue summary: Checking excessively long DSA keys or parameters may be very slow.  Impact summary: Applications that use the functions EVP_PKEY_param_check() or EVP_PKEY_public_check() to check a DSA public key or DSA parameters may experience long delays. Where the key or parameters that are being checked have been obtained from an untrusted source this may lead to a Denial of Service.  The functions EVP_PKEY_param_check() or EVP_PKEY_public_check() perform various checks on DSA parameters. Some of those computations take a long time if the modulus (`p` parameter) is too large.  Trying to use a very large modulus is slow and OpenSSL will not allow using public keys with a modulus which is over 10,000 bits in length for signature verification. However the key and parameter check functions do not limit the modulus size when performing the checks.  An application that calls EVP_PKEY_param_check() or EVP_PKEY_public_check() and supplies a key or parameters obtained from an untrusted source could be vulnerable to"
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "INFORMATIONAL",
+                  "infr/testcloud2202"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-37371",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2024-37371 - krb5"
+              },
+              "fullDescription": {
+                "text": "In MIT Kerberos 5 (aka krb5) before 1.21.3, an attacker can cause invalid memory reads during GSS message token handling by sending message tokens with invalid length fields."
+              },
+              "defaultConfiguration": {
+                "level": "none"
+              },
+              "helpUri": "https://security-tracker.debian.org/tracker/CVE-2024-37371",
+              "help": {
+                "text": "Vulnerability CVE-2024-37371\nSeverity: UNTRIAGED\nPackage: krb5\nFixed Version: \nLink: [CVE-2024-37371](https://security-tracker.debian.org/tracker/CVE-2024-37371)",
+                "markdown": "**Vulnerability CVE-2024-37371**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|UNTRIAGED|krb5||[CVE-2024-37371](https://security-tracker.debian.org/tracker/CVE-2024-37371)\n\nIn MIT Kerberos 5 (aka krb5) before 1.21.3, an attacker can cause invalid memory reads during GSS message token handling by sending message tokens with invalid length fields."
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "UNTRIAGED",
+                  "infr/testcloud2202"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-2511",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2024-2511 - openssl"
+              },
+              "fullDescription": {
+                "text": "Issue summary: Some non-default TLS server configurations can cause unbounded memory growth when processing TLSv1.3 sessions  Impact summary: An attacker may exploit certain server configurations to trigger unbounded memory growth that would lead to a Denial of Service  This problem can occur in TLSv1.3 if the non-default SSL_OP_NO_TICKET option is being used (but not if early_data support is also configured and the default anti-replay protection is in use). In this case, under certain conditions, the session cache can get into an incorrect state and it will fail to flush properly as it fills. The session cache will continue to grow in an unbounded manner. A malicious client could deliberately create the scenario for this failure to force a Denial of Service. It may also happen by accident in normal operation.  This issue only affects TLS servers supporting TLSv1.3. It does not affect TLS clients.  The FIPS modules in 3.2, 3.1 and 3.0 are not affected by this issue. OpenSSL 1.0.2 is also not affected by this "
+              },
+              "defaultConfiguration": {
+                "level": "none"
+              },
+              "helpUri": "https://security-tracker.debian.org/tracker/CVE-2024-2511",
+              "help": {
+                "text": "Vulnerability CVE-2024-2511\nSeverity: UNTRIAGED\nPackage: openssl\nFixed Version: \nLink: [CVE-2024-2511](https://security-tracker.debian.org/tracker/CVE-2024-2511)",
+                "markdown": "**Vulnerability CVE-2024-2511**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|UNTRIAGED|openssl||[CVE-2024-2511](https://security-tracker.debian.org/tracker/CVE-2024-2511)\n\nIssue summary: Some non-default TLS server configurations can cause unbounded memory growth when processing TLSv1.3 sessions  Impact summary: An attacker may exploit certain server configurations to trigger unbounded memory growth that would lead to a Denial of Service  This problem can occur in TLSv1.3 if the non-default SSL_OP_NO_TICKET option is being used (but not if early_data support is also configured and the default anti-replay protection is in use). In this case, under certain conditions, the session cache can get into an incorrect state and it will fail to flush properly as it fills. The session cache will continue to grow in an unbounded manner. A malicious client could deliberately create the scenario for this failure to force a Denial of Service. It may also happen by accident in normal operation.  This issue only affects TLS servers supporting TLSv1.3. It does not affect TLS clients.  The FIPS modules in 3.2, 3.1 and 3.0 are not affected by this issue. OpenSSL 1.0.2 is also not affected by this "
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "UNTRIAGED",
+                  "infr/testcloud2202"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-32465",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2024-32465 - git"
+              },
+              "fullDescription": {
+                "text": "Git is a revision control system. The Git project recommends to avoid working in untrusted repositories, and instead to clone it first with `git clone --no-local` to obtain a clean copy. Git has specific protections to make that a safe operation even with an untrusted source repository, but vulnerabilities allow those protections to be bypassed. In the context of cloning local repositories owned by other users, this vulnerability has been covered in CVE-2024-32004. But there are circumstances where the fixes for CVE-2024-32004 are not enough: For example, when obtaining a `.zip` file containing a full copy of a Git repository, it should not be trusted by default to be safe, as e.g. hooks could be configured to run within the context of that repository. The problem has been patched in versions 2.45.1, 2.44.1, 2.43.4, 2.42.2, 2.41.1, 2.40.2, and 2.39.4. As a workaround, avoid using Git in repositories that have been obtained via archives from untrusted sources."
+              },
+              "defaultConfiguration": {
+                "level": "none"
+              },
+              "helpUri": "https://security-tracker.debian.org/tracker/CVE-2024-32465",
+              "help": {
+                "text": "Vulnerability CVE-2024-32465\nSeverity: UNTRIAGED\nPackage: git\nFixed Version: \nLink: [CVE-2024-32465](https://security-tracker.debian.org/tracker/CVE-2024-32465)",
+                "markdown": "**Vulnerability CVE-2024-32465**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|UNTRIAGED|git||[CVE-2024-32465](https://security-tracker.debian.org/tracker/CVE-2024-32465)\n\nGit is a revision control system. The Git project recommends to avoid working in untrusted repositories, and instead to clone it first with `git clone --no-local` to obtain a clean copy. Git has specific protections to make that a safe operation even with an untrusted source repository, but vulnerabilities allow those protections to be bypassed. In the context of cloning local repositories owned by other users, this vulnerability has been covered in CVE-2024-32004. But there are circumstances where the fixes for CVE-2024-32004 are not enough: For example, when obtaining a `.zip` file containing a full copy of a Git repository, it should not be trusted by default to be safe, as e.g. hooks could be configured to run within the context of that repository. The problem has been patched in versions 2.45.1, 2.44.1, 2.43.4, 2.42.2, 2.41.1, 2.40.2, and 2.39.4. As a workaround, avoid using Git in repositories that have been obtained via archives from untrusted sources."
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "UNTRIAGED",
+                  "infr/testcloud2202"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-3651",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2024-3651 - idna"
+              },
+              "fullDescription": {
+                "text": "A vulnerability was identified in the kjd/idna library, specifically within the `idna.encode()` function, affecting version 3.6. The issue arises from the function's handling of crafted input strings, which can lead to quadratic complexity and consequently, a denial of service condition. This vulnerability is triggered by a crafted input that causes the `idna.encode()` function to process the input with considerable computational load, significantly increasing the processing time in a quadratic manner relative to the input size."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://nvd.nist.gov/vuln/detail/CVE-2024-3651",
+              "help": {
+                "text": "Vulnerability CVE-2024-3651\nSeverity: HIGH\nPackage: idna\nFixed Version: \nLink: [CVE-2024-3651](https://nvd.nist.gov/vuln/detail/CVE-2024-3651)",
+                "markdown": "**Vulnerability CVE-2024-3651**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|idna||[CVE-2024-3651](https://nvd.nist.gov/vuln/detail/CVE-2024-3651)\n\nA vulnerability was identified in the kjd/idna library, specifically within the `idna.encode()` function, affecting version 3.6. The issue arises from the function's handling of crafted input strings, which can lead to quadratic complexity and consequently, a denial of service condition. This vulnerability is triggered by a crafted input that causes the `idna.encode()` function to process the input with considerable computational load, significantly increasing the processing time in a quadratic manner relative to the input size."
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH",
+                  "infr/testcloud2202"
+                ],
+                "security-severity": "7.5",
+                "precision": "very-high"
+              }
+            },
+            {
+              "id": "CVE-2024-28085",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2024-28085 - util-linux, util-linux"
+              },
+              "fullDescription": {
+                "text": "wall in util-linux through 2.40, often installed with setgid tty permissions, allows escape sequences to be sent to other users' terminals through argv. (Specifically, escape sequences received from stdin are blocked, but escape sequences received from argv are not blocked.) There may be plausible scenarios where this leads to account takeover."
+              },
+              "defaultConfiguration": {
+                "level": "none"
+              },
+              "helpUri": "https://security-tracker.debian.org/tracker/CVE-2024-28085",
+              "help": {
+                "text": "Vulnerability CVE-2024-28085\nSeverity: UNTRIAGED\nPackage: util-linux\nFixed Version: \nLink: [CVE-2024-28085](https://security-tracker.debian.org/tracker/CVE-2024-28085)",
+                "markdown": "**Vulnerability CVE-2024-28085**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|UNTRIAGED|util-linux||[CVE-2024-28085](https://security-tracker.debian.org/tracker/CVE-2024-28085)\n\nwall in util-linux through 2.40, often installed with setgid tty permissions, allows escape sequences to be sent to other users' terminals through argv. (Specifically, escape sequences received from stdin are blocked, but escape sequences received from argv are not blocked.) There may be plausible scenarios where this leads to account takeover."
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "UNTRIAGED",
+                  "infr/testcloud2202"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-0553",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2024-0553 - gnutls28"
+              },
+              "fullDescription": {
+                "text": "A vulnerability was found in GnuTLS. The response times to malformed ciphertexts in RSA-PSK ClientKeyExchange differ from the response times of ciphertexts with correct PKCS#1 v1.5 padding. This issue may allow a remote attacker to perform a timing side-channel attack in the RSA-PSK key exchange, potentially leading to the leakage of sensitive data. CVE-2024-0553 is designated as an incomplete resolution for CVE-2023-5981."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://security-tracker.debian.org/tracker/CVE-2024-0553",
+              "help": {
+                "text": "Vulnerability CVE-2024-0553\nSeverity: HIGH\nPackage: gnutls28\nFixed Version: \nLink: [CVE-2024-0553](https://security-tracker.debian.org/tracker/CVE-2024-0553)",
+                "markdown": "**Vulnerability CVE-2024-0553**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|gnutls28||[CVE-2024-0553](https://security-tracker.debian.org/tracker/CVE-2024-0553)\n\nA vulnerability was found in GnuTLS. The response times to malformed ciphertexts in RSA-PSK ClientKeyExchange differ from the response times of ciphertexts with correct PKCS#1 v1.5 padding. This issue may allow a remote attacker to perform a timing side-channel attack in the RSA-PSK key exchange, potentially leading to the leakage of sensitive data. CVE-2024-0553 is designated as an incomplete resolution for CVE-2023-5981."
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH",
+                  "infr/testcloud2202"
+                ],
+                "security-severity": "7.5",
+                "precision": "very-high"
+              }
+            },
+            {
+              "id": "CVE-2024-32004",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2024-32004 - git"
+              },
+              "fullDescription": {
+                "text": "Git is a revision control system. Prior to versions 2.45.1, 2.44.1, 2.43.4, 2.42.2, 2.41.1, 2.40.2, and 2.39.4, an attacker can prepare a local repository in such a way that, when cloned, will execute arbitrary code during the operation. The problem has been patched in versions 2.45.1, 2.44.1, 2.43.4, 2.42.2, 2.41.1, 2.40.2, and 2.39.4. As a workaround, avoid cloning repositories from untrusted sources."
+              },
+              "defaultConfiguration": {
+                "level": "none"
+              },
+              "helpUri": "https://security-tracker.debian.org/tracker/CVE-2024-32004",
+              "help": {
+                "text": "Vulnerability CVE-2024-32004\nSeverity: UNTRIAGED\nPackage: git\nFixed Version: \nLink: [CVE-2024-32004](https://security-tracker.debian.org/tracker/CVE-2024-32004)",
+                "markdown": "**Vulnerability CVE-2024-32004**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|UNTRIAGED|git||[CVE-2024-32004](https://security-tracker.debian.org/tracker/CVE-2024-32004)\n\nGit is a revision control system. Prior to versions 2.45.1, 2.44.1, 2.43.4, 2.42.2, 2.41.1, 2.40.2, and 2.39.4, an attacker can prepare a local repository in such a way that, when cloned, will execute arbitrary code during the operation. The problem has been patched in versions 2.45.1, 2.44.1, 2.43.4, 2.42.2, 2.41.1, 2.40.2, and 2.39.4. As a workaround, avoid cloning repositories from untrusted sources."
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "UNTRIAGED",
+                  "infr/testcloud2202"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2023-50387",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2023-50387 - systemd"
+              },
+              "fullDescription": {
+                "text": "Certain DNSSEC aspects of the DNS protocol (in RFC 4033, 4034, 4035, 6840, and related RFCs) allow remote attackers to cause a denial of service (CPU consumption) via one or more DNSSEC responses, aka the \"KeyTrap\" issue. One of the concerns is that, when there is a zone with many DNSKEY and RRSIG records, the protocol specification implies that an algorithm must evaluate all combinations of DNSKEY and RRSIG records."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://security-tracker.debian.org/tracker/CVE-2023-50387",
+              "help": {
+                "text": "Vulnerability CVE-2023-50387\nSeverity: HIGH\nPackage: systemd\nFixed Version: \nLink: [CVE-2023-50387](https://security-tracker.debian.org/tracker/CVE-2023-50387)",
+                "markdown": "**Vulnerability CVE-2023-50387**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|systemd||[CVE-2023-50387](https://security-tracker.debian.org/tracker/CVE-2023-50387)\n\nCertain DNSSEC aspects of the DNS protocol (in RFC 4033, 4034, 4035, 6840, and related RFCs) allow remote attackers to cause a denial of service (CPU consumption) via one or more DNSSEC responses, aka the \"KeyTrap\" issue. One of the concerns is that, when there is a zone with many DNSKEY and RRSIG records, the protocol specification implies that an algorithm must evaluate all combinations of DNSKEY and RRSIG records."
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH",
+                  "infr/testcloud2202"
+                ],
+                "security-severity": "7.5",
+                "precision": "very-high"
+              }
+            },
+            {
+              "id": "CVE-2024-35195",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2024-35195 - requests"
+              },
+              "fullDescription": {
+                "text": "Requests is a HTTP library. Prior to 2.32.0, when making requests through a Requests `Session`, if the first request is made with `verify=False` to disable cert verification, all subsequent requests to the same host will continue to ignore cert verification regardless of changes to the value of `verify`. This behavior will continue for the lifecycle of the connection in the connection pool. This vulnerability is fixed in 2.32.0."
+              },
+              "defaultConfiguration": {
+                "level": "none"
+              },
+              "helpUri": "https://nvd.nist.gov/vuln/detail/CVE-2024-35195",
+              "help": {
+                "text": "Vulnerability CVE-2024-35195\nSeverity: UNTRIAGED\nPackage: requests\nFixed Version: \nLink: [CVE-2024-35195](https://nvd.nist.gov/vuln/detail/CVE-2024-35195)",
+                "markdown": "**Vulnerability CVE-2024-35195**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|UNTRIAGED|requests||[CVE-2024-35195](https://nvd.nist.gov/vuln/detail/CVE-2024-35195)\n\nRequests is a HTTP library. Prior to 2.32.0, when making requests through a Requests `Session`, if the first request is made with `verify=False` to disable cert verification, all subsequent requests to the same host will continue to ignore cert verification regardless of changes to the value of `verify`. This behavior will continue for the lifecycle of the connection in the connection pool. This vulnerability is fixed in 2.32.0."
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "UNTRIAGED",
+                  "infr/testcloud2202"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-0567",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2024-0567 - gnutls28"
+              },
+              "fullDescription": {
+                "text": "A vulnerability was found in GnuTLS, where a cockpit (which uses gnuTLS) rejects a certificate chain with distributed trust. This issue occurs when validating a certificate chain with cockpit-certificate-ensure. This flaw allows an unauthenticated, remote client or attacker to initiate a denial of service attack."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://security-tracker.debian.org/tracker/CVE-2024-0567",
+              "help": {
+                "text": "Vulnerability CVE-2024-0567\nSeverity: HIGH\nPackage: gnutls28\nFixed Version: \nLink: [CVE-2024-0567](https://security-tracker.debian.org/tracker/CVE-2024-0567)",
+                "markdown": "**Vulnerability CVE-2024-0567**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|gnutls28||[CVE-2024-0567](https://security-tracker.debian.org/tracker/CVE-2024-0567)\n\nA vulnerability was found in GnuTLS, where a cockpit (which uses gnuTLS) rejects a certificate chain with distributed trust. This issue occurs when validating a certificate chain with cockpit-certificate-ensure. This flaw allows an unauthenticated, remote client or attacker to initiate a denial of service attack."
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH",
+                  "infr/testcloud2202"
+                ],
+                "security-severity": "7.5",
+                "precision": "very-high"
+              }
+            },
+            {
+              "id": "CVE-2024-33602",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2024-33602 - glibc"
+              },
+              "fullDescription": {
+                "text": "nscd: netgroup cache assumes NSS callback uses in-buffer strings  The Name Service Cache Daemon's (nscd) netgroup cache can corrupt memory when the NSS callback does not store all strings in the provided buffer. The flaw was introduced in glibc 2.15 when the cache was added to nscd.  This vulnerability is only present in the nscd binary."
+              },
+              "defaultConfiguration": {
+                "level": "none"
+              },
+              "helpUri": "https://security-tracker.debian.org/tracker/CVE-2024-33602",
+              "help": {
+                "text": "Vulnerability CVE-2024-33602\nSeverity: UNTRIAGED\nPackage: glibc\nFixed Version: \nLink: [CVE-2024-33602](https://security-tracker.debian.org/tracker/CVE-2024-33602)",
+                "markdown": "**Vulnerability CVE-2024-33602**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|UNTRIAGED|glibc||[CVE-2024-33602](https://security-tracker.debian.org/tracker/CVE-2024-33602)\n\nnscd: netgroup cache assumes NSS callback uses in-buffer strings  The Name Service Cache Daemon's (nscd) netgroup cache can corrupt memory when the NSS callback does not store all strings in the provided buffer. The flaw was introduced in glibc 2.15 when the cache was added to nscd.  This vulnerability is only present in the nscd binary."
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "UNTRIAGED",
+                  "infr/testcloud2202"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-33599",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2024-33599 - glibc"
+              },
+              "fullDescription": {
+                "text": "nscd: Stack-based buffer overflow in netgroup cache  If the Name Service Cache Daemon's (nscd) fixed size cache is exhausted by client requests then a subsequent client request for netgroup data may result in a stack-based buffer overflow.  This flaw was introduced in glibc 2.15 when the cache was added to nscd.  This vulnerability is only present in the nscd binary."
+              },
+              "defaultConfiguration": {
+                "level": "none"
+              },
+              "helpUri": "https://security-tracker.debian.org/tracker/CVE-2024-33599",
+              "help": {
+                "text": "Vulnerability CVE-2024-33599\nSeverity: UNTRIAGED\nPackage: glibc\nFixed Version: \nLink: [CVE-2024-33599](https://security-tracker.debian.org/tracker/CVE-2024-33599)",
+                "markdown": "**Vulnerability CVE-2024-33599**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|UNTRIAGED|glibc||[CVE-2024-33599](https://security-tracker.debian.org/tracker/CVE-2024-33599)\n\nnscd: Stack-based buffer overflow in netgroup cache  If the Name Service Cache Daemon's (nscd) fixed size cache is exhausted by client requests then a subsequent client request for netgroup data may result in a stack-based buffer overflow.  This flaw was introduced in glibc 2.15 when the cache was added to nscd.  This vulnerability is only present in the nscd binary."
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "UNTRIAGED",
+                  "infr/testcloud2202"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-1681",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2024-1681 - flask-cors, Flask-Cors"
+              },
+              "fullDescription": {
+                "text": "corydolphin/flask-cors is vulnerable to log injection when the log level is set to debug. An attacker can inject fake log entries into the log file by sending a specially crafted GET request containing a CRLF sequence in the request path. This vulnerability allows attackers to corrupt log files, potentially covering tracks of other attacks, confusing log post-processing tools, and forging log entries. The issue is due to improper output neutralization for logs."
+              },
+              "defaultConfiguration": {
+                "level": "none"
+              },
+              "helpUri": "https://nvd.nist.gov/vuln/detail/CVE-2024-1681",
+              "help": {
+                "text": "Vulnerability CVE-2024-1681\nSeverity: UNTRIAGED\nPackage: flask-cors\nFixed Version: \nLink: [CVE-2024-1681](https://nvd.nist.gov/vuln/detail/CVE-2024-1681)",
+                "markdown": "**Vulnerability CVE-2024-1681**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|UNTRIAGED|flask-cors||[CVE-2024-1681](https://nvd.nist.gov/vuln/detail/CVE-2024-1681)\n\ncorydolphin/flask-cors is vulnerable to log injection when the log level is set to debug. An attacker can inject fake log entries into the log file by sending a specially crafted GET request containing a CRLF sequence in the request path. This vulnerability allows attackers to corrupt log files, potentially covering tracks of other attacks, confusing log post-processing tools, and forging log entries. The issue is due to improper output neutralization for logs."
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "UNTRIAGED",
+                  "infr/testcloud2202"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-37891",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2024-37891 - urllib3"
+              },
+              "fullDescription": {
+                "text": " urllib3 is a user-friendly HTTP client library for Python. When using urllib3's proxy support with `ProxyManager`, the `Proxy-Authorization` header is only sent to the configured proxy, as expected. However, when sending HTTP requests *without* using urllib3's proxy support, it's possible to accidentally configure the `Proxy-Authorization` header even though it won't have any effect as the request is not using a forwarding proxy or a tunneling proxy. In those cases, urllib3 doesn't treat the `Proxy-Authorization` HTTP header as one carrying authentication material and thus doesn't strip the header on cross-origin redirects. Because this is a highly unlikely scenario, we believe the severity of this vulnerability is low for almost all users. Out of an abundance of caution urllib3 will automatically strip the `Proxy-Authorization` header during cross-origin redirects to avoid the small chance that users are doing this on accident. Users should use urllib3's proxy support or disable automatic redirects to achie"
+              },
+              "defaultConfiguration": {
+                "level": "none"
+              },
+              "helpUri": "https://nvd.nist.gov/vuln/detail/CVE-2024-37891",
+              "help": {
+                "text": "Vulnerability CVE-2024-37891\nSeverity: UNTRIAGED\nPackage: urllib3\nFixed Version: \nLink: [CVE-2024-37891](https://nvd.nist.gov/vuln/detail/CVE-2024-37891)",
+                "markdown": "**Vulnerability CVE-2024-37891**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|UNTRIAGED|urllib3||[CVE-2024-37891](https://nvd.nist.gov/vuln/detail/CVE-2024-37891)\n\n urllib3 is a user-friendly HTTP client library for Python. When using urllib3's proxy support with `ProxyManager`, the `Proxy-Authorization` header is only sent to the configured proxy, as expected. However, when sending HTTP requests *without* using urllib3's proxy support, it's possible to accidentally configure the `Proxy-Authorization` header even though it won't have any effect as the request is not using a forwarding proxy or a tunneling proxy. In those cases, urllib3 doesn't treat the `Proxy-Authorization` HTTP header as one carrying authentication material and thus doesn't strip the header on cross-origin redirects. Because this is a highly unlikely scenario, we believe the severity of this vulnerability is low for almost all users. Out of an abundance of caution urllib3 will automatically strip the `Proxy-Authorization` header during cross-origin redirects to avoid the small chance that users are doing this on accident. Users should use urllib3's proxy support or disable automatic redirects to achie"
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "UNTRIAGED",
+                  "infr/testcloud2202"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-2961",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2024-2961 - glibc"
+              },
+              "fullDescription": {
+                "text": "The iconv() function in the GNU C Library versions 2.39 and older may overflow the output buffer passed to it by up to 4 bytes when converting strings to the ISO-2022-CN-EXT character set, which may be used to crash an application or overwrite a neighbouring variable."
+              },
+              "defaultConfiguration": {
+                "level": "none"
+              },
+              "helpUri": "https://security-tracker.debian.org/tracker/CVE-2024-2961",
+              "help": {
+                "text": "Vulnerability CVE-2024-2961\nSeverity: UNTRIAGED\nPackage: glibc\nFixed Version: \nLink: [CVE-2024-2961](https://security-tracker.debian.org/tracker/CVE-2024-2961)",
+                "markdown": "**Vulnerability CVE-2024-2961**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|UNTRIAGED|glibc||[CVE-2024-2961](https://security-tracker.debian.org/tracker/CVE-2024-2961)\n\nThe iconv() function in the GNU C Library versions 2.39 and older may overflow the output buffer passed to it by up to 4 bytes when converting strings to the ISO-2022-CN-EXT character set, which may be used to crash an application or overwrite a neighbouring variable."
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "UNTRIAGED",
+                  "infr/testcloud2202"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2023-5752",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2023-5752 - pip, pip"
+              },
+              "fullDescription": {
+                "text": "When installing a package from a Mercurial VCS URL  (ie \"pip install \nhg+...\") with pip prior to v23.3, the specified Mercurial revision could\n be used to inject arbitrary configuration options to the \"hg clone\" \ncall (ie \"--config\"). Controlling the Mercurial configuration can modify\n how and which repository is installed. This vulnerability does not \naffect users who aren't installing from Mercurial.\n"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "helpUri": "https://nvd.nist.gov/vuln/detail/CVE-2023-5752",
+              "help": {
+                "text": "Vulnerability CVE-2023-5752\nSeverity: LOW\nPackage: pip\nFixed Version: \nLink: [CVE-2023-5752](https://nvd.nist.gov/vuln/detail/CVE-2023-5752)",
+                "markdown": "**Vulnerability CVE-2023-5752**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|LOW|pip||[CVE-2023-5752](https://nvd.nist.gov/vuln/detail/CVE-2023-5752)\n\nWhen installing a package from a Mercurial VCS URL  (ie \"pip install \nhg+...\") with pip prior to v23.3, the specified Mercurial revision could\n be used to inject arbitrary configuration options to the \"hg clone\" \ncall (ie \"--config\"). Controlling the Mercurial configuration can modify\n how and which repository is installed. This vulnerability does not \naffect users who aren't installing from Mercurial.\n"
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "LOW",
+                  "infr/testcloud2202"
+                ],
+                "security-severity": "3.3",
+                "precision": "very-high"
+              }
+            },
+            {
+              "id": "CVE-2024-33600",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2024-33600 - glibc"
+              },
+              "fullDescription": {
+                "text": "nscd: Null pointer crashes after notfound response  If the Name Service Cache Daemon's (nscd) cache fails to add a not-found netgroup response to the cache, the client request can result in a null pointer dereference.  This flaw was introduced in glibc 2.15 when the cache was added to nscd.  This vulnerability is only present in the nscd binary."
+              },
+              "defaultConfiguration": {
+                "level": "none"
+              },
+              "helpUri": "https://security-tracker.debian.org/tracker/CVE-2024-33600",
+              "help": {
+                "text": "Vulnerability CVE-2024-33600\nSeverity: UNTRIAGED\nPackage: glibc\nFixed Version: \nLink: [CVE-2024-33600](https://security-tracker.debian.org/tracker/CVE-2024-33600)",
+                "markdown": "**Vulnerability CVE-2024-33600**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|UNTRIAGED|glibc||[CVE-2024-33600](https://security-tracker.debian.org/tracker/CVE-2024-33600)\n\nnscd: Null pointer crashes after notfound response  If the Name Service Cache Daemon's (nscd) cache fails to add a not-found netgroup response to the cache, the client request can result in a null pointer dereference.  This flaw was introduced in glibc 2.15 when the cache was added to nscd.  This vulnerability is only present in the nscd binary."
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "UNTRIAGED",
+                  "infr/testcloud2202"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-32021",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2024-32021 - git"
+              },
+              "fullDescription": {
+                "text": "Git is a revision control system. Prior to versions 2.45.1, 2.44.1, 2.43.4, 2.42.2, 2.41.1, 2.40.2, and 2.39.4, when cloning a local source repository that contains symlinks via the filesystem, Git may create hardlinks to arbitrary user-readable files on the same filesystem as the target repository in the `objects/` directory. Cloning a local repository over the filesystem may creating hardlinks to arbitrary user-owned files on the same filesystem in the target Git repository's `objects/` directory. When cloning a repository over the filesystem (without explicitly specifying the `file://` protocol or `--no-local`), the optimizations for local cloning will be used, which include attempting to hard link the object files instead of copying them. While the code includes checks against symbolic links in the source repository, which were added during the fix for CVE-2022-39253, these checks can still be raced because the hard link operation ultimately follows symlinks. If the object on the filesystem appears as a f"
+              },
+              "defaultConfiguration": {
+                "level": "none"
+              },
+              "helpUri": "https://security-tracker.debian.org/tracker/CVE-2024-32021",
+              "help": {
+                "text": "Vulnerability CVE-2024-32021\nSeverity: UNTRIAGED\nPackage: git\nFixed Version: \nLink: [CVE-2024-32021](https://security-tracker.debian.org/tracker/CVE-2024-32021)",
+                "markdown": "**Vulnerability CVE-2024-32021**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|UNTRIAGED|git||[CVE-2024-32021](https://security-tracker.debian.org/tracker/CVE-2024-32021)\n\nGit is a revision control system. Prior to versions 2.45.1, 2.44.1, 2.43.4, 2.42.2, 2.41.1, 2.40.2, and 2.39.4, when cloning a local source repository that contains symlinks via the filesystem, Git may create hardlinks to arbitrary user-readable files on the same filesystem as the target repository in the `objects/` directory. Cloning a local repository over the filesystem may creating hardlinks to arbitrary user-owned files on the same filesystem in the target Git repository's `objects/` directory. When cloning a repository over the filesystem (without explicitly specifying the `file://` protocol or `--no-local`), the optimizations for local cloning will be used, which include attempting to hard link the object files instead of copying them. While the code includes checks against symbolic links in the source repository, which were added during the fix for CVE-2022-39253, these checks can still be raced because the hard link operation ultimately follows symlinks. If the object on the filesystem appears as a f"
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "UNTRIAGED",
+                  "infr/testcloud2202"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-32020",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2024-32020 - git"
+              },
+              "fullDescription": {
+                "text": "Git is a revision control system. Prior to versions 2.45.1, 2.44.1, 2.43.4, 2.42.2, 2.41.1, 2.40.2, and 2.39.4, local clones may end up hardlinking files into the target repository's object database when source and target repository reside on the same disk. If the source repository is owned by a different user, then those hardlinked files may be rewritten at any point in time by the untrusted user. Cloning local repositories will cause Git to either copy or hardlink files of the source repository into the target repository. This significantly speeds up such local clones compared to doing a \"proper\" clone and saves both disk space and compute time. When cloning a repository located on the same disk that is owned by a different user than the current user we also end up creating such hardlinks. These files will continue to be owned and controlled by the potentially-untrusted user and can be rewritten by them at will in the future. The problem has been patched in versions 2.45.1, 2.44.1, 2.43.4, 2.42.2, 2.41.1, 2"
+              },
+              "defaultConfiguration": {
+                "level": "none"
+              },
+              "helpUri": "https://security-tracker.debian.org/tracker/CVE-2024-32020",
+              "help": {
+                "text": "Vulnerability CVE-2024-32020\nSeverity: UNTRIAGED\nPackage: git\nFixed Version: \nLink: [CVE-2024-32020](https://security-tracker.debian.org/tracker/CVE-2024-32020)",
+                "markdown": "**Vulnerability CVE-2024-32020**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|UNTRIAGED|git||[CVE-2024-32020](https://security-tracker.debian.org/tracker/CVE-2024-32020)\n\nGit is a revision control system. Prior to versions 2.45.1, 2.44.1, 2.43.4, 2.42.2, 2.41.1, 2.40.2, and 2.39.4, local clones may end up hardlinking files into the target repository's object database when source and target repository reside on the same disk. If the source repository is owned by a different user, then those hardlinked files may be rewritten at any point in time by the untrusted user. Cloning local repositories will cause Git to either copy or hardlink files of the source repository into the target repository. This significantly speeds up such local clones compared to doing a \"proper\" clone and saves both disk space and compute time. When cloning a repository located on the same disk that is owned by a different user than the current user we also end up creating such hardlinks. These files will continue to be owned and controlled by the potentially-untrusted user and can be rewritten by them at will in the future. The problem has been patched in versions 2.45.1, 2.44.1, 2.43.4, 2.42.2, 2.41.1, 2"
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "UNTRIAGED",
+                  "infr/testcloud2202"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-32002",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2024-32002 - git"
+              },
+              "fullDescription": {
+                "text": "Git is a revision control system. Prior to versions 2.45.1, 2.44.1, 2.43.4, 2.42.2, 2.41.1, 2.40.2, and 2.39.4, repositories with submodules can be crafted in a way that exploits a bug in Git whereby it can be fooled into writing files not into the submodule's worktree but into a `.git/` directory. This allows writing a hook that will be executed while the clone operation is still running, giving the user no opportunity to inspect the code that is being executed. The problem has been patched in versions 2.45.1, 2.44.1, 2.43.4, 2.42.2, 2.41.1, 2.40.2, and 2.39.4. If symbolic link support is disabled in Git (e.g. via `git config --global core.symlinks false`), the described attack won't work. As always, it is best to avoid cloning repositories from untrusted sources."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://security-tracker.debian.org/tracker/CVE-2024-32002",
+              "help": {
+                "text": "Vulnerability CVE-2024-32002\nSeverity: CRITICAL\nPackage: git\nFixed Version: \nLink: [CVE-2024-32002](https://security-tracker.debian.org/tracker/CVE-2024-32002)",
+                "markdown": "**Vulnerability CVE-2024-32002**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|CRITICAL|git||[CVE-2024-32002](https://security-tracker.debian.org/tracker/CVE-2024-32002)\n\nGit is a revision control system. Prior to versions 2.45.1, 2.44.1, 2.43.4, 2.42.2, 2.41.1, 2.40.2, and 2.39.4, repositories with submodules can be crafted in a way that exploits a bug in Git whereby it can be fooled into writing files not into the submodule's worktree but into a `.git/` directory. This allows writing a hook that will be executed while the clone operation is still running, giving the user no opportunity to inspect the code that is being executed. The problem has been patched in versions 2.45.1, 2.44.1, 2.43.4, 2.42.2, 2.41.1, 2.40.2, and 2.39.4. If symbolic link support is disabled in Git (e.g. via `git config --global core.symlinks false`), the described attack won't work. As always, it is best to avoid cloning repositories from untrusted sources."
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "CRITICAL",
+                  "infr/testcloud2202"
+                ],
+                "security-severity": "9.0",
+                "precision": "very-high"
+              }
+            },
+            {
+              "id": "CVE-2024-4741",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2024-4741 - openssl"
+              },
+              "fullDescription": {
+                "text": "None Provided"
+              },
+              "defaultConfiguration": {
+                "level": "none"
+              },
+              "helpUri": "https://security-tracker.debian.org/tracker/CVE-2024-4741",
+              "help": {
+                "text": "Vulnerability CVE-2024-4741\nSeverity: UNTRIAGED\nPackage: openssl\nFixed Version: \nLink: [CVE-2024-4741](https://security-tracker.debian.org/tracker/CVE-2024-4741)",
+                "markdown": "**Vulnerability CVE-2024-4741**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|UNTRIAGED|openssl||[CVE-2024-4741](https://security-tracker.debian.org/tracker/CVE-2024-4741)\n\nNone Provided"
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "UNTRIAGED",
+                  "infr/testcloud2202"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2023-7008",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2023-7008 - systemd"
+              },
+              "fullDescription": {
+                "text": "A vulnerability was found in systemd-resolved. This issue may allow systemd-resolved to accept records of DNSSEC-signed domains even when they have no signature, allowing man-in-the-middles (or the upstream DNS resolver) to manipulate records."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://security-tracker.debian.org/tracker/CVE-2023-7008",
+              "help": {
+                "text": "Vulnerability CVE-2023-7008\nSeverity: MEDIUM\nPackage: systemd\nFixed Version: \nLink: [CVE-2023-7008](https://security-tracker.debian.org/tracker/CVE-2023-7008)",
+                "markdown": "**Vulnerability CVE-2023-7008**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|systemd||[CVE-2023-7008](https://security-tracker.debian.org/tracker/CVE-2023-7008)\n\nA vulnerability was found in systemd-resolved. This issue may allow systemd-resolved to accept records of DNSSEC-signed domains even when they have no signature, allowing man-in-the-middles (or the upstream DNS resolver) to manipulate records."
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM",
+                  "infr/testcloud2202"
+                ],
+                "security-severity": "5.9",
+                "precision": "very-high"
+              }
+            },
+            {
+              "id": "CVE-2023-39804",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2023-39804 - tar"
+              },
+              "fullDescription": {
+                "text": "In GNU tar before 1.35, mishandled extension attributes in a PAX archive can lead to an application crash in xheader.c."
+              },
+              "defaultConfiguration": {
+                "level": "none"
+              },
+              "helpUri": "https://security-tracker.debian.org/tracker/CVE-2023-39804",
+              "help": {
+                "text": "Vulnerability CVE-2023-39804\nSeverity: UNTRIAGED\nPackage: tar\nFixed Version: \nLink: [CVE-2023-39804](https://security-tracker.debian.org/tracker/CVE-2023-39804)",
+                "markdown": "**Vulnerability CVE-2023-39804**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|UNTRIAGED|tar||[CVE-2023-39804](https://security-tracker.debian.org/tracker/CVE-2023-39804)\n\nIn GNU tar before 1.35, mishandled extension attributes in a PAX archive can lead to an application crash in xheader.c."
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "UNTRIAGED",
+                  "infr/testcloud2202"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-33601",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2024-33601 - glibc"
+              },
+              "fullDescription": {
+                "text": "nscd: netgroup cache may terminate daemon on memory allocation failure  The Name Service Cache Daemon's (nscd) netgroup cache uses xmalloc or xrealloc and these functions may terminate the process due to a memory allocation failure resulting in a denial of service to the clients.  The flaw was introduced in glibc 2.15 when the cache was added to nscd.  This vulnerability is only present in the nscd binary."
+              },
+              "defaultConfiguration": {
+                "level": "none"
+              },
+              "helpUri": "https://security-tracker.debian.org/tracker/CVE-2024-33601",
+              "help": {
+                "text": "Vulnerability CVE-2024-33601\nSeverity: UNTRIAGED\nPackage: glibc\nFixed Version: \nLink: [CVE-2024-33601](https://security-tracker.debian.org/tracker/CVE-2024-33601)",
+                "markdown": "**Vulnerability CVE-2024-33601**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|UNTRIAGED|glibc||[CVE-2024-33601](https://security-tracker.debian.org/tracker/CVE-2024-33601)\n\nnscd: netgroup cache may terminate daemon on memory allocation failure  The Name Service Cache Daemon's (nscd) netgroup cache uses xmalloc or xrealloc and these functions may terminate the process due to a memory allocation failure resulting in a denial of service to the clients.  The flaw was introduced in glibc 2.15 when the cache was added to nscd.  This vulnerability is only present in the nscd binary."
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "UNTRIAGED",
+                  "infr/testcloud2202"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-28834",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2024-28834 - gnutls28"
+              },
+              "fullDescription": {
+                "text": "A flaw was found in GnuTLS. The Minerva attack is a cryptographic vulnerability that exploits deterministic behavior in systems like GnuTLS, leading to side-channel leaks. In specific scenarios, such as when using the GNUTLS_PRIVKEY_FLAG_REPRODUCIBLE flag, it can result in a noticeable step in nonce size from 513 to 512 bits, exposing a potential timing side-channel."
+              },
+              "defaultConfiguration": {
+                "level": "none"
+              },
+              "helpUri": "https://security-tracker.debian.org/tracker/CVE-2024-28834",
+              "help": {
+                "text": "Vulnerability CVE-2024-28834\nSeverity: INFORMATIONAL\nPackage: gnutls28\nFixed Version: \nLink: [CVE-2024-28834](https://security-tracker.debian.org/tracker/CVE-2024-28834)",
+                "markdown": "**Vulnerability CVE-2024-28834**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|INFORMATIONAL|gnutls28||[CVE-2024-28834](https://security-tracker.debian.org/tracker/CVE-2024-28834)\n\nA flaw was found in GnuTLS. The Minerva attack is a cryptographic vulnerability that exploits deterministic behavior in systems like GnuTLS, leading to side-channel leaks. In specific scenarios, such as when using the GNUTLS_PRIVKEY_FLAG_REPRODUCIBLE flag, it can result in a noticeable step in nonce size from 513 to 512 bits, exposing a potential timing side-channel."
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "INFORMATIONAL",
+                  "infr/testcloud2202"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-6221",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2024-6221 - flask-cors, Flask-Cors"
+              },
+              "fullDescription": {
+                "text": "A vulnerability in corydolphin/flask-cors version 4.0.1 allows the `Access-Control-Allow-Private-Network` CORS header to be set to true by default, without any configuration option. This behavior can expose private network resources to unauthorized external access, leading to significant security risks such as data breaches, unauthorized access to sensitive information, and potential network intrusions."
+              },
+              "defaultConfiguration": {
+                "level": "none"
+              },
+              "helpUri": "https://nvd.nist.gov/vuln/detail/CVE-2024-6221",
+              "help": {
+                "text": "Vulnerability CVE-2024-6221\nSeverity: UNTRIAGED\nPackage: flask-cors\nFixed Version: \nLink: [CVE-2024-6221](https://nvd.nist.gov/vuln/detail/CVE-2024-6221)",
+                "markdown": "**Vulnerability CVE-2024-6221**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|UNTRIAGED|flask-cors||[CVE-2024-6221](https://nvd.nist.gov/vuln/detail/CVE-2024-6221)\n\nA vulnerability in corydolphin/flask-cors version 4.0.1 allows the `Access-Control-Allow-Private-Network` CORS header to be set to true by default, without any configuration option. This behavior can expose private network resources to unauthorized external access, leading to significant security risks such as data breaches, unauthorized access to sensitive information, and potential network intrusions."
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "UNTRIAGED",
+                  "infr/testcloud2202"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-7592",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2024-7592 - python3.11"
+              },
+              "fullDescription": {
+                "text": "There is a LOW severity vulnerability affecting CPython, specifically the 'http.cookies' standard library module.   When parsing cookies that contained backslashes for quoted characters in the cookie value, the parser would use an algorithm with quadratic complexity, resulting in excess CPU resources being used while parsing the value."
+              },
+              "defaultConfiguration": {
+                "level": "none"
+              },
+              "helpUri": "https://security-tracker.debian.org/tracker/CVE-2024-7592",
+              "help": {
+                "text": "Vulnerability CVE-2024-7592\nSeverity: UNTRIAGED\nPackage: python3.11\nFixed Version: \nLink: [CVE-2024-7592](https://security-tracker.debian.org/tracker/CVE-2024-7592)",
+                "markdown": "**Vulnerability CVE-2024-7592**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|UNTRIAGED|python3.11||[CVE-2024-7592](https://security-tracker.debian.org/tracker/CVE-2024-7592)\n\nThere is a LOW severity vulnerability affecting CPython, specifically the 'http.cookies' standard library module.   When parsing cookies that contained backslashes for quoted characters in the cookie value, the parser would use an algorithm with quadratic complexity, resulting in excess CPU resources being used while parsing the value."
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "UNTRIAGED",
+                  "infr/testcloud2202"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-1135",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2024-1135 - gunicorn, gunicorn"
+              },
+              "fullDescription": {
+                "text": "Gunicorn fails to properly validate Transfer-Encoding headers, leading to HTTP Request Smuggling (HRS) vulnerabilities. By crafting requests with conflicting Transfer-Encoding headers, attackers can bypass security restrictions and access restricted endpoints. This issue is due to Gunicorn's handling of Transfer-Encoding headers, where it incorrectly processes requests with multiple, conflicting Transfer-Encoding headers, treating them as chunked regardless of the final encoding specified. This vulnerability allows for a range of attacks including cache poisoning, session manipulation, and data exposure."
+              },
+              "defaultConfiguration": {
+                "level": "none"
+              },
+              "helpUri": "https://nvd.nist.gov/vuln/detail/CVE-2024-1135",
+              "help": {
+                "text": "Vulnerability CVE-2024-1135\nSeverity: UNTRIAGED\nPackage: gunicorn\nFixed Version: \nLink: [CVE-2024-1135](https://nvd.nist.gov/vuln/detail/CVE-2024-1135)",
+                "markdown": "**Vulnerability CVE-2024-1135**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|UNTRIAGED|gunicorn||[CVE-2024-1135](https://nvd.nist.gov/vuln/detail/CVE-2024-1135)\n\nGunicorn fails to properly validate Transfer-Encoding headers, leading to HTTP Request Smuggling (HRS) vulnerabilities. By crafting requests with conflicting Transfer-Encoding headers, attackers can bypass security restrictions and access restricted endpoints. This issue is due to Gunicorn's handling of Transfer-Encoding headers, where it incorrectly processes requests with multiple, conflicting Transfer-Encoding headers, treating them as chunked regardless of the final encoding specified. This vulnerability allows for a range of attacks including cache poisoning, session manipulation, and data exposure."
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "UNTRIAGED",
+                  "infr/testcloud2202"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-34069",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2024-34069 - werkzeug, Werkzeug"
+              },
+              "fullDescription": {
+                "text": "Werkzeug is a comprehensive WSGI web application library. The debugger in affected versions of Werkzeug can allow an attacker to execute code on a developer's machine under some circumstances. This requires the attacker to get the developer to interact with a domain and subdomain they control, and enter the debugger PIN, but if they are successful it allows access to the debugger even if it is only running on localhost. This also requires the attacker to guess a URL in the developer's application that will trigger the debugger. This vulnerability is fixed in 3.0.3."
+              },
+              "defaultConfiguration": {
+                "level": "none"
+              },
+              "helpUri": "https://nvd.nist.gov/vuln/detail/CVE-2024-34069",
+              "help": {
+                "text": "Vulnerability CVE-2024-34069\nSeverity: UNTRIAGED\nPackage: werkzeug\nFixed Version: \nLink: [CVE-2024-34069](https://nvd.nist.gov/vuln/detail/CVE-2024-34069)",
+                "markdown": "**Vulnerability CVE-2024-34069**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|UNTRIAGED|werkzeug||[CVE-2024-34069](https://nvd.nist.gov/vuln/detail/CVE-2024-34069)\n\nWerkzeug is a comprehensive WSGI web application library. The debugger in affected versions of Werkzeug can allow an attacker to execute code on a developer's machine under some circumstances. This requires the attacker to get the developer to interact with a domain and subdomain they control, and enter the debugger PIN, but if they are successful it allows access to the debugger even if it is only running on localhost. This also requires the attacker to guess a URL in the developer's application that will trigger the debugger. This vulnerability is fixed in 3.0.3."
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "UNTRIAGED",
+                  "infr/testcloud2202"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2023-4039",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2023-4039 - gcc-12"
+              },
+              "fullDescription": {
+                "text": "**DISPUTED**A failure in the -fstack-protector feature in GCC-based toolchains  that target AArch64 allows an attacker to exploit an existing buffer  overflow in dynamically-sized local variables in your application  without this being detected. This stack-protector failure only applies  to C99-style dynamically-sized local variables or those created using  alloca(). The stack-protector operates as intended for statically-sized  local variables.  The default behavior when the stack-protector  detects an overflow is to terminate your application, resulting in  controlled loss of availability. An attacker who can exploit a buffer  overflow without triggering the stack-protector might be able to change  program flow control to cause an uncontrolled loss of availability or to  go further and affect confidentiality or integrity. NOTE: The GCC project argues that this is a missed hardening bug and not a vulnerability by itself."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://security-tracker.debian.org/tracker/CVE-2023-4039",
+              "help": {
+                "text": "Vulnerability CVE-2023-4039\nSeverity: MEDIUM\nPackage: gcc-12\nFixed Version: \nLink: [CVE-2023-4039](https://security-tracker.debian.org/tracker/CVE-2023-4039)",
+                "markdown": "**Vulnerability CVE-2023-4039**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|gcc-12||[CVE-2023-4039](https://security-tracker.debian.org/tracker/CVE-2023-4039)\n\n**DISPUTED**A failure in the -fstack-protector feature in GCC-based toolchains  that target AArch64 allows an attacker to exploit an existing buffer  overflow in dynamically-sized local variables in your application  without this being detected. This stack-protector failure only applies  to C99-style dynamically-sized local variables or those created using  alloca(). The stack-protector operates as intended for statically-sized  local variables.  The default behavior when the stack-protector  detects an overflow is to terminate your application, resulting in  controlled loss of availability. An attacker who can exploit a buffer  overflow without triggering the stack-protector might be able to change  program flow control to cause an uncontrolled loss of availability or to  go further and affect confidentiality or integrity. NOTE: The GCC project argues that this is a missed hardening bug and not a vulnerability by itself."
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM",
+                  "infr/testcloud2202"
+                ],
+                "security-severity": "4.8",
+                "precision": "very-high"
+              }
+            },
+            {
+              "id": "CVE-2024-37370",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2024-37370 - krb5"
+              },
+              "fullDescription": {
+                "text": "In MIT Kerberos 5 (aka krb5) before 1.21.3, an attacker can modify the plaintext Extra Count field of a confidential GSS krb5 wrap token, causing the unwrapped token to appear truncated to the application."
+              },
+              "defaultConfiguration": {
+                "level": "none"
+              },
+              "helpUri": "https://security-tracker.debian.org/tracker/CVE-2024-37370",
+              "help": {
+                "text": "Vulnerability CVE-2024-37370\nSeverity: UNTRIAGED\nPackage: krb5\nFixed Version: \nLink: [CVE-2024-37370](https://security-tracker.debian.org/tracker/CVE-2024-37370)",
+                "markdown": "**Vulnerability CVE-2024-37370**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|UNTRIAGED|krb5||[CVE-2024-37370](https://security-tracker.debian.org/tracker/CVE-2024-37370)\n\nIn MIT Kerberos 5 (aka krb5) before 1.21.3, an attacker can modify the plaintext Extra Count field of a confidential GSS krb5 wrap token, causing the unwrapped token to appear truncated to the application."
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "UNTRIAGED",
+                  "infr/testcloud2202"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-28835",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2024-28835 - gnutls28"
+              },
+              "fullDescription": {
+                "text": "A flaw has been discovered in GnuTLS where an application crash can be induced when attempting to verify a specially crafted .pem bundle using the \"certtool --verify-chain\" command."
+              },
+              "defaultConfiguration": {
+                "level": "none"
+              },
+              "helpUri": "https://security-tracker.debian.org/tracker/CVE-2024-28835",
+              "help": {
+                "text": "Vulnerability CVE-2024-28835\nSeverity: INFORMATIONAL\nPackage: gnutls28\nFixed Version: \nLink: [CVE-2024-28835](https://security-tracker.debian.org/tracker/CVE-2024-28835)",
+                "markdown": "**Vulnerability CVE-2024-28835**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|INFORMATIONAL|gnutls28||[CVE-2024-28835](https://security-tracker.debian.org/tracker/CVE-2024-28835)\n\nA flaw has been discovered in GnuTLS where an application crash can be induced when attempting to verify a specially crafted .pem bundle using the \"certtool --verify-chain\" command."
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "INFORMATIONAL",
+                  "infr/testcloud2202"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-6345",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2024-6345 - setuptools, setuptools"
+              },
+              "fullDescription": {
+                "text": "A vulnerability in the package_index module of pypa/setuptools versions up to 69.1.1 allows for remote code execution via its download functions. These functions, which are used to download packages from URLs provided by users or retrieved from package index servers, are susceptible to code injection. If these functions are exposed to user-controlled inputs, such as package URLs, they can execute arbitrary commands on the system. The issue is fixed in version 70.0."
+              },
+              "defaultConfiguration": {
+                "level": "none"
+              },
+              "helpUri": "https://nvd.nist.gov/vuln/detail/CVE-2024-6345",
+              "help": {
+                "text": "Vulnerability CVE-2024-6345\nSeverity: UNTRIAGED\nPackage: setuptools\nFixed Version: \nLink: [CVE-2024-6345](https://nvd.nist.gov/vuln/detail/CVE-2024-6345)",
+                "markdown": "**Vulnerability CVE-2024-6345**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|UNTRIAGED|setuptools||[CVE-2024-6345](https://nvd.nist.gov/vuln/detail/CVE-2024-6345)\n\nA vulnerability in the package_index module of pypa/setuptools versions up to 69.1.1 allows for remote code execution via its download functions. These functions, which are used to download packages from URLs provided by users or retrieved from package index servers, are susceptible to code injection. If these functions are exposed to user-controlled inputs, such as package URLs, they can execute arbitrary commands on the system. The issue is fixed in version 70.0."
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "UNTRIAGED",
+                  "infr/testcloud2202"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2023-50868",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2023-50868 - systemd"
+              },
+              "fullDescription": {
+                "text": "The Closest Encloser Proof aspect of the DNS protocol (in RFC 5155 when RFC 9276 guidance is skipped) allows remote attackers to cause a denial of service (CPU consumption for SHA-1 computations) via DNSSEC responses in a random subdomain attack, aka the \"NSEC3\" issue. The RFC 5155 specification implies that an algorithm must perform thousands of iterations of a hash function in certain situations."
+              },
+              "defaultConfiguration": {
+                "level": "none"
+              },
+              "helpUri": "https://security-tracker.debian.org/tracker/CVE-2023-50868",
+              "help": {
+                "text": "Vulnerability CVE-2023-50868\nSeverity: INFORMATIONAL\nPackage: systemd\nFixed Version: \nLink: [CVE-2023-50868](https://security-tracker.debian.org/tracker/CVE-2023-50868)",
+                "markdown": "**Vulnerability CVE-2023-50868**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|INFORMATIONAL|systemd||[CVE-2023-50868](https://security-tracker.debian.org/tracker/CVE-2023-50868)\n\nThe Closest Encloser Proof aspect of the DNS protocol (in RFC 5155 when RFC 9276 guidance is skipped) allows remote attackers to cause a denial of service (CPU consumption for SHA-1 computations) via DNSSEC responses in a random subdomain attack, aka the \"NSEC3\" issue. The RFC 5155 specification implies that an algorithm must perform thousands of iterations of a hash function in certain situations."
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "INFORMATIONAL",
+                  "infr/testcloud2202"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2022-48303",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2022-48303 - tar"
+              },
+              "fullDescription": {
+                "text": "GNU Tar through 1.34 has a one-byte out-of-bounds read that results in use of uninitialized memory for a conditional jump. Exploitation to change the flow of control has not been demonstrated. The issue occurs in from_header in list.c via a V7 archive in which mtime has approximately 11 whitespace characters."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://security-tracker.debian.org/tracker/CVE-2022-48303",
+              "help": {
+                "text": "Vulnerability CVE-2022-48303\nSeverity: MEDIUM\nPackage: tar\nFixed Version: \nLink: [CVE-2022-48303](https://security-tracker.debian.org/tracker/CVE-2022-48303)",
+                "markdown": "**Vulnerability CVE-2022-48303**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|tar||[CVE-2022-48303](https://security-tracker.debian.org/tracker/CVE-2022-48303)\n\nGNU Tar through 1.34 has a one-byte out-of-bounds read that results in use of uninitialized memory for a conditional jump. Exploitation to change the flow of control has not been demonstrated. The issue occurs in from_header in list.c via a V7 archive in which mtime has approximately 11 whitespace characters."
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM",
+                  "infr/testcloud2202"
+                ],
+                "security-severity": "5.5",
+                "precision": "very-high"
+              }
+            },
+            {
+              "id": "CVE-2024-28182",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2024-28182 - nghttp2"
+              },
+              "fullDescription": {
+                "text": "nghttp2 is an implementation of the Hypertext Transfer Protocol version 2 in C. The nghttp2 library prior to version 1.61.0 keeps reading the unbounded number of HTTP/2 CONTINUATION frames even after a stream is reset to keep HPACK context in sync.  This causes excessive CPU usage to decode HPACK stream. nghttp2 v1.61.0 mitigates this vulnerability by limiting the number of CONTINUATION frames it accepts per stream. There is no workaround for this vulnerability."
+              },
+              "defaultConfiguration": {
+                "level": "none"
+              },
+              "helpUri": "https://security-tracker.debian.org/tracker/CVE-2024-28182",
+              "help": {
+                "text": "Vulnerability CVE-2024-28182\nSeverity: UNTRIAGED\nPackage: nghttp2\nFixed Version: \nLink: [CVE-2024-28182](https://security-tracker.debian.org/tracker/CVE-2024-28182)",
+                "markdown": "**Vulnerability CVE-2024-28182**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|UNTRIAGED|nghttp2||[CVE-2024-28182](https://security-tracker.debian.org/tracker/CVE-2024-28182)\n\nnghttp2 is an implementation of the Hypertext Transfer Protocol version 2 in C. The nghttp2 library prior to version 1.61.0 keeps reading the unbounded number of HTTP/2 CONTINUATION frames even after a stream is reset to keep HPACK context in sync.  This causes excessive CPU usage to decode HPACK stream. nghttp2 v1.61.0 mitigates this vulnerability by limiting the number of CONTINUATION frames it accepts per stream. There is no workaround for this vulnerability."
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "UNTRIAGED",
+                  "infr/testcloud2202"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-39689",
+              "name": "PACKAGE_VULNERABILITY",
+              "shortDescription": {
+                "text": "CVE-2024-39689 - certifi"
+              },
+              "fullDescription": {
+                "text": "Certifi is a curated collection of Root Certificates for validating the trustworthiness of SSL certificates while verifying the identity of TLS hosts. Certifi starting in 2021.05.30 and prior to 2024.07.4 recognized root certificates from `GLOBALTRUST`. Certifi 2024.07.04 removes root certificates from `GLOBALTRUST` from the root store. These are in the process of being removed from Mozilla's trust store. `GLOBALTRUST`'s root certificates are being removed pursuant to an investigation which identified \"long-running and unresolved compliance issues.\""
+              },
+              "defaultConfiguration": {
+                "level": "none"
+              },
+              "helpUri": "https://nvd.nist.gov/vuln/detail/CVE-2024-39689",
+              "help": {
+                "text": "Vulnerability CVE-2024-39689\nSeverity: UNTRIAGED\nPackage: certifi\nFixed Version: \nLink: [CVE-2024-39689](https://nvd.nist.gov/vuln/detail/CVE-2024-39689)",
+                "markdown": "**Vulnerability CVE-2024-39689**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|UNTRIAGED|certifi||[CVE-2024-39689](https://nvd.nist.gov/vuln/detail/CVE-2024-39689)\n\nCertifi is a curated collection of Root Certificates for validating the trustworthiness of SSL certificates while verifying the identity of TLS hosts. Certifi starting in 2021.05.30 and prior to 2024.07.4 recognized root certificates from `GLOBALTRUST`. Certifi 2024.07.04 removes root certificates from `GLOBALTRUST` from the root store. These are in the process of being removed from Mozilla's trust store. `GLOBALTRUST`'s root certificates are being removed pursuant to an investigation which identified \"long-running and unresolved compliance issues.\""
+              },
+              "properties": {
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "UNTRIAGED",
+                  "infr/testcloud2202"
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "CVE-2024-4603",
+          "ruleIndex": 0,
+          "level": "none",
+          "message": {
+            "text": "Package: openssl\nInstalled Version: 3.0.13\nVulnerability CVE-2024-4603\nSeverity: INFORMATIONAL\nFixed Version: \nLink: [CVE-2024-4603](https://security-tracker.debian.org/tracker/CVE-2024-4603)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: openssl@3.0.13"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-37371",
+          "ruleIndex": 1,
+          "level": "none",
+          "message": {
+            "text": "Package: krb5\nInstalled Version: 1.20.1\nVulnerability CVE-2024-37371\nSeverity: UNTRIAGED\nFixed Version: \nLink: [CVE-2024-37371](https://security-tracker.debian.org/tracker/CVE-2024-37371)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: krb5@1.20.1"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-2511",
+          "ruleIndex": 2,
+          "level": "none",
+          "message": {
+            "text": "Package: openssl\nInstalled Version: 3.0.13\nVulnerability CVE-2024-2511\nSeverity: UNTRIAGED\nFixed Version: \nLink: [CVE-2024-2511](https://security-tracker.debian.org/tracker/CVE-2024-2511)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: openssl@3.0.13"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-32465",
+          "ruleIndex": 3,
+          "level": "none",
+          "message": {
+            "text": "Package: git\nInstalled Version: 2.39.2\nVulnerability CVE-2024-32465\nSeverity: UNTRIAGED\nFixed Version: \nLink: [CVE-2024-32465](https://security-tracker.debian.org/tracker/CVE-2024-32465)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: git@2.39.2"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-3651",
+          "ruleIndex": 4,
+          "level": "error",
+          "message": {
+            "text": "Package: idna\nInstalled Version: 3.4\nVulnerability CVE-2024-3651\nSeverity: HIGH\nFixed Version: \nLink: [CVE-2024-3651](https://nvd.nist.gov/vuln/detail/CVE-2024-3651)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: idna@3.4"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-28085",
+          "ruleIndex": 5,
+          "level": "none",
+          "message": {
+            "text": "Package: util-linux\nInstalled Version: 2.38.1\nVulnerability CVE-2024-28085\nSeverity: UNTRIAGED\nFixed Version: \nLink: [CVE-2024-28085](https://security-tracker.debian.org/tracker/CVE-2024-28085)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: util-linux@2.38.1"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-0553",
+          "ruleIndex": 6,
+          "level": "error",
+          "message": {
+            "text": "Package: gnutls28\nInstalled Version: 3.7.9\nVulnerability CVE-2024-0553\nSeverity: HIGH\nFixed Version: \nLink: [CVE-2024-0553](https://security-tracker.debian.org/tracker/CVE-2024-0553)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: gnutls28@3.7.9"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-32004",
+          "ruleIndex": 7,
+          "level": "none",
+          "message": {
+            "text": "Package: git\nInstalled Version: 2.39.2\nVulnerability CVE-2024-32004\nSeverity: UNTRIAGED\nFixed Version: \nLink: [CVE-2024-32004](https://security-tracker.debian.org/tracker/CVE-2024-32004)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: git@2.39.2"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-50387",
+          "ruleIndex": 8,
+          "level": "error",
+          "message": {
+            "text": "Package: systemd\nInstalled Version: 252.19\nVulnerability CVE-2023-50387\nSeverity: HIGH\nFixed Version: \nLink: [CVE-2023-50387](https://security-tracker.debian.org/tracker/CVE-2023-50387)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: systemd@252.19"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-35195",
+          "ruleIndex": 9,
+          "level": "none",
+          "message": {
+            "text": "Package: requests\nInstalled Version: 2.31.0\nVulnerability CVE-2024-35195\nSeverity: UNTRIAGED\nFixed Version: \nLink: [CVE-2024-35195](https://nvd.nist.gov/vuln/detail/CVE-2024-35195)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: requests@2.31.0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-0567",
+          "ruleIndex": 10,
+          "level": "error",
+          "message": {
+            "text": "Package: gnutls28\nInstalled Version: 3.7.9\nVulnerability CVE-2024-0567\nSeverity: HIGH\nFixed Version: \nLink: [CVE-2024-0567](https://security-tracker.debian.org/tracker/CVE-2024-0567)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: gnutls28@3.7.9"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-33602",
+          "ruleIndex": 11,
+          "level": "none",
+          "message": {
+            "text": "Package: glibc\nInstalled Version: 2.36\nVulnerability CVE-2024-33602\nSeverity: UNTRIAGED\nFixed Version: \nLink: [CVE-2024-33602](https://security-tracker.debian.org/tracker/CVE-2024-33602)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: glibc@2.36"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-33599",
+          "ruleIndex": 12,
+          "level": "none",
+          "message": {
+            "text": "Package: glibc\nInstalled Version: 2.36\nVulnerability CVE-2024-33599\nSeverity: UNTRIAGED\nFixed Version: \nLink: [CVE-2024-33599](https://security-tracker.debian.org/tracker/CVE-2024-33599)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: glibc@2.36"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-1681",
+          "ruleIndex": 13,
+          "level": "none",
+          "message": {
+            "text": "Package: flask-cors\nInstalled Version: 4.0.1\nVulnerability CVE-2024-1681\nSeverity: UNTRIAGED\nFixed Version: \nLink: [CVE-2024-1681](https://nvd.nist.gov/vuln/detail/CVE-2024-1681)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: flask-cors@4.0.1"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-37891",
+          "ruleIndex": 14,
+          "level": "none",
+          "message": {
+            "text": "Package: urllib3\nInstalled Version: 2.0.7\nVulnerability CVE-2024-37891\nSeverity: UNTRIAGED\nFixed Version: \nLink: [CVE-2024-37891](https://nvd.nist.gov/vuln/detail/CVE-2024-37891)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: urllib3@2.0.7"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-2961",
+          "ruleIndex": 15,
+          "level": "none",
+          "message": {
+            "text": "Package: glibc\nInstalled Version: 2.36\nVulnerability CVE-2024-2961\nSeverity: UNTRIAGED\nFixed Version: \nLink: [CVE-2024-2961](https://security-tracker.debian.org/tracker/CVE-2024-2961)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: glibc@2.36"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-5752",
+          "ruleIndex": 16,
+          "level": "note",
+          "message": {
+            "text": "Package: pip\nInstalled Version: 23.2.1\nVulnerability CVE-2023-5752\nSeverity: LOW\nFixed Version: \nLink: [CVE-2023-5752](https://nvd.nist.gov/vuln/detail/CVE-2023-5752)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: pip@23.2.1"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-33600",
+          "ruleIndex": 17,
+          "level": "none",
+          "message": {
+            "text": "Package: glibc\nInstalled Version: 2.36\nVulnerability CVE-2024-33600\nSeverity: UNTRIAGED\nFixed Version: \nLink: [CVE-2024-33600](https://security-tracker.debian.org/tracker/CVE-2024-33600)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: glibc@2.36"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-32021",
+          "ruleIndex": 18,
+          "level": "none",
+          "message": {
+            "text": "Package: git\nInstalled Version: 2.39.2\nVulnerability CVE-2024-32021\nSeverity: UNTRIAGED\nFixed Version: \nLink: [CVE-2024-32021](https://security-tracker.debian.org/tracker/CVE-2024-32021)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: git@2.39.2"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-32020",
+          "ruleIndex": 19,
+          "level": "none",
+          "message": {
+            "text": "Package: git\nInstalled Version: 2.39.2\nVulnerability CVE-2024-32020\nSeverity: UNTRIAGED\nFixed Version: \nLink: [CVE-2024-32020](https://security-tracker.debian.org/tracker/CVE-2024-32020)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: git@2.39.2"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-32002",
+          "ruleIndex": 20,
+          "level": "error",
+          "message": {
+            "text": "Package: git\nInstalled Version: 2.39.2\nVulnerability CVE-2024-32002\nSeverity: CRITICAL\nFixed Version: \nLink: [CVE-2024-32002](https://security-tracker.debian.org/tracker/CVE-2024-32002)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: git@2.39.2"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-4741",
+          "ruleIndex": 21,
+          "level": "none",
+          "message": {
+            "text": "Package: openssl\nInstalled Version: 3.0.13\nVulnerability CVE-2024-4741\nSeverity: UNTRIAGED\nFixed Version: \nLink: [CVE-2024-4741](https://security-tracker.debian.org/tracker/CVE-2024-4741)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: openssl@3.0.13"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-7008",
+          "ruleIndex": 22,
+          "level": "warning",
+          "message": {
+            "text": "Package: systemd\nInstalled Version: 252.19\nVulnerability CVE-2023-7008\nSeverity: MEDIUM\nFixed Version: \nLink: [CVE-2023-7008](https://security-tracker.debian.org/tracker/CVE-2023-7008)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: systemd@252.19"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-39804",
+          "ruleIndex": 23,
+          "level": "none",
+          "message": {
+            "text": "Package: tar\nInstalled Version: 1.34+dfsg\nVulnerability CVE-2023-39804\nSeverity: UNTRIAGED\nFixed Version: \nLink: [CVE-2023-39804](https://security-tracker.debian.org/tracker/CVE-2023-39804)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: tar@1.34+dfsg"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-33601",
+          "ruleIndex": 24,
+          "level": "none",
+          "message": {
+            "text": "Package: glibc\nInstalled Version: 2.36\nVulnerability CVE-2024-33601\nSeverity: UNTRIAGED\nFixed Version: \nLink: [CVE-2024-33601](https://security-tracker.debian.org/tracker/CVE-2024-33601)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: glibc@2.36"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-28834",
+          "ruleIndex": 25,
+          "level": "none",
+          "message": {
+            "text": "Package: gnutls28\nInstalled Version: 3.7.9\nVulnerability CVE-2024-28834\nSeverity: INFORMATIONAL\nFixed Version: \nLink: [CVE-2024-28834](https://security-tracker.debian.org/tracker/CVE-2024-28834)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: gnutls28@3.7.9"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-6221",
+          "ruleIndex": 26,
+          "level": "none",
+          "message": {
+            "text": "Package: flask-cors\nInstalled Version: 4.0.1\nVulnerability CVE-2024-6221\nSeverity: UNTRIAGED\nFixed Version: \nLink: [CVE-2024-6221](https://nvd.nist.gov/vuln/detail/CVE-2024-6221)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: flask-cors@4.0.1"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-7592",
+          "ruleIndex": 27,
+          "level": "none",
+          "message": {
+            "text": "Package: python3.11\nInstalled Version: 3.11.2\nVulnerability CVE-2024-7592\nSeverity: UNTRIAGED\nFixed Version: \nLink: [CVE-2024-7592](https://security-tracker.debian.org/tracker/CVE-2024-7592)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: python3.11@3.11.2"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-1135",
+          "ruleIndex": 28,
+          "level": "none",
+          "message": {
+            "text": "Package: gunicorn\nInstalled Version: 21.2.0\nVulnerability CVE-2024-1135\nSeverity: UNTRIAGED\nFixed Version: \nLink: [CVE-2024-1135](https://nvd.nist.gov/vuln/detail/CVE-2024-1135)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: gunicorn@21.2.0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-34069",
+          "ruleIndex": 29,
+          "level": "none",
+          "message": {
+            "text": "Package: werkzeug\nInstalled Version: 2.3.8\nVulnerability CVE-2024-34069\nSeverity: UNTRIAGED\nFixed Version: \nLink: [CVE-2024-34069](https://nvd.nist.gov/vuln/detail/CVE-2024-34069)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: werkzeug@2.3.8"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-4039",
+          "ruleIndex": 30,
+          "level": "warning",
+          "message": {
+            "text": "Package: gcc-12\nInstalled Version: 12.2.0\nVulnerability CVE-2023-4039\nSeverity: MEDIUM\nFixed Version: \nLink: [CVE-2023-4039](https://security-tracker.debian.org/tracker/CVE-2023-4039)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: gcc-12@12.2.0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-37370",
+          "ruleIndex": 31,
+          "level": "none",
+          "message": {
+            "text": "Package: krb5\nInstalled Version: 1.20.1\nVulnerability CVE-2024-37370\nSeverity: UNTRIAGED\nFixed Version: \nLink: [CVE-2024-37370](https://security-tracker.debian.org/tracker/CVE-2024-37370)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: krb5@1.20.1"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-28835",
+          "ruleIndex": 32,
+          "level": "none",
+          "message": {
+            "text": "Package: gnutls28\nInstalled Version: 3.7.9\nVulnerability CVE-2024-28835\nSeverity: INFORMATIONAL\nFixed Version: \nLink: [CVE-2024-28835](https://security-tracker.debian.org/tracker/CVE-2024-28835)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: gnutls28@3.7.9"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-6345",
+          "ruleIndex": 33,
+          "level": "none",
+          "message": {
+            "text": "Package: setuptools\nInstalled Version: 69.0.3\nVulnerability CVE-2024-6345\nSeverity: UNTRIAGED\nFixed Version: \nLink: [CVE-2024-6345](https://nvd.nist.gov/vuln/detail/CVE-2024-6345)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: setuptools@69.0.3"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-50868",
+          "ruleIndex": 34,
+          "level": "none",
+          "message": {
+            "text": "Package: systemd\nInstalled Version: 252.19\nVulnerability CVE-2023-50868\nSeverity: INFORMATIONAL\nFixed Version: \nLink: [CVE-2023-50868](https://security-tracker.debian.org/tracker/CVE-2023-50868)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: systemd@252.19"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-48303",
+          "ruleIndex": 35,
+          "level": "warning",
+          "message": {
+            "text": "Package: tar\nInstalled Version: 1.34+dfsg\nVulnerability CVE-2022-48303\nSeverity: MEDIUM\nFixed Version: \nLink: [CVE-2022-48303](https://security-tracker.debian.org/tracker/CVE-2022-48303)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: tar@1.34+dfsg"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-28182",
+          "ruleIndex": 36,
+          "level": "none",
+          "message": {
+            "text": "Package: nghttp2\nInstalled Version: 1.52.0\nVulnerability CVE-2024-28182\nSeverity: UNTRIAGED\nFixed Version: \nLink: [CVE-2024-28182](https://security-tracker.debian.org/tracker/CVE-2024-28182)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: nghttp2@1.52.0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-39689",
+          "ruleIndex": 37,
+          "level": "none",
+          "message": {
+            "text": "Package: certifi\nInstalled Version: 2023.7.22\nVulnerability CVE-2024-39689\nSeverity: UNTRIAGED\nFixed Version: \nLink: [CVE-2024-39689](https://nvd.nist.gov/vuln/detail/CVE-2024-39689)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "infr/testcloud2202"
+                }
+              },
+              "message": {
+                "text": "infr/testcloud2202: certifi@2023.7.22"
+              }
+            }
+          ]
+        }
+      ],
+      "properties": {
+        "imageID": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+        "imageName": "infr/testcloud2202",
+        "repoDigests": [
+          "infr/testcloud2202@sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d"
+        ],
+        "repoTags": [
+          "infr/testcloud2202:main"
+        ]
+      }
+    }
+  ]
+}

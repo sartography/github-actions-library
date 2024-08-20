@@ -1,0 +1,2491 @@
+{
+    "imageScanFindings": {
+        "enhancedFindings": [
+            {
+                "awsAccountId": "772215651096",
+                "description": "Issue summary: Checking excessively long DSA keys or parameters may be very slow.  Impact summary: Applications that use the functions EVP_PKEY_param_check() or EVP_PKEY_public_check() to check a DSA public key or DSA parameters may experience long delays. Where the key or parameters that are being checked have been obtained from an untrusted source this may lead to a Denial of Service.  The functions EVP_PKEY_param_check() or EVP_PKEY_public_check() perform various checks on DSA parameters. Some of those computations take a long time if the modulus (`p` parameter) is too large.  Trying to use a very large modulus is slow and OpenSSL will not allow using public keys with a modulus which is over 10,000 bits in length for signature verification. However the key and parameter check functions do not limit the modulus size when performing the checks.  An application that calls EVP_PKEY_param_check() or EVP_PKEY_public_check() and supplies a key or parameters obtained from an untrusted source could be vulnerable to",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/00946785f5c6b41d8bc6631471a666ef",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [],
+                    "referenceUrls": [
+                        "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1071972"
+                    ],
+                    "relatedVulnerabilities": [],
+                    "source": "DEBIAN_CVE",
+                    "sourceUrl": "https://security-tracker.debian.org/tracker/CVE-2024-4603",
+                    "vendorSeverity": "unimportant",
+                    "vulnerabilityId": "CVE-2024-4603",
+                    "vulnerablePackages": [
+                        {
+                            "arch": "AMD64",
+                            "epoch": 0,
+                            "name": "openssl",
+                            "packageManager": "OS",
+                            "release": "1~deb12u1",
+                            "sourceLayerHash": "sha256:88483cf183eda3c23ae51c85bf4c11baab3dcc1535ab799726a2115fa5631d2a",
+                            "version": "3.0.13"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 0.0,
+                "severity": "INFORMATIONAL",
+                "status": "ACTIVE",
+                "title": "CVE-2024-4603 - openssl",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            },
+            {
+                "awsAccountId": "772215651096",
+                "description": "In MIT Kerberos 5 (aka krb5) before 1.21.3, an attacker can cause invalid memory reads during GSS message token handling by sending message tokens with invalid length fields.",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/19e64bf7b25ffb30359fcddc9fde14d5",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [],
+                    "referenceUrls": [],
+                    "relatedVulnerabilities": [],
+                    "source": "DEBIAN_CVE",
+                    "sourceUrl": "https://security-tracker.debian.org/tracker/CVE-2024-37371",
+                    "vendorSeverity": "not yet assigned",
+                    "vulnerabilityId": "CVE-2024-37371",
+                    "vulnerablePackages": [
+                        {
+                            "arch": "AMD64",
+                            "epoch": 0,
+                            "name": "krb5",
+                            "packageManager": "OS",
+                            "release": "2+deb12u1",
+                            "sourceLayerHash": "sha256:ca08baf710868cd57a66a3ad898db732a16a6d5812edaa7efb76ebb88a1251fa",
+                            "version": "1.20.1"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 0.0,
+                "severity": "UNTRIAGED",
+                "status": "ACTIVE",
+                "title": "CVE-2024-37371 - krb5",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            },
+            {
+                "awsAccountId": "772215651096",
+                "description": "Issue summary: Some non-default TLS server configurations can cause unbounded memory growth when processing TLSv1.3 sessions  Impact summary: An attacker may exploit certain server configurations to trigger unbounded memory growth that would lead to a Denial of Service  This problem can occur in TLSv1.3 if the non-default SSL_OP_NO_TICKET option is being used (but not if early_data support is also configured and the default anti-replay protection is in use). In this case, under certain conditions, the session cache can get into an incorrect state and it will fail to flush properly as it fills. The session cache will continue to grow in an unbounded manner. A malicious client could deliberately create the scenario for this failure to force a Denial of Service. It may also happen by accident in normal operation.  This issue only affects TLS servers supporting TLSv1.3. It does not affect TLS clients.  The FIPS modules in 3.2, 3.1 and 3.0 are not affected by this issue. OpenSSL 1.0.2 is also not affected by this ",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/1fea95dbb80ddcd53d1a5961cc184503",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [],
+                    "referenceUrls": [
+                        "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1068658"
+                    ],
+                    "relatedVulnerabilities": [],
+                    "source": "DEBIAN_CVE",
+                    "sourceUrl": "https://security-tracker.debian.org/tracker/CVE-2024-2511",
+                    "vendorSeverity": "not yet assigned",
+                    "vulnerabilityId": "CVE-2024-2511",
+                    "vulnerablePackages": [
+                        {
+                            "arch": "AMD64",
+                            "epoch": 0,
+                            "name": "openssl",
+                            "packageManager": "OS",
+                            "release": "1~deb12u1",
+                            "sourceLayerHash": "sha256:88483cf183eda3c23ae51c85bf4c11baab3dcc1535ab799726a2115fa5631d2a",
+                            "version": "3.0.13"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 0.0,
+                "severity": "UNTRIAGED",
+                "status": "ACTIVE",
+                "title": "CVE-2024-2511 - openssl",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            },
+            {
+                "awsAccountId": "772215651096",
+                "description": "Git is a revision control system. The Git project recommends to avoid working in untrusted repositories, and instead to clone it first with `git clone --no-local` to obtain a clean copy. Git has specific protections to make that a safe operation even with an untrusted source repository, but vulnerabilities allow those protections to be bypassed. In the context of cloning local repositories owned by other users, this vulnerability has been covered in CVE-2024-32004. But there are circumstances where the fixes for CVE-2024-32004 are not enough: For example, when obtaining a `.zip` file containing a full copy of a Git repository, it should not be trusted by default to be safe, as e.g. hooks could be configured to run within the context of that repository. The problem has been patched in versions 2.45.1, 2.44.1, 2.43.4, 2.42.2, 2.41.1, 2.40.2, and 2.39.4. As a workaround, avoid using Git in repositories that have been obtained via archives from untrusted sources.",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/211a41cdb7a77b3911c505fa18052f3b",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [],
+                    "referenceUrls": [
+                        "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1071160"
+                    ],
+                    "relatedVulnerabilities": [],
+                    "source": "DEBIAN_CVE",
+                    "sourceUrl": "https://security-tracker.debian.org/tracker/CVE-2024-32465",
+                    "vendorSeverity": "not yet assigned",
+                    "vulnerabilityId": "CVE-2024-32465",
+                    "vulnerablePackages": [
+                        {
+                            "arch": "AMD64",
+                            "epoch": 1,
+                            "name": "git",
+                            "packageManager": "OS",
+                            "release": "1.1",
+                            "sourceLayerHash": "sha256:88483cf183eda3c23ae51c85bf4c11baab3dcc1535ab799726a2115fa5631d2a",
+                            "version": "2.39.2"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 0.0,
+                "severity": "UNTRIAGED",
+                "status": "ACTIVE",
+                "title": "CVE-2024-32465 - git",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            },
+            {
+                "awsAccountId": "772215651096",
+                "description": "A vulnerability was identified in the kjd/idna library, specifically within the `idna.encode()` function, affecting version 3.6. The issue arises from the function's handling of crafted input strings, which can lead to quadratic complexity and consequently, a denial of service condition. This vulnerability is triggered by a crafted input that causes the `idna.encode()` function to process the input with considerable computational load, significantly increasing the processing time in a quadratic manner relative to the input size.",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/2bc16f7914fbc418437e2f020e588cd0",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [
+                        {
+                            "baseScore": 7.5,
+                            "scoringVector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+                            "source": "NVD",
+                            "version": "3.1"
+                        }
+                    ],
+                    "referenceUrls": [],
+                    "relatedVulnerabilities": [],
+                    "source": "NVD",
+                    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2024-3651",
+                    "vendorCreatedAt": "2024-07-07T14:15:09-04:00",
+                    "vendorSeverity": "HIGH",
+                    "vendorUpdatedAt": "2024-07-11T10:58:01-04:00",
+                    "vulnerabilityId": "CVE-2024-3651",
+                    "vulnerablePackages": [
+                        {
+                            "epoch": 0,
+                            "filePath": "app/venv/src/spiffworkflow-connector-command/poetry.lock",
+                            "name": "idna",
+                            "packageManager": "POETRY",
+                            "sourceLayerHash": "sha256:a97e74779c9d16cce6cd84a747c5a3875843b3f442a3bb353d279bffc2b3a363",
+                            "version": "3.4"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 7.5,
+                "scoreDetails": {
+                    "cvss": {
+                        "adjustments": [],
+                        "score": 7.5,
+                        "scoreSource": "NVD",
+                        "scoringVector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+                        "version": "3.1"
+                    }
+                },
+                "severity": "HIGH",
+                "status": "ACTIVE",
+                "title": "CVE-2024-3651 - idna",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            },
+            {
+                "awsAccountId": "772215651096",
+                "description": "wall in util-linux through 2.40, often installed with setgid tty permissions, allows escape sequences to be sent to other users' terminals through argv. (Specifically, escape sequences received from stdin are blocked, but escape sequences received from argv are not blocked.) There may be plausible scenarios where this leads to account takeover.",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/30ac07f8bc47f380b26efd915f732afd",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [],
+                    "referenceUrls": [
+                        "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1067849"
+                    ],
+                    "relatedVulnerabilities": [],
+                    "source": "DEBIAN_CVE",
+                    "sourceUrl": "https://security-tracker.debian.org/tracker/CVE-2024-28085",
+                    "vendorSeverity": "not yet assigned",
+                    "vulnerabilityId": "CVE-2024-28085",
+                    "vulnerablePackages": [
+                        {
+                            "arch": "AMD64",
+                            "epoch": 0,
+                            "name": "util-linux",
+                            "packageManager": "OS",
+                            "release": "5",
+                            "sourceLayerHash": "sha256:c57ee5000d61345aa3ee6684794a8110328e2274d9a5ae7855969d1a26394463",
+                            "version": "2.38.1"
+                        },
+                        {
+                            "arch": "AMD64",
+                            "epoch": 0,
+                            "name": "util-linux",
+                            "packageManager": "OS",
+                            "release": "5+b1",
+                            "sourceLayerHash": "sha256:c57ee5000d61345aa3ee6684794a8110328e2274d9a5ae7855969d1a26394463",
+                            "version": "2.38.1"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 0.0,
+                "severity": "UNTRIAGED",
+                "status": "ACTIVE",
+                "title": "CVE-2024-28085 - util-linux, util-linux",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            },
+            {
+                "awsAccountId": "772215651096",
+                "description": "A vulnerability was found in GnuTLS. The response times to malformed ciphertexts in RSA-PSK ClientKeyExchange differ from the response times of ciphertexts with correct PKCS#1 v1.5 padding. This issue may allow a remote attacker to perform a timing side-channel attack in the RSA-PSK key exchange, potentially leading to the leakage of sensitive data. CVE-2024-0553 is designated as an incomplete resolution for CVE-2023-5981.",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/3dbeba23ffb5cc597f480f1c23d3637b",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [
+                        {
+                            "baseScore": 7.5,
+                            "scoringVector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+                            "source": "NVD",
+                            "version": "3.1"
+                        }
+                    ],
+                    "referenceUrls": [
+                        "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1061046"
+                    ],
+                    "relatedVulnerabilities": [],
+                    "source": "DEBIAN_CVE",
+                    "sourceUrl": "https://security-tracker.debian.org/tracker/CVE-2024-0553",
+                    "vendorSeverity": "not yet assigned",
+                    "vulnerabilityId": "CVE-2024-0553",
+                    "vulnerablePackages": [
+                        {
+                            "arch": "AMD64",
+                            "epoch": 0,
+                            "name": "gnutls28",
+                            "packageManager": "OS",
+                            "release": "2+deb12u1",
+                            "sourceLayerHash": "sha256:c57ee5000d61345aa3ee6684794a8110328e2274d9a5ae7855969d1a26394463",
+                            "version": "3.7.9"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 7.5,
+                "scoreDetails": {
+                    "cvss": {
+                        "adjustments": [],
+                        "score": 7.5,
+                        "scoreSource": "NVD",
+                        "scoringVector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+                        "version": "3.1"
+                    }
+                },
+                "severity": "HIGH",
+                "status": "ACTIVE",
+                "title": "CVE-2024-0553 - gnutls28",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            },
+            {
+                "awsAccountId": "772215651096",
+                "description": "Git is a revision control system. Prior to versions 2.45.1, 2.44.1, 2.43.4, 2.42.2, 2.41.1, 2.40.2, and 2.39.4, an attacker can prepare a local repository in such a way that, when cloned, will execute arbitrary code during the operation. The problem has been patched in versions 2.45.1, 2.44.1, 2.43.4, 2.42.2, 2.41.1, 2.40.2, and 2.39.4. As a workaround, avoid cloning repositories from untrusted sources.",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/3e05b0e39da9ceafd13d0733bb7f3029",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [],
+                    "referenceUrls": [
+                        "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1071160"
+                    ],
+                    "relatedVulnerabilities": [],
+                    "source": "DEBIAN_CVE",
+                    "sourceUrl": "https://security-tracker.debian.org/tracker/CVE-2024-32004",
+                    "vendorSeverity": "not yet assigned",
+                    "vulnerabilityId": "CVE-2024-32004",
+                    "vulnerablePackages": [
+                        {
+                            "arch": "AMD64",
+                            "epoch": 1,
+                            "name": "git",
+                            "packageManager": "OS",
+                            "release": "1.1",
+                            "sourceLayerHash": "sha256:88483cf183eda3c23ae51c85bf4c11baab3dcc1535ab799726a2115fa5631d2a",
+                            "version": "2.39.2"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 0.0,
+                "severity": "UNTRIAGED",
+                "status": "ACTIVE",
+                "title": "CVE-2024-32004 - git",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            },
+            {
+                "awsAccountId": "772215651096",
+                "description": "Certain DNSSEC aspects of the DNS protocol (in RFC 4033, 4034, 4035, 6840, and related RFCs) allow remote attackers to cause a denial of service (CPU consumption) via one or more DNSSEC responses, aka the \"KeyTrap\" issue. One of the concerns is that, when there is a zone with many DNSKEY and RRSIG records, the protocol specification implies that an algorithm must evaluate all combinations of DNSKEY and RRSIG records.",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/4b2f7bef50fbb4c21ab3ec21a57d4014",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [
+                        {
+                            "baseScore": 7.5,
+                            "scoringVector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+                            "source": "NVD",
+                            "version": "3.1"
+                        }
+                    ],
+                    "referenceUrls": [
+                        "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1063845"
+                    ],
+                    "relatedVulnerabilities": [],
+                    "source": "DEBIAN_CVE",
+                    "sourceUrl": "https://security-tracker.debian.org/tracker/CVE-2023-50387",
+                    "vendorSeverity": "end-of-life",
+                    "vulnerabilityId": "CVE-2023-50387",
+                    "vulnerablePackages": [
+                        {
+                            "arch": "AMD64",
+                            "epoch": 0,
+                            "name": "systemd",
+                            "packageManager": "OS",
+                            "release": "1~deb12u1",
+                            "sourceLayerHash": "sha256:c57ee5000d61345aa3ee6684794a8110328e2274d9a5ae7855969d1a26394463",
+                            "version": "252.19"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 7.5,
+                "scoreDetails": {
+                    "cvss": {
+                        "adjustments": [],
+                        "score": 7.5,
+                        "scoreSource": "NVD",
+                        "scoringVector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+                        "version": "3.1"
+                    }
+                },
+                "severity": "HIGH",
+                "status": "ACTIVE",
+                "title": "CVE-2023-50387 - systemd",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            },
+            {
+                "awsAccountId": "772215651096",
+                "description": "Requests is a HTTP library. Prior to 2.32.0, when making requests through a Requests `Session`, if the first request is made with `verify=False` to disable cert verification, all subsequent requests to the same host will continue to ignore cert verification regardless of changes to the value of `verify`. This behavior will continue for the lifecycle of the connection in the connection pool. This vulnerability is fixed in 2.32.0.",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/53a1b3a41370c085cb97b8d4c265ff29",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [],
+                    "referenceUrls": [
+                        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/IYLSNK5TL46Q6XPRVMHVWS63MVJQOK4Q/",
+                        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/N7WP6EYDSUOCOJYHDK5NX43PYZ4SNHGZ/"
+                    ],
+                    "relatedVulnerabilities": [],
+                    "source": "NVD",
+                    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2024-35195",
+                    "vendorCreatedAt": "2024-05-20T17:15:09-04:00",
+                    "vendorUpdatedAt": "2024-06-10T13:16:29-04:00",
+                    "vulnerabilityId": "CVE-2024-35195",
+                    "vulnerablePackages": [
+                        {
+                            "epoch": 0,
+                            "filePath": "app/venv/src/spiffworkflow-connector-command/poetry.lock",
+                            "name": "requests",
+                            "packageManager": "POETRY",
+                            "sourceLayerHash": "sha256:a97e74779c9d16cce6cd84a747c5a3875843b3f442a3bb353d279bffc2b3a363",
+                            "version": "2.31.0"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 0.0,
+                "severity": "UNTRIAGED",
+                "status": "ACTIVE",
+                "title": "CVE-2024-35195 - requests",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            },
+            {
+                "awsAccountId": "772215651096",
+                "description": "A vulnerability was found in GnuTLS, where a cockpit (which uses gnuTLS) rejects a certificate chain with distributed trust. This issue occurs when validating a certificate chain with cockpit-certificate-ensure. This flaw allows an unauthenticated, remote client or attacker to initiate a denial of service attack.",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/5ce1f869a4567542406d7b0725dcf2ab",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [
+                        {
+                            "baseScore": 7.5,
+                            "scoringVector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+                            "source": "NVD",
+                            "version": "3.1"
+                        }
+                    ],
+                    "referenceUrls": [
+                        "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1061045"
+                    ],
+                    "relatedVulnerabilities": [],
+                    "source": "DEBIAN_CVE",
+                    "sourceUrl": "https://security-tracker.debian.org/tracker/CVE-2024-0567",
+                    "vendorSeverity": "unimportant",
+                    "vulnerabilityId": "CVE-2024-0567",
+                    "vulnerablePackages": [
+                        {
+                            "arch": "AMD64",
+                            "epoch": 0,
+                            "name": "gnutls28",
+                            "packageManager": "OS",
+                            "release": "2+deb12u1",
+                            "sourceLayerHash": "sha256:c57ee5000d61345aa3ee6684794a8110328e2274d9a5ae7855969d1a26394463",
+                            "version": "3.7.9"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 7.5,
+                "scoreDetails": {
+                    "cvss": {
+                        "adjustments": [],
+                        "score": 7.5,
+                        "scoreSource": "NVD",
+                        "scoringVector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+                        "version": "3.1"
+                    }
+                },
+                "severity": "HIGH",
+                "status": "ACTIVE",
+                "title": "CVE-2024-0567 - gnutls28",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            },
+            {
+                "awsAccountId": "772215651096",
+                "description": "nscd: netgroup cache assumes NSS callback uses in-buffer strings  The Name Service Cache Daemon's (nscd) netgroup cache can corrupt memory when the NSS callback does not store all strings in the provided buffer. The flaw was introduced in glibc 2.15 when the cache was added to nscd.  This vulnerability is only present in the nscd binary.",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/61021f21d6cb56b8d316a75f2162cd4e",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [],
+                    "referenceUrls": [],
+                    "relatedVulnerabilities": [],
+                    "source": "DEBIAN_CVE",
+                    "sourceUrl": "https://security-tracker.debian.org/tracker/CVE-2024-33602",
+                    "vendorSeverity": "not yet assigned",
+                    "vulnerabilityId": "CVE-2024-33602",
+                    "vulnerablePackages": [
+                        {
+                            "arch": "AMD64",
+                            "epoch": 0,
+                            "name": "glibc",
+                            "packageManager": "OS",
+                            "release": "9+deb12u4",
+                            "sourceLayerHash": "sha256:c57ee5000d61345aa3ee6684794a8110328e2274d9a5ae7855969d1a26394463",
+                            "version": "2.36"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 0.0,
+                "severity": "UNTRIAGED",
+                "status": "ACTIVE",
+                "title": "CVE-2024-33602 - glibc",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            },
+            {
+                "awsAccountId": "772215651096",
+                "description": "nscd: Stack-based buffer overflow in netgroup cache  If the Name Service Cache Daemon's (nscd) fixed size cache is exhausted by client requests then a subsequent client request for netgroup data may result in a stack-based buffer overflow.  This flaw was introduced in glibc 2.15 when the cache was added to nscd.  This vulnerability is only present in the nscd binary.",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/70d7258a044e92a340d8778272a2d8a9",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [],
+                    "referenceUrls": [],
+                    "relatedVulnerabilities": [],
+                    "source": "DEBIAN_CVE",
+                    "sourceUrl": "https://security-tracker.debian.org/tracker/CVE-2024-33599",
+                    "vendorSeverity": "not yet assigned",
+                    "vulnerabilityId": "CVE-2024-33599",
+                    "vulnerablePackages": [
+                        {
+                            "arch": "AMD64",
+                            "epoch": 0,
+                            "name": "glibc",
+                            "packageManager": "OS",
+                            "release": "9+deb12u4",
+                            "sourceLayerHash": "sha256:c57ee5000d61345aa3ee6684794a8110328e2274d9a5ae7855969d1a26394463",
+                            "version": "2.36"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 0.0,
+                "severity": "UNTRIAGED",
+                "status": "ACTIVE",
+                "title": "CVE-2024-33599 - glibc",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            },
+            {
+                "awsAccountId": "772215651096",
+                "description": "corydolphin/flask-cors is vulnerable to log injection when the log level is set to debug. An attacker can inject fake log entries into the log file by sending a specially crafted GET request containing a CRLF sequence in the request path. This vulnerability allows attackers to corrupt log files, potentially covering tracks of other attacks, confusing log post-processing tools, and forging log entries. The issue is due to improper output neutralization for logs.",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/77f4c5784afa6200c32b8bc3ba633db3",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [],
+                    "referenceUrls": [],
+                    "relatedVulnerabilities": [],
+                    "source": "NVD",
+                    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2024-1681",
+                    "vendorCreatedAt": "2024-04-19T16:15:09-04:00",
+                    "vendorUpdatedAt": "2024-04-22T09:28:50-04:00",
+                    "vulnerabilityId": "CVE-2024-1681",
+                    "vulnerablePackages": [
+                        {
+                            "epoch": 0,
+                            "filePath": "app/poetry.lock",
+                            "name": "flask-cors",
+                            "packageManager": "POETRY",
+                            "sourceLayerHash": "sha256:a97e74779c9d16cce6cd84a747c5a3875843b3f442a3bb353d279bffc2b3a363",
+                            "version": "4.0.1"
+                        },
+                        {
+                            "epoch": 0,
+                            "filePath": "app/venv/lib/python3.12/site-packages/Flask_Cors-4.0.1.dist-info/METADATA",
+                            "name": "Flask-Cors",
+                            "packageManager": "PYTHONPKG",
+                            "sourceLayerHash": "sha256:a97e74779c9d16cce6cd84a747c5a3875843b3f442a3bb353d279bffc2b3a363",
+                            "version": "4.0.1"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 0.0,
+                "severity": "UNTRIAGED",
+                "status": "ACTIVE",
+                "title": "CVE-2024-1681 - flask-cors, Flask-Cors",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            },
+            {
+                "awsAccountId": "772215651096",
+                "description": " urllib3 is a user-friendly HTTP client library for Python. When using urllib3's proxy support with `ProxyManager`, the `Proxy-Authorization` header is only sent to the configured proxy, as expected. However, when sending HTTP requests *without* using urllib3's proxy support, it's possible to accidentally configure the `Proxy-Authorization` header even though it won't have any effect as the request is not using a forwarding proxy or a tunneling proxy. In those cases, urllib3 doesn't treat the `Proxy-Authorization` HTTP header as one carrying authentication material and thus doesn't strip the header on cross-origin redirects. Because this is a highly unlikely scenario, we believe the severity of this vulnerability is low for almost all users. Out of an abundance of caution urllib3 will automatically strip the `Proxy-Authorization` header during cross-origin redirects to avoid the small chance that users are doing this on accident. Users should use urllib3's proxy support or disable automatic redirects to achie",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/794fc873046db9191602a63617fd2d9c",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [],
+                    "referenceUrls": [],
+                    "relatedVulnerabilities": [],
+                    "source": "NVD",
+                    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2024-37891",
+                    "vendorCreatedAt": "2024-06-17T16:15:13-04:00",
+                    "vendorUpdatedAt": "2024-06-20T08:44:22-04:00",
+                    "vulnerabilityId": "CVE-2024-37891",
+                    "vulnerablePackages": [
+                        {
+                            "epoch": 0,
+                            "filePath": "app/venv/src/spiffworkflow-connector-command/poetry.lock",
+                            "name": "urllib3",
+                            "packageManager": "POETRY",
+                            "sourceLayerHash": "sha256:a97e74779c9d16cce6cd84a747c5a3875843b3f442a3bb353d279bffc2b3a363",
+                            "version": "2.0.7"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 0.0,
+                "severity": "UNTRIAGED",
+                "status": "ACTIVE",
+                "title": "CVE-2024-37891 - urllib3",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            },
+            {
+                "awsAccountId": "772215651096",
+                "description": "The iconv() function in the GNU C Library versions 2.39 and older may overflow the output buffer passed to it by up to 4 bytes when converting strings to the ISO-2022-CN-EXT character set, which may be used to crash an application or overwrite a neighbouring variable.",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/79da0f1f795af6e0463694a35dbf8e48",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [],
+                    "referenceUrls": [
+                        "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1069191"
+                    ],
+                    "relatedVulnerabilities": [],
+                    "source": "DEBIAN_CVE",
+                    "sourceUrl": "https://security-tracker.debian.org/tracker/CVE-2024-2961",
+                    "vendorSeverity": "not yet assigned",
+                    "vulnerabilityId": "CVE-2024-2961",
+                    "vulnerablePackages": [
+                        {
+                            "arch": "AMD64",
+                            "epoch": 0,
+                            "name": "glibc",
+                            "packageManager": "OS",
+                            "release": "9+deb12u4",
+                            "sourceLayerHash": "sha256:c57ee5000d61345aa3ee6684794a8110328e2274d9a5ae7855969d1a26394463",
+                            "version": "2.36"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 0.0,
+                "severity": "UNTRIAGED",
+                "status": "ACTIVE",
+                "title": "CVE-2024-2961 - glibc",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            },
+            {
+                "awsAccountId": "772215651096",
+                "description": "When installing a package from a Mercurial VCS URL  (ie \"pip install \nhg+...\") with pip prior to v23.3, the specified Mercurial revision could\n be used to inject arbitrary configuration options to the \"hg clone\" \ncall (ie \"--config\"). Controlling the Mercurial configuration can modify\n how and which repository is installed. This vulnerability does not \naffect users who aren't installing from Mercurial.\n",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/7da0549bb068a36013d46ae06d117efe",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [
+                        {
+                            "baseScore": 3.3,
+                            "scoringVector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N",
+                            "source": "NVD",
+                            "version": "3.1"
+                        }
+                    ],
+                    "referenceUrls": [
+                        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/622OZXWG72ISQPLM5Y57YCVIMWHD4C3U/",
+                        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/65UKKF5LBHEFDCUSPBHUN4IHYX7SRMHH/",
+                        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/YBSB3SUPQ3VIFYUMHPO3MEQI4BJAXKCZ/",
+                        "https://mail.python.org/archives/list/security-announce@python.org/thread/F4PL35U6X4VVHZ5ILJU3PWUWN7H7LZXL/",
+                        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/KFC2SPFG5FLCZBYY2K3T5MFW2D22NG6E/",
+                        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/FXUVMJM25PUAZRQZBF54OFVKTY3MINPW/"
+                    ],
+                    "relatedVulnerabilities": [],
+                    "source": "NVD",
+                    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2023-5752",
+                    "vendorCreatedAt": "2023-10-25T14:17:44-04:00",
+                    "vendorSeverity": "LOW",
+                    "vendorUpdatedAt": "2024-06-10T14:15:24-04:00",
+                    "vulnerabilityId": "CVE-2023-5752",
+                    "vulnerablePackages": [
+                        {
+                            "epoch": 0,
+                            "filePath": "app/venv/lib/python3.12/site-packages/pip-23.2.1.dist-info/METADATA",
+                            "name": "pip",
+                            "packageManager": "PYTHONPKG",
+                            "sourceLayerHash": "sha256:2d700f611af4f6209cf36e9ceb8f224371b6cd3b29e4399154a37bcfc81564ce",
+                            "version": "23.2.1"
+                        },
+                        {
+                            "epoch": 0,
+                            "filePath": "usr/local/lib/python3.12/site-packages/pip-23.2.1.dist-info/METADATA",
+                            "name": "pip",
+                            "packageManager": "PYTHONPKG",
+                            "sourceLayerHash": "sha256:022edbc22fa9a8a991a070357ae49b9b6fd5102a6471a869a8c7120c4d8196c1",
+                            "version": "23.2.1"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 3.3,
+                "scoreDetails": {
+                    "cvss": {
+                        "adjustments": [],
+                        "score": 3.3,
+                        "scoreSource": "NVD",
+                        "scoringVector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N",
+                        "version": "3.1"
+                    }
+                },
+                "severity": "LOW",
+                "status": "ACTIVE",
+                "title": "CVE-2023-5752 - pip, pip",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            },
+            {
+                "awsAccountId": "772215651096",
+                "description": "nscd: Null pointer crashes after notfound response  If the Name Service Cache Daemon's (nscd) cache fails to add a not-found netgroup response to the cache, the client request can result in a null pointer dereference.  This flaw was introduced in glibc 2.15 when the cache was added to nscd.  This vulnerability is only present in the nscd binary.",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/7e66f09662a6f4b38477d0da90f047b8",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [],
+                    "referenceUrls": [],
+                    "relatedVulnerabilities": [],
+                    "source": "DEBIAN_CVE",
+                    "sourceUrl": "https://security-tracker.debian.org/tracker/CVE-2024-33600",
+                    "vendorSeverity": "not yet assigned",
+                    "vulnerabilityId": "CVE-2024-33600",
+                    "vulnerablePackages": [
+                        {
+                            "arch": "AMD64",
+                            "epoch": 0,
+                            "name": "glibc",
+                            "packageManager": "OS",
+                            "release": "9+deb12u4",
+                            "sourceLayerHash": "sha256:c57ee5000d61345aa3ee6684794a8110328e2274d9a5ae7855969d1a26394463",
+                            "version": "2.36"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 0.0,
+                "severity": "UNTRIAGED",
+                "status": "ACTIVE",
+                "title": "CVE-2024-33600 - glibc",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            },
+            {
+                "awsAccountId": "772215651096",
+                "description": "Git is a revision control system. Prior to versions 2.45.1, 2.44.1, 2.43.4, 2.42.2, 2.41.1, 2.40.2, and 2.39.4, when cloning a local source repository that contains symlinks via the filesystem, Git may create hardlinks to arbitrary user-readable files on the same filesystem as the target repository in the `objects/` directory. Cloning a local repository over the filesystem may creating hardlinks to arbitrary user-owned files on the same filesystem in the target Git repository's `objects/` directory. When cloning a repository over the filesystem (without explicitly specifying the `file://` protocol or `--no-local`), the optimizations for local cloning will be used, which include attempting to hard link the object files instead of copying them. While the code includes checks against symbolic links in the source repository, which were added during the fix for CVE-2022-39253, these checks can still be raced because the hard link operation ultimately follows symlinks. If the object on the filesystem appears as a f",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/808b6cb0b858b7aaa30c594d7378b490",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [],
+                    "referenceUrls": [
+                        "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1071160"
+                    ],
+                    "relatedVulnerabilities": [],
+                    "source": "DEBIAN_CVE",
+                    "sourceUrl": "https://security-tracker.debian.org/tracker/CVE-2024-32021",
+                    "vendorSeverity": "not yet assigned",
+                    "vulnerabilityId": "CVE-2024-32021",
+                    "vulnerablePackages": [
+                        {
+                            "arch": "AMD64",
+                            "epoch": 1,
+                            "name": "git",
+                            "packageManager": "OS",
+                            "release": "1.1",
+                            "sourceLayerHash": "sha256:88483cf183eda3c23ae51c85bf4c11baab3dcc1535ab799726a2115fa5631d2a",
+                            "version": "2.39.2"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 0.0,
+                "severity": "UNTRIAGED",
+                "status": "ACTIVE",
+                "title": "CVE-2024-32021 - git",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            },
+            {
+                "awsAccountId": "772215651096",
+                "description": "Git is a revision control system. Prior to versions 2.45.1, 2.44.1, 2.43.4, 2.42.2, 2.41.1, 2.40.2, and 2.39.4, local clones may end up hardlinking files into the target repository's object database when source and target repository reside on the same disk. If the source repository is owned by a different user, then those hardlinked files may be rewritten at any point in time by the untrusted user. Cloning local repositories will cause Git to either copy or hardlink files of the source repository into the target repository. This significantly speeds up such local clones compared to doing a \"proper\" clone and saves both disk space and compute time. When cloning a repository located on the same disk that is owned by a different user than the current user we also end up creating such hardlinks. These files will continue to be owned and controlled by the potentially-untrusted user and can be rewritten by them at will in the future. The problem has been patched in versions 2.45.1, 2.44.1, 2.43.4, 2.42.2, 2.41.1, 2",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/86a19332838d10e41d13e8d9a3d70944",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [],
+                    "referenceUrls": [
+                        "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1071160"
+                    ],
+                    "relatedVulnerabilities": [],
+                    "source": "DEBIAN_CVE",
+                    "sourceUrl": "https://security-tracker.debian.org/tracker/CVE-2024-32020",
+                    "vendorSeverity": "not yet assigned",
+                    "vulnerabilityId": "CVE-2024-32020",
+                    "vulnerablePackages": [
+                        {
+                            "arch": "AMD64",
+                            "epoch": 1,
+                            "name": "git",
+                            "packageManager": "OS",
+                            "release": "1.1",
+                            "sourceLayerHash": "sha256:88483cf183eda3c23ae51c85bf4c11baab3dcc1535ab799726a2115fa5631d2a",
+                            "version": "2.39.2"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 0.0,
+                "severity": "UNTRIAGED",
+                "status": "ACTIVE",
+                "title": "CVE-2024-32020 - git",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            },
+            {
+                "awsAccountId": "772215651096",
+                "description": "Git is a revision control system. Prior to versions 2.45.1, 2.44.1, 2.43.4, 2.42.2, 2.41.1, 2.40.2, and 2.39.4, repositories with submodules can be crafted in a way that exploits a bug in Git whereby it can be fooled into writing files not into the submodule's worktree but into a `.git/` directory. This allows writing a hook that will be executed while the clone operation is still running, giving the user no opportunity to inspect the code that is being executed. The problem has been patched in versions 2.45.1, 2.44.1, 2.43.4, 2.42.2, 2.41.1, 2.40.2, and 2.39.4. If symbolic link support is disabled in Git (e.g. via `git config --global core.symlinks false`), the described attack won't work. As always, it is best to avoid cloning repositories from untrusted sources.",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/8d17c90d811f3fe51fbd52aee59cf4da",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [
+                        {
+                            "baseScore": 9.0,
+                            "scoringVector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:H",
+                            "source": "NVD",
+                            "version": "3.1"
+                        }
+                    ],
+                    "referenceUrls": [
+                        "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1071160"
+                    ],
+                    "relatedVulnerabilities": [],
+                    "source": "DEBIAN_CVE",
+                    "sourceUrl": "https://security-tracker.debian.org/tracker/CVE-2024-32002",
+                    "vendorSeverity": "not yet assigned",
+                    "vulnerabilityId": "CVE-2024-32002",
+                    "vulnerablePackages": [
+                        {
+                            "arch": "AMD64",
+                            "epoch": 1,
+                            "name": "git",
+                            "packageManager": "OS",
+                            "release": "1.1",
+                            "sourceLayerHash": "sha256:88483cf183eda3c23ae51c85bf4c11baab3dcc1535ab799726a2115fa5631d2a",
+                            "version": "2.39.2"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 9.0,
+                "scoreDetails": {
+                    "cvss": {
+                        "adjustments": [],
+                        "score": 9.0,
+                        "scoreSource": "NVD",
+                        "scoringVector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:H",
+                        "version": "3.1"
+                    }
+                },
+                "severity": "CRITICAL",
+                "status": "ACTIVE",
+                "title": "CVE-2024-32002 - git",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            },
+            {
+                "awsAccountId": "772215651096",
+                "description": "None Provided",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/97a7c5e46859d045d6cc0c4796d63413",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [],
+                    "referenceUrls": [
+                        "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1072113"
+                    ],
+                    "relatedVulnerabilities": [],
+                    "source": "DEBIAN_CVE",
+                    "sourceUrl": "https://security-tracker.debian.org/tracker/CVE-2024-4741",
+                    "vendorSeverity": "not yet assigned",
+                    "vulnerabilityId": "CVE-2024-4741",
+                    "vulnerablePackages": [
+                        {
+                            "arch": "AMD64",
+                            "epoch": 0,
+                            "name": "openssl",
+                            "packageManager": "OS",
+                            "release": "1~deb12u1",
+                            "sourceLayerHash": "sha256:88483cf183eda3c23ae51c85bf4c11baab3dcc1535ab799726a2115fa5631d2a",
+                            "version": "3.0.13"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 0.0,
+                "severity": "UNTRIAGED",
+                "status": "ACTIVE",
+                "title": "CVE-2024-4741 - openssl",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            },
+            {
+                "awsAccountId": "772215651096",
+                "description": "A vulnerability was found in systemd-resolved. This issue may allow systemd-resolved to accept records of DNSSEC-signed domains even when they have no signature, allowing man-in-the-middles (or the upstream DNS resolver) to manipulate records.",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/98291e0e30037fd7413ef94a8b6df85f",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [
+                        {
+                            "baseScore": 5.9,
+                            "scoringVector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N",
+                            "source": "NVD",
+                            "version": "3.1"
+                        }
+                    ],
+                    "referenceUrls": [
+                        "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1059278"
+                    ],
+                    "relatedVulnerabilities": [],
+                    "source": "DEBIAN_CVE",
+                    "sourceUrl": "https://security-tracker.debian.org/tracker/CVE-2023-7008",
+                    "vendorSeverity": "not yet assigned",
+                    "vulnerabilityId": "CVE-2023-7008",
+                    "vulnerablePackages": [
+                        {
+                            "arch": "AMD64",
+                            "epoch": 0,
+                            "name": "systemd",
+                            "packageManager": "OS",
+                            "release": "1~deb12u1",
+                            "sourceLayerHash": "sha256:c57ee5000d61345aa3ee6684794a8110328e2274d9a5ae7855969d1a26394463",
+                            "version": "252.19"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 5.9,
+                "scoreDetails": {
+                    "cvss": {
+                        "adjustments": [],
+                        "score": 5.9,
+                        "scoreSource": "NVD",
+                        "scoringVector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N",
+                        "version": "3.1"
+                    }
+                },
+                "severity": "MEDIUM",
+                "status": "ACTIVE",
+                "title": "CVE-2023-7008 - systemd",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            },
+            {
+                "awsAccountId": "772215651096",
+                "description": "In GNU tar before 1.35, mishandled extension attributes in a PAX archive can lead to an application crash in xheader.c.",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/9a987fb16db5e05f36d1be94aba1aae2",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [],
+                    "referenceUrls": [
+                        "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1058079"
+                    ],
+                    "relatedVulnerabilities": [],
+                    "source": "DEBIAN_CVE",
+                    "sourceUrl": "https://security-tracker.debian.org/tracker/CVE-2023-39804",
+                    "vendorSeverity": "not yet assigned",
+                    "vulnerabilityId": "CVE-2023-39804",
+                    "vulnerablePackages": [
+                        {
+                            "arch": "AMD64",
+                            "epoch": 0,
+                            "name": "tar",
+                            "packageManager": "OS",
+                            "release": "1.2",
+                            "sourceLayerHash": "sha256:c57ee5000d61345aa3ee6684794a8110328e2274d9a5ae7855969d1a26394463",
+                            "version": "1.34+dfsg"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 0.0,
+                "severity": "UNTRIAGED",
+                "status": "ACTIVE",
+                "title": "CVE-2023-39804 - tar",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            },
+            {
+                "awsAccountId": "772215651096",
+                "description": "nscd: netgroup cache may terminate daemon on memory allocation failure  The Name Service Cache Daemon's (nscd) netgroup cache uses xmalloc or xrealloc and these functions may terminate the process due to a memory allocation failure resulting in a denial of service to the clients.  The flaw was introduced in glibc 2.15 when the cache was added to nscd.  This vulnerability is only present in the nscd binary.",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/9c01d7911b1d305ec53f4ceacd5285ba",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [],
+                    "referenceUrls": [],
+                    "relatedVulnerabilities": [],
+                    "source": "DEBIAN_CVE",
+                    "sourceUrl": "https://security-tracker.debian.org/tracker/CVE-2024-33601",
+                    "vendorSeverity": "not yet assigned",
+                    "vulnerabilityId": "CVE-2024-33601",
+                    "vulnerablePackages": [
+                        {
+                            "arch": "AMD64",
+                            "epoch": 0,
+                            "name": "glibc",
+                            "packageManager": "OS",
+                            "release": "9+deb12u4",
+                            "sourceLayerHash": "sha256:c57ee5000d61345aa3ee6684794a8110328e2274d9a5ae7855969d1a26394463",
+                            "version": "2.36"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 0.0,
+                "severity": "UNTRIAGED",
+                "status": "ACTIVE",
+                "title": "CVE-2024-33601 - glibc",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            },
+            {
+                "awsAccountId": "772215651096",
+                "description": "A flaw was found in GnuTLS. The Minerva attack is a cryptographic vulnerability that exploits deterministic behavior in systems like GnuTLS, leading to side-channel leaks. In specific scenarios, such as when using the GNUTLS_PRIVKEY_FLAG_REPRODUCIBLE flag, it can result in a noticeable step in nonce size from 513 to 512 bits, exposing a potential timing side-channel.",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/9c16be5b69ef59d6d1ab316150626bf2",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [],
+                    "referenceUrls": [
+                        "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1067464"
+                    ],
+                    "relatedVulnerabilities": [],
+                    "source": "DEBIAN_CVE",
+                    "sourceUrl": "https://security-tracker.debian.org/tracker/CVE-2024-28834",
+                    "vendorSeverity": "unimportant",
+                    "vulnerabilityId": "CVE-2024-28834",
+                    "vulnerablePackages": [
+                        {
+                            "arch": "AMD64",
+                            "epoch": 0,
+                            "name": "gnutls28",
+                            "packageManager": "OS",
+                            "release": "2+deb12u1",
+                            "sourceLayerHash": "sha256:c57ee5000d61345aa3ee6684794a8110328e2274d9a5ae7855969d1a26394463",
+                            "version": "3.7.9"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 0.0,
+                "severity": "INFORMATIONAL",
+                "status": "ACTIVE",
+                "title": "CVE-2024-28834 - gnutls28",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            },
+            {
+                "awsAccountId": "772215651096",
+                "description": "A vulnerability in corydolphin/flask-cors version 4.0.1 allows the `Access-Control-Allow-Private-Network` CORS header to be set to true by default, without any configuration option. This behavior can expose private network resources to unauthorized external access, leading to significant security risks such as data breaches, unauthorized access to sensitive information, and potential network intrusions.",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/b265ba720ea6340f651ea0d840be9f32",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [],
+                    "referenceUrls": [],
+                    "relatedVulnerabilities": [],
+                    "source": "NVD",
+                    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2024-6221",
+                    "vendorCreatedAt": "2024-08-18T15:15:04-04:00",
+                    "vendorUpdatedAt": "2024-08-19T08:59:59-04:00",
+                    "vulnerabilityId": "CVE-2024-6221",
+                    "vulnerablePackages": [
+                        {
+                            "epoch": 0,
+                            "filePath": "app/poetry.lock",
+                            "name": "flask-cors",
+                            "packageManager": "POETRY",
+                            "sourceLayerHash": "sha256:a97e74779c9d16cce6cd84a747c5a3875843b3f442a3bb353d279bffc2b3a363",
+                            "version": "4.0.1"
+                        },
+                        {
+                            "epoch": 0,
+                            "filePath": "app/venv/lib/python3.12/site-packages/Flask_Cors-4.0.1.dist-info/METADATA",
+                            "name": "Flask-Cors",
+                            "packageManager": "PYTHONPKG",
+                            "sourceLayerHash": "sha256:a97e74779c9d16cce6cd84a747c5a3875843b3f442a3bb353d279bffc2b3a363",
+                            "version": "4.0.1"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 0.0,
+                "severity": "UNTRIAGED",
+                "status": "ACTIVE",
+                "title": "CVE-2024-6221 - flask-cors, Flask-Cors",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            },
+            {
+                "awsAccountId": "772215651096",
+                "description": "There is a LOW severity vulnerability affecting CPython, specifically the 'http.cookies' standard library module.   When parsing cookies that contained backslashes for quoted characters in the cookie value, the parser would use an algorithm with quadratic complexity, resulting in excess CPU resources being used while parsing the value.",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/b38ef11d84701e3ff0238fafb95d1317",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [],
+                    "referenceUrls": [],
+                    "relatedVulnerabilities": [],
+                    "source": "DEBIAN_CVE",
+                    "sourceUrl": "https://security-tracker.debian.org/tracker/CVE-2024-7592",
+                    "vendorSeverity": "not yet assigned",
+                    "vulnerabilityId": "CVE-2024-7592",
+                    "vulnerablePackages": [
+                        {
+                            "arch": "AMD64",
+                            "epoch": 0,
+                            "name": "python3.11",
+                            "packageManager": "OS",
+                            "release": "6+deb12u2",
+                            "sourceLayerHash": "sha256:88483cf183eda3c23ae51c85bf4c11baab3dcc1535ab799726a2115fa5631d2a",
+                            "version": "3.11.2"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 0.0,
+                "severity": "UNTRIAGED",
+                "status": "ACTIVE",
+                "title": "CVE-2024-7592 - python3.11",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            },
+            {
+                "awsAccountId": "772215651096",
+                "description": "Gunicorn fails to properly validate Transfer-Encoding headers, leading to HTTP Request Smuggling (HRS) vulnerabilities. By crafting requests with conflicting Transfer-Encoding headers, attackers can bypass security restrictions and access restricted endpoints. This issue is due to Gunicorn's handling of Transfer-Encoding headers, where it incorrectly processes requests with multiple, conflicting Transfer-Encoding headers, treating them as chunked regardless of the final encoding specified. This vulnerability allows for a range of attacks including cache poisoning, session manipulation, and data exposure.",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/c4fe56d191e83fd6e8766797a4d46503",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [],
+                    "referenceUrls": [
+                        "https://lists.debian.org/debian-lts-announce/2024/06/msg00027.html"
+                    ],
+                    "relatedVulnerabilities": [],
+                    "source": "NVD",
+                    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2024-1135",
+                    "vendorCreatedAt": "2024-04-15T20:15:07-04:00",
+                    "vendorUpdatedAt": "2024-06-30T19:15:02-04:00",
+                    "vulnerabilityId": "CVE-2024-1135",
+                    "vulnerablePackages": [
+                        {
+                            "epoch": 0,
+                            "filePath": "app/poetry.lock",
+                            "name": "gunicorn",
+                            "packageManager": "POETRY",
+                            "sourceLayerHash": "sha256:a97e74779c9d16cce6cd84a747c5a3875843b3f442a3bb353d279bffc2b3a363",
+                            "version": "21.2.0"
+                        },
+                        {
+                            "epoch": 0,
+                            "filePath": "app/venv/lib/python3.12/site-packages/gunicorn-21.2.0.dist-info/METADATA",
+                            "name": "gunicorn",
+                            "packageManager": "PYTHONPKG",
+                            "sourceLayerHash": "sha256:a97e74779c9d16cce6cd84a747c5a3875843b3f442a3bb353d279bffc2b3a363",
+                            "version": "21.2.0"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 0.0,
+                "severity": "UNTRIAGED",
+                "status": "ACTIVE",
+                "title": "CVE-2024-1135 - gunicorn, gunicorn",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            },
+            {
+                "awsAccountId": "772215651096",
+                "description": "Werkzeug is a comprehensive WSGI web application library. The debugger in affected versions of Werkzeug can allow an attacker to execute code on a developer's machine under some circumstances. This requires the attacker to get the developer to interact with a domain and subdomain they control, and enter the debugger PIN, but if they are successful it allows access to the debugger even if it is only running on localhost. This also requires the attacker to guess a URL in the developer's application that will trigger the debugger. This vulnerability is fixed in 3.0.3.",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/c85edcddc0b4e0be9872da8c5bbd5bc5",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [],
+                    "referenceUrls": [
+                        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/H4SH32AM3CTPMAAEOIDAN7VU565LO4IR/",
+                        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/HFERFN7PINV4MOGMGA3DPIXJPDCYOEJZ/"
+                    ],
+                    "relatedVulnerabilities": [],
+                    "source": "NVD",
+                    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2024-34069",
+                    "vendorCreatedAt": "2024-05-06T11:15:23-04:00",
+                    "vendorUpdatedAt": "2024-06-14T09:15:51-04:00",
+                    "vulnerabilityId": "CVE-2024-34069",
+                    "vulnerablePackages": [
+                        {
+                            "epoch": 0,
+                            "filePath": "app/poetry.lock",
+                            "name": "werkzeug",
+                            "packageManager": "POETRY",
+                            "sourceLayerHash": "sha256:a97e74779c9d16cce6cd84a747c5a3875843b3f442a3bb353d279bffc2b3a363",
+                            "version": "2.3.8"
+                        },
+                        {
+                            "epoch": 0,
+                            "filePath": "app/venv/lib/python3.12/site-packages/werkzeug-2.3.8.dist-info/METADATA",
+                            "name": "Werkzeug",
+                            "packageManager": "PYTHONPKG",
+                            "sourceLayerHash": "sha256:a97e74779c9d16cce6cd84a747c5a3875843b3f442a3bb353d279bffc2b3a363",
+                            "version": "2.3.8"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 0.0,
+                "severity": "UNTRIAGED",
+                "status": "ACTIVE",
+                "title": "CVE-2024-34069 - werkzeug, Werkzeug",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            },
+            {
+                "awsAccountId": "772215651096",
+                "description": "**DISPUTED**A failure in the -fstack-protector feature in GCC-based toolchains  that target AArch64 allows an attacker to exploit an existing buffer  overflow in dynamically-sized local variables in your application  without this being detected. This stack-protector failure only applies  to C99-style dynamically-sized local variables or those created using  alloca(). The stack-protector operates as intended for statically-sized  local variables.  The default behavior when the stack-protector  detects an overflow is to terminate your application, resulting in  controlled loss of availability. An attacker who can exploit a buffer  overflow without triggering the stack-protector might be able to change  program flow control to cause an uncontrolled loss of availability or to  go further and affect confidentiality or integrity. NOTE: The GCC project argues that this is a missed hardening bug and not a vulnerability by itself.",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/ce606340ec8d094b8dd9b0167fcba961",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [
+                        {
+                            "baseScore": 4.8,
+                            "scoringVector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N",
+                            "source": "NVD",
+                            "version": "3.1"
+                        }
+                    ],
+                    "referenceUrls": [],
+                    "relatedVulnerabilities": [],
+                    "source": "DEBIAN_CVE",
+                    "sourceUrl": "https://security-tracker.debian.org/tracker/CVE-2023-4039",
+                    "vendorSeverity": "not yet assigned",
+                    "vulnerabilityId": "CVE-2023-4039",
+                    "vulnerablePackages": [
+                        {
+                            "arch": "AMD64",
+                            "epoch": 0,
+                            "name": "gcc-12",
+                            "packageManager": "OS",
+                            "release": "14",
+                            "sourceLayerHash": "sha256:c57ee5000d61345aa3ee6684794a8110328e2274d9a5ae7855969d1a26394463",
+                            "version": "12.2.0"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 4.8,
+                "scoreDetails": {
+                    "cvss": {
+                        "adjustments": [],
+                        "score": 4.8,
+                        "scoreSource": "NVD",
+                        "scoringVector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N",
+                        "version": "3.1"
+                    }
+                },
+                "severity": "MEDIUM",
+                "status": "ACTIVE",
+                "title": "CVE-2023-4039 - gcc-12",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            },
+            {
+                "awsAccountId": "772215651096",
+                "description": "In MIT Kerberos 5 (aka krb5) before 1.21.3, an attacker can modify the plaintext Extra Count field of a confidential GSS krb5 wrap token, causing the unwrapped token to appear truncated to the application.",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/dce18cb781563d4f3d83df244bda864b",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [],
+                    "referenceUrls": [],
+                    "relatedVulnerabilities": [],
+                    "source": "DEBIAN_CVE",
+                    "sourceUrl": "https://security-tracker.debian.org/tracker/CVE-2024-37370",
+                    "vendorSeverity": "not yet assigned",
+                    "vulnerabilityId": "CVE-2024-37370",
+                    "vulnerablePackages": [
+                        {
+                            "arch": "AMD64",
+                            "epoch": 0,
+                            "name": "krb5",
+                            "packageManager": "OS",
+                            "release": "2+deb12u1",
+                            "sourceLayerHash": "sha256:ca08baf710868cd57a66a3ad898db732a16a6d5812edaa7efb76ebb88a1251fa",
+                            "version": "1.20.1"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 0.0,
+                "severity": "UNTRIAGED",
+                "status": "ACTIVE",
+                "title": "CVE-2024-37370 - krb5",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            },
+            {
+                "awsAccountId": "772215651096",
+                "description": "A flaw has been discovered in GnuTLS where an application crash can be induced when attempting to verify a specially crafted .pem bundle using the \"certtool --verify-chain\" command.",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/ddf15ab53f6f493a1dfea806107422db",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [],
+                    "referenceUrls": [
+                        "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1067463"
+                    ],
+                    "relatedVulnerabilities": [],
+                    "source": "DEBIAN_CVE",
+                    "sourceUrl": "https://security-tracker.debian.org/tracker/CVE-2024-28835",
+                    "vendorSeverity": "unimportant",
+                    "vulnerabilityId": "CVE-2024-28835",
+                    "vulnerablePackages": [
+                        {
+                            "arch": "AMD64",
+                            "epoch": 0,
+                            "name": "gnutls28",
+                            "packageManager": "OS",
+                            "release": "2+deb12u1",
+                            "sourceLayerHash": "sha256:c57ee5000d61345aa3ee6684794a8110328e2274d9a5ae7855969d1a26394463",
+                            "version": "3.7.9"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 0.0,
+                "severity": "INFORMATIONAL",
+                "status": "ACTIVE",
+                "title": "CVE-2024-28835 - gnutls28",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            },
+            {
+                "awsAccountId": "772215651096",
+                "description": "A vulnerability in the package_index module of pypa/setuptools versions up to 69.1.1 allows for remote code execution via its download functions. These functions, which are used to download packages from URLs provided by users or retrieved from package index servers, are susceptible to code injection. If these functions are exposed to user-controlled inputs, such as package URLs, they can execute arbitrary commands on the system. The issue is fixed in version 70.0.",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/e994235b1b183719c1bee2e3e4223236",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [],
+                    "referenceUrls": [
+                        "https://security-tracker.debian.org/tracker/CVE-2024-6345"
+                    ],
+                    "relatedVulnerabilities": [],
+                    "source": "NVD",
+                    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2024-6345",
+                    "vendorCreatedAt": "2024-07-14T21:15:01-04:00",
+                    "vendorUpdatedAt": "2024-07-15T09:00:34-04:00",
+                    "vulnerabilityId": "CVE-2024-6345",
+                    "vulnerablePackages": [
+                        {
+                            "epoch": 0,
+                            "filePath": "usr/local/lib/python3.12/site-packages/setuptools-69.0.3.dist-info/METADATA",
+                            "name": "setuptools",
+                            "packageManager": "PYTHONPKG",
+                            "sourceLayerHash": "sha256:022edbc22fa9a8a991a070357ae49b9b6fd5102a6471a869a8c7120c4d8196c1",
+                            "version": "69.0.3"
+                        },
+                        {
+                            "arch": "ALL",
+                            "epoch": 0,
+                            "name": "setuptools",
+                            "packageManager": "OS",
+                            "release": "1",
+                            "sourceLayerHash": "sha256:88483cf183eda3c23ae51c85bf4c11baab3dcc1535ab799726a2115fa5631d2a",
+                            "version": "66.1.1"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 0.0,
+                "severity": "UNTRIAGED",
+                "status": "ACTIVE",
+                "title": "CVE-2024-6345 - setuptools, setuptools",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            },
+            {
+                "awsAccountId": "772215651096",
+                "description": "The Closest Encloser Proof aspect of the DNS protocol (in RFC 5155 when RFC 9276 guidance is skipped) allows remote attackers to cause a denial of service (CPU consumption for SHA-1 computations) via DNSSEC responses in a random subdomain attack, aka the \"NSEC3\" issue. The RFC 5155 specification implies that an algorithm must perform thousands of iterations of a hash function in certain situations.",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/f171997b2e1577a9d5e9907794b0e792",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [],
+                    "referenceUrls": [
+                        "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1063845"
+                    ],
+                    "relatedVulnerabilities": [],
+                    "source": "DEBIAN_CVE",
+                    "sourceUrl": "https://security-tracker.debian.org/tracker/CVE-2023-50868",
+                    "vendorSeverity": "end-of-life",
+                    "vulnerabilityId": "CVE-2023-50868",
+                    "vulnerablePackages": [
+                        {
+                            "arch": "AMD64",
+                            "epoch": 0,
+                            "name": "systemd",
+                            "packageManager": "OS",
+                            "release": "1~deb12u1",
+                            "sourceLayerHash": "sha256:c57ee5000d61345aa3ee6684794a8110328e2274d9a5ae7855969d1a26394463",
+                            "version": "252.19"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 0.0,
+                "severity": "INFORMATIONAL",
+                "status": "ACTIVE",
+                "title": "CVE-2023-50868 - systemd",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            },
+            {
+                "awsAccountId": "772215651096",
+                "description": "GNU Tar through 1.34 has a one-byte out-of-bounds read that results in use of uninitialized memory for a conditional jump. Exploitation to change the flow of control has not been demonstrated. The issue occurs in from_header in list.c via a V7 archive in which mtime has approximately 11 whitespace characters.",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/f3c15a581c3ebc3fdb235806e4aace25",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [
+                        {
+                            "baseScore": 5.5,
+                            "scoringVector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+                            "source": "NVD",
+                            "version": "3.1"
+                        }
+                    ],
+                    "referenceUrls": [],
+                    "relatedVulnerabilities": [],
+                    "source": "DEBIAN_CVE",
+                    "sourceUrl": "https://security-tracker.debian.org/tracker/CVE-2022-48303",
+                    "vendorSeverity": "unimportant",
+                    "vulnerabilityId": "CVE-2022-48303",
+                    "vulnerablePackages": [
+                        {
+                            "arch": "AMD64",
+                            "epoch": 0,
+                            "name": "tar",
+                            "packageManager": "OS",
+                            "release": "1.2",
+                            "sourceLayerHash": "sha256:c57ee5000d61345aa3ee6684794a8110328e2274d9a5ae7855969d1a26394463",
+                            "version": "1.34+dfsg"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 5.5,
+                "scoreDetails": {
+                    "cvss": {
+                        "adjustments": [],
+                        "score": 5.5,
+                        "scoreSource": "NVD",
+                        "scoringVector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+                        "version": "3.1"
+                    }
+                },
+                "severity": "MEDIUM",
+                "status": "ACTIVE",
+                "title": "CVE-2022-48303 - tar",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            },
+            {
+                "awsAccountId": "772215651096",
+                "description": "nghttp2 is an implementation of the Hypertext Transfer Protocol version 2 in C. The nghttp2 library prior to version 1.61.0 keeps reading the unbounded number of HTTP/2 CONTINUATION frames even after a stream is reset to keep HPACK context in sync.  This causes excessive CPU usage to decode HPACK stream. nghttp2 v1.61.0 mitigates this vulnerability by limiting the number of CONTINUATION frames it accepts per stream. There is no workaround for this vulnerability.",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/f8aebbd695fa1545d36df551caae2252",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [],
+                    "referenceUrls": [
+                        "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1068415"
+                    ],
+                    "relatedVulnerabilities": [],
+                    "source": "DEBIAN_CVE",
+                    "sourceUrl": "https://security-tracker.debian.org/tracker/CVE-2024-28182",
+                    "vendorSeverity": "not yet assigned",
+                    "vulnerabilityId": "CVE-2024-28182",
+                    "vulnerablePackages": [
+                        {
+                            "arch": "AMD64",
+                            "epoch": 0,
+                            "name": "nghttp2",
+                            "packageManager": "OS",
+                            "release": "1+deb12u1",
+                            "sourceLayerHash": "sha256:88483cf183eda3c23ae51c85bf4c11baab3dcc1535ab799726a2115fa5631d2a",
+                            "version": "1.52.0"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 0.0,
+                "severity": "UNTRIAGED",
+                "status": "ACTIVE",
+                "title": "CVE-2024-28182 - nghttp2",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            },
+            {
+                "awsAccountId": "772215651096",
+                "description": "Certifi is a curated collection of Root Certificates for validating the trustworthiness of SSL certificates while verifying the identity of TLS hosts. Certifi starting in 2021.05.30 and prior to 2024.07.4 recognized root certificates from `GLOBALTRUST`. Certifi 2024.07.04 removes root certificates from `GLOBALTRUST` from the root store. These are in the process of being removed from Mozilla's trust store. `GLOBALTRUST`'s root certificates are being removed pursuant to an investigation which identified \"long-running and unresolved compliance issues.\"",
+                "findingArn": "arn:aws:inspector2:us-east-2:772215651096:finding/ff49f4ba03098591e5988552d6f4325e",
+                "firstObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "lastObservedAt": "2024-08-20T12:05:22.248000-04:00",
+                "packageVulnerabilityDetails": {
+                    "cvss": [],
+                    "referenceUrls": [
+                        "https://groups.google.com/a/mozilla.org/g/dev-security-policy/c/XpknYMPO8dI"
+                    ],
+                    "relatedVulnerabilities": [],
+                    "source": "NVD",
+                    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2024-39689",
+                    "vendorCreatedAt": "2024-07-05T15:15:10-04:00",
+                    "vendorUpdatedAt": "2024-07-08T11:49:22-04:00",
+                    "vulnerabilityId": "CVE-2024-39689",
+                    "vulnerablePackages": [
+                        {
+                            "epoch": 0,
+                            "filePath": "app/venv/src/spiffworkflow-connector-command/poetry.lock",
+                            "name": "certifi",
+                            "packageManager": "POETRY",
+                            "sourceLayerHash": "sha256:a97e74779c9d16cce6cd84a747c5a3875843b3f442a3bb353d279bffc2b3a363",
+                            "version": "2023.7.22"
+                        }
+                    ]
+                },
+                "remediation": {
+                    "recommendation": {
+                        "text": "None Provided"
+                    }
+                },
+                "resources": [
+                    {
+                        "details": {
+                            "awsEcrContainerImage": {
+                                "architecture": "amd64",
+                                "imageHash": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                                "imageTags": [
+                                    "main"
+                                ],
+                                "platform": "DEBIAN_12",
+                                "pushedAt": "2024-08-20T12:05:04-04:00",
+                                "registry": "772215651096",
+                                "repositoryName": "infr/testcloud2202"
+                            }
+                        },
+                        "id": "arn:aws:ecr:us-east-2:772215651096:repository/infr/testcloud2202/sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+                        "tags": {},
+                        "type": "AWS_ECR_CONTAINER_IMAGE"
+                    }
+                ],
+                "score": 0.0,
+                "severity": "UNTRIAGED",
+                "status": "ACTIVE",
+                "title": "CVE-2024-39689 - certifi",
+                "type": "PACKAGE_VULNERABILITY",
+                "updatedAt": "2024-08-20T12:05:22.248000-04:00"
+            }
+        ],
+        "imageScanCompletedAt": "2024-08-20T12:05:22.248000-04:00",
+        "vulnerabilitySourceUpdatedAt": "2024-08-20T12:05:22.248000-04:00",
+        "findingSeverityCounts": {
+            "HIGH": 4,
+            "MEDIUM": 3,
+            "LOW": 1,
+            "UNTRIAGED": 25,
+            "INFORMATIONAL": 4,
+            "CRITICAL": 1
+        }
+    },
+    "registryId": "772215651096",
+    "repositoryName": "infr/testcloud2202",
+    "imageId": {
+        "imageDigest": "sha256:58955324b5c4678a3031ba24102f6e5ebaecd389ae6ef3f6da1784d78b57f68d",
+        "imageTag": "main"
+    },
+    "imageScanStatus": {
+        "status": "ACTIVE",
+        "description": "Continuous scan is selected for image."
+    }
+}

@@ -94,7 +94,7 @@ def convert(ecr_response):
                 if len(cvss) > 0:
                     base_score = cvss[0]["baseScore"]
                     if base_score is not None:
-                        properties["security-severity"] = base_score
+                        properties["security-severity"] = str(base_score)
                         properties["precision"] = "very-high"
 
                 rule = {
@@ -142,7 +142,7 @@ def convert(ecr_response):
                     None,
                 )
                 if base_score is not None:
-                    properties["security-severity"] = base_score
+                    properties["security-severity"] = str(base_score)
                     properties["precision"] = "very-high"
 
                 rule = {
