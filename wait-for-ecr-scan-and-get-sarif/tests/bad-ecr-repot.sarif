@@ -136,7 +136,7 @@
                   "LOW",
                   "infr/testcloud2202"
                 ],
-                "security-severity": 3.3,
+                "security-severity": "3.3",
                 "precision": "very-high"
               }
             },
