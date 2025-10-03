@@ -30,6 +30,7 @@ runs:
       shell: bash
       run: |
         echo "🕐 $(date '+%Y-%m-%d %H:%M:%S') - Installing dependencies"
+        cd "$GITHUB_WORKSPACE"
         npm install bpmn-to-image node-fetch form-data
 
     - name: Get changed BPMN file paths
@@ -76,8 +77,9 @@ runs:
         echo "Processing BPMN files: ${ARGS[@]}" >&2
 
         echo "🕐 $(date '+%Y-%m-%d %H:%M:%S') - Starting render.mjs execution"
-        # Change to the working directory where node_modules was installed, then run the script
-        UPLOADED_URLS=$(cd "$GITHUB_WORKSPACE" && node ${{ github.action_path }}/scripts/render.mjs "${ARGS[@]}" | tail -n 1)
+        # Copy the script to workspace where node_modules was installed, then run it
+        cp ${{ github.action_path }}/scripts/render.mjs "$GITHUB_WORKSPACE/render.mjs"
+        UPLOADED_URLS=$(cd "$GITHUB_WORKSPACE" && node render.mjs "${ARGS[@]}" | tail -n 1)
         echo "🕐 $(date '+%Y-%m-%d %H:%M:%S') - Finished render.mjs execution"
         echo "Uploaded URLs JSON: $UPLOADED_URLS" >&2
         echo "Setting uploaded_urls github output" >&2
