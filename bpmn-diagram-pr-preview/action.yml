@@ -25,6 +25,9 @@ outputs:
 runs:
   using: "composite"
   steps:
+    - name: Project setup
+      uses: bpmn-io/actions/setup@latest
+
     - name: Use Node.js
       uses: actions/setup-node@v5
       with:

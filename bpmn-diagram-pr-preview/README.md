@@ -73,9 +73,6 @@ jobs:
   render-bpmn:
     runs-on: ubuntu-latest
     steps:
-      - name: Project setup
-        uses: bpmn-io/actions/setup@latest
-
       - name: Checkout
         uses: actions/checkout@v5
         with:
@@ -109,9 +106,6 @@ jobs:
   render-bpmn:
     runs-on: ubuntu-latest
     steps:
-      - name: Project setup
-        uses: bpmn-io/actions/setup@latest
-
       - name: Checkout
         uses: actions/checkout@v5
         with:
