@@ -9,6 +9,9 @@ inputs:
   head_sha:
     description: "Head commit SHA for comparison"
     required: true
+  image_store_api_key:
+    description: "Image store API key"
+    required: true
 
 outputs:
   uploaded_urls:
@@ -51,7 +54,7 @@ runs:
         BASE_SHA: ${{ inputs.base_sha }}
         HEAD_SHA: ${{ inputs.head_sha }}
         IMAGE_STORE_API_URL: "https://qsnszlmyxesikwhheaaq.supabase.co/functions/v1/image-store-api"
-        SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        SUPABASE_ANON_KEY: ${{ inputs.image_store_api_key }}
       run: |
         echo "🕐 $(date '+%Y-%m-%d %H:%M:%S') - Starting BPMN rendering and upload"
         BPMN_FILES_LIST="${{ steps.get-bpmn-files.outputs.bpmn_files_list }}"

@@ -15,16 +15,18 @@ steps:
     with:
       base_sha: ${{ github.event.pull_request.base.sha }}
       head_sha: ${{ github.event.pull_request.head.sha }}
+      image_store_api_key: "your-api-key-here"
 ```
 
 ## Arguments
 
 This Action supports inputs from the user. These inputs are listed in the table below:
 
-| Input      | Description                    |  Required  |
-| :--------- | :----------------------------- | :--------: |
-| `base_sha` | Base commit SHA for comparison | \*Required |
-| `head_sha` | Head commit SHA for comparison | \*Required |
+| Input              | Description                              |  Required  |
+| :----------------- | :--------------------------------------- | :--------: |
+| `base_sha`         | Base commit SHA for comparison           | \*Required |
+| `head_sha`         | Head commit SHA for comparison           | \*Required |
+| `image_store_api_key`| Image store API key | \*Required |
 
 ## Outputs
 
@@ -60,6 +62,7 @@ jobs:
         with:
           base_sha: ${{ github.event.pull_request.base.sha }}
           head_sha: ${{ github.event.pull_request.head.sha }}
+          image_store_api_key: "your-api-key-here"
 
       - name: Upload images as PR comment
         uses: actions/github-script@v6
