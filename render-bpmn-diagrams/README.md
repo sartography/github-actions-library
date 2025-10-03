@@ -6,6 +6,8 @@ This action renders BPMN diagrams for changed files in a pull request and upload
 
 To integrate with your Actions pipeline, specify the name of this repository with a branch or tag number (`main` is recommended) as a `step` within your `workflow.yml` file.
 
+**Important**: If you want to use the automatic PR comment feature (enabled by default), your **calling workflow** needs `pull-requests: write` permission. The action inherits permissions from the workflow that calls it.
+
 Inside your `.github/workflows/workflow.yml` file:
 
 ```yaml
@@ -16,6 +18,7 @@ steps:
       base_sha: ${{ github.event.pull_request.base.sha }}
       head_sha: ${{ github.event.pull_request.head.sha }}
       image_store_api_key: "your-api-key-here"
+      create_pr_comment: "true"  # Optional, defaults to true
 ```
 
 ## Arguments
@@ -27,6 +30,24 @@ This Action supports inputs from the user. These inputs are listed in the table 
 | `base_sha`         | Base commit SHA for comparison           | \*Required |
 | `head_sha`         | Head commit SHA for comparison           | \*Required |
 | `image_store_api_key`| Image store API key | \*Required |
+| `create_pr_comment`| Whether to create a PR comment with the rendered diagrams | Optional (default: `true`) |
+
+## Permissions
+
+When using the automatic PR comment feature (default behavior), your **calling workflow** needs the following permissions:
+
+```yaml
+permissions:
+  contents: read        # Required for checking out code and reading files
+  pull-requests: write  # Required for creating PR comments
+```
+
+If you disable PR comments by setting `create_pr_comment: "false"`, you only need:
+
+```yaml
+permissions:
+  contents: read  # Only need read access
+```
 
 ## Outputs
 
@@ -43,6 +64,46 @@ on:
   pull_request:
     paths:
       - "**.bpmn"
+
+permissions:
+  contents: read
+  pull-requests: write  # Required for creating PR comments
+
+jobs:
+  render-bpmn:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Project setup
+        uses: bpmn-io/actions/setup@latest
+
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 2
+
+      - name: Render BPMN Diagrams
+        uses: sartography/github-actions-library/render-bpmn-diagrams@main
+        with:
+          base_sha: ${{ github.event.pull_request.base.sha }}
+          head_sha: ${{ github.event.pull_request.head.sha }}
+          image_store_api_key: "your-api-key-here"
+          # create_pr_comment: "true"  # Optional, defaults to true
+```
+
+### Example with PR comment disabled
+
+If you want to handle the PR comment creation yourself or disable it entirely (no special permissions needed):
+
+```yaml
+name: Show Diagram Changes
+
+on:
+  pull_request:
+    paths:
+      - "**.bpmn"
+
+permissions:
+  contents: read  # Only need read access when PR comments are disabled
 
 jobs:
   render-bpmn:
@@ -63,90 +124,10 @@ jobs:
           base_sha: ${{ github.event.pull_request.base.sha }}
           head_sha: ${{ github.event.pull_request.head.sha }}
           image_store_api_key: "your-api-key-here"
+          create_pr_comment: "false"
 
-      - name: Upload images as PR comment
-        uses: actions/github-script@v6
-        env:
-          UPLOADED_URLS_JSON: ${{ steps.render-diagrams.outputs.uploaded_urls }}
-        with:
-          script: |
-            console.log(`🕐 ${new Date().toISOString().replace('T', ' ').substring(0, 19)} - Starting PR comment creation`);
-            const uploadedUrls = JSON.parse(process.env.UPLOADED_URLS_JSON || '{}'); // Handle empty JSON
-            let commentBody = `## BPMN Diagram Changes\n\n`;
-
-            if (Object.keys(uploadedUrls).length === 0) {
-              commentBody += `_No BPMN diagrams were added or modified in this pull request._`;
-            } else {
-              // Separate files by status and sort alphabetically
-              const addedFiles = [];
-              const modifiedFiles = [];
-              const errorFiles = [];
-
-              for (const bpmnFilePath in uploadedUrls) {
-                const fileData = uploadedUrls[bpmnFilePath];
-                if (fileData.error) {
-                  errorFiles.push(bpmnFilePath);
-                } else if (fileData.status === 'A') {
-                  addedFiles.push(bpmnFilePath);
-                } else {
-                  modifiedFiles.push(bpmnFilePath);
-                }
-              }
-
-              // Sort all arrays alphabetically
-              addedFiles.sort();
-              modifiedFiles.sort();
-              errorFiles.sort();
-
-              // Process added files first
-              if (addedFiles.length > 0) {
-                commentBody += `### 📄 New Files\n\n`;
-                for (const bpmnFilePath of addedFiles) {
-                  const { afterUrl } = uploadedUrls[bpmnFilePath];
-                  commentBody += `#### \`${bpmnFilePath}\`\n\n`;
-                  commentBody += `![Diagram](${afterUrl})\n\n`;
-                  commentBody += `---\n\n`;
-                }
-              }
-
-              // Process modified files next
-              if (modifiedFiles.length > 0) {
-                commentBody += `### ✏️ Modified Files\n\n`;
-                for (const bpmnFilePath of modifiedFiles) {
-                  const { beforeUrl, afterUrl } = uploadedUrls[bpmnFilePath];
-                  commentBody += `#### \`${bpmnFilePath}\`\n\n`;
-                  if (beforeUrl) {
-                    commentBody += `**Before**\n`;
-                    commentBody += `![Before Diagram](${beforeUrl})\n\n`;
-                    commentBody += `**After**\n`;
-                    commentBody += `![After Diagram](${afterUrl})\n\n`;
-                  } else {
-                    commentBody += `![Diagram](${afterUrl})\n\n`;
-                  }
-                  commentBody += `---\n\n`;
-                }
-              }
-
-              // Process error files last
-              if (errorFiles.length > 0) {
-                commentBody += `### ⚠️ Processing Errors\n\n`;
-                for (const bpmnFilePath of errorFiles) {
-                  const { error } = uploadedUrls[bpmnFilePath];
-                  commentBody += `#### \`${bpmnFilePath}\`\n\n`;
-                  commentBody += `_Error processing this file: ${error}_\n\n`;
-                  commentBody += `---\n\n`;
-                }
-              }
-            }
-
-            console.log(`🕐 ${new Date().toISOString().replace('T', ' ').substring(0, 19)} - Creating GitHub comment`);
-            await github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: commentBody
-            });
-            console.log(`🕐 ${new Date().toISOString().replace('T', ' ').substring(0, 19)} - Finished PR comment creation`);
+      # Now you can use ${{ steps.render-diagrams.outputs.uploaded_urls }} 
+      # for custom processing if needed
 ```
 
 ## How it works

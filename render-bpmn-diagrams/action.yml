@@ -12,6 +12,10 @@ inputs:
   image_store_api_key:
     description: "Image store API key"
     required: true
+  create_pr_comment:
+    description: "Whether to create a PR comment with the rendered diagrams"
+    required: false
+    default: "true"
 
 outputs:
   uploaded_urls:
@@ -86,3 +90,88 @@ runs:
         echo "uploaded_urls=$UPLOADED_URLS" >> $GITHUB_OUTPUT
         echo "Done setting github output" >&2
         echo "🕐 $(date '+%Y-%m-%d %H:%M:%S') - Finished BPMN rendering and upload"
+
+    - name: Create PR comment with diagrams
+      if: ${{ inputs.create_pr_comment == 'true' && github.event_name == 'pull_request' }}
+      uses: actions/github-script@v7
+      env:
+        UPLOADED_URLS_JSON: ${{ steps.render-and-upload.outputs.uploaded_urls }}
+      with:
+        script: |
+          console.log(`🕐 ${new Date().toISOString().replace('T', ' ').substring(0, 19)} - Starting PR comment creation`);
+          const uploadedUrls = JSON.parse(process.env.UPLOADED_URLS_JSON || '{}'); // Handle empty JSON
+          let commentBody = `## BPMN Diagram Changes\n\n`;
+
+          if (Object.keys(uploadedUrls).length === 0) {
+            commentBody += `_No BPMN diagrams were added or modified in this pull request._`;
+          } else {
+            // Separate files by status and sort alphabetically
+            const addedFiles = [];
+            const modifiedFiles = [];
+            const errorFiles = [];
+
+            for (const bpmnFilePath in uploadedUrls) {
+              const fileData = uploadedUrls[bpmnFilePath];
+              if (fileData.error) {
+                errorFiles.push(bpmnFilePath);
+              } else if (fileData.status === 'A') {
+                addedFiles.push(bpmnFilePath);
+              } else {
+                modifiedFiles.push(bpmnFilePath);
+              }
+            }
+
+            // Sort all arrays alphabetically
+            addedFiles.sort();
+            modifiedFiles.sort();
+            errorFiles.sort();
+
+            // Process added files first
+            if (addedFiles.length > 0) {
+              commentBody += `### 📄 New Files\n\n`;
+              for (const bpmnFilePath of addedFiles) {
+                const { afterUrl } = uploadedUrls[bpmnFilePath];
+                commentBody += `#### \`${bpmnFilePath}\`\n\n`;
+                commentBody += `![Diagram](${afterUrl})\n\n`;
+                commentBody += `---\n\n`;
+              }
+            }
+
+            // Process modified files next
+            if (modifiedFiles.length > 0) {
+              commentBody += `### ✏️ Modified Files\n\n`;
+              for (const bpmnFilePath of modifiedFiles) {
+                const { beforeUrl, afterUrl } = uploadedUrls[bpmnFilePath];
+                commentBody += `#### \`${bpmnFilePath}\`\n\n`;
+                if (beforeUrl) {
+                  commentBody += `**Before**\n`;
+                  commentBody += `![Before Diagram](${beforeUrl})\n\n`;
+                  commentBody += `**After**\n`;
+                  commentBody += `![After Diagram](${afterUrl})\n\n`;
+                } else {
+                  commentBody += `![Diagram](${afterUrl})\n\n`;
+                }
+                commentBody += `---\n\n`;
+              }
+            }
+
+            // Process error files last
+            if (errorFiles.length > 0) {
+              commentBody += `### ⚠️ Processing Errors\n\n`;
+              for (const bpmnFilePath of errorFiles) {
+                const { error } = uploadedUrls[bpmnFilePath];
+                commentBody += `#### \`${bpmnFilePath}\`\n\n`;
+                commentBody += `_Error processing this file: ${error}_\n\n`;
+                commentBody += `---\n\n`;
+              }
+            }
+          }
+
+          console.log(`🕐 ${new Date().toISOString().replace('T', ' ').substring(0, 19)} - Creating GitHub comment`);
+          await github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: commentBody
+          });
+          console.log(`🕐 ${new Date().toISOString().replace('T', ' ').substring(0, 19)} - Finished PR comment creation`);
