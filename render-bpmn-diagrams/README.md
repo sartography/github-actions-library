@@ -21,16 +21,16 @@ steps:
 
 This Action supports inputs from the user. These inputs are listed in the table below:
 
-| Input                  | Description                                           | Required   |
-| :--------------------- | :---------------------------------------------------- | :--------: |
-| `base_sha`            | Base commit SHA for comparison                        | *Required  |
-| `head_sha`            | Head commit SHA for comparison                        | *Required  |
+| Input      | Description                    |  Required  |
+| :--------- | :----------------------------- | :--------: |
+| `base_sha` | Base commit SHA for comparison | \*Required |
+| `head_sha` | Head commit SHA for comparison | \*Required |
 
 ## Outputs
 
-| Output          | Description                                                           |
-| :-------------- | :-------------------------------------------------------------------- |
-| `uploaded_urls` | JSON object mapping BPMN file paths to their uploaded image URLs     |
+| Output          | Description                                                      |
+| :-------------- | :--------------------------------------------------------------- |
+| `uploaded_urls` | JSON object mapping BPMN file paths to their uploaded image URLs |
 
 ### Example full `workflow.yml` using this Action
 
@@ -56,7 +56,7 @@ jobs:
 
       - name: Render BPMN Diagrams
         id: render-diagrams
-        uses: your-org/github-actions-library/render-bpmn-diagrams@main
+        uses: sartography/github-actions-library/render-bpmn-diagrams@main
         with:
           base_sha: ${{ github.event.pull_request.base.sha }}
           head_sha: ${{ github.event.pull_request.head.sha }}
