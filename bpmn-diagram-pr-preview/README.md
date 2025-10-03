@@ -26,16 +26,6 @@ This Action supports inputs from the user. These inputs are listed in the table 
 | :-------------------- | :------------------ | :------: |
 | `image_store_api_key` | Image store API key | Required |
 
-## Permissions
-
-Your **calling workflow** needs the following permissions:
-
-```yaml
-permissions:
-  contents: read # Required for checking out code and reading files
-  pull-requests: write # Required for creating PR comments
-```
-
 ## Outputs
 
 | Output          | Description                                                      |
