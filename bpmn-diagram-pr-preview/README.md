@@ -6,7 +6,7 @@ This action automatically generates visual previews of BPMN diagram changes in p
 
 To integrate with your Actions pipeline, specify the name of this repository with a branch or tag number (`main` is recommended) as a `step` within your `workflow.yml` file.
 
-**Important**: If you want to use the automatic PR comment feature (enabled by default), your **calling workflow** needs `pull-requests: write` permission. The action inherits permissions from the workflow that calls it.
+**Important**: Your **calling workflow** needs `pull-requests: write` permission since this action automatically creates PR comments. The action inherits permissions from the workflow that calls it.
 
 Inside your `.github/workflows/workflow.yml` file:
 
@@ -16,33 +16,24 @@ steps:
     uses: your-org/github-actions-library/bpmn-diagram-pr-preview@main
     with:
       image_store_api_key: "your-api-key-here"
-      create_pr_comment: "true" # Optional, defaults to true
 ```
 
 ## Arguments
 
 This Action supports inputs from the user. These inputs are listed in the table below:
 
-| Input                 | Description                                               |          Required          |
-| :-------------------- | :-------------------------------------------------------- | :------------------------: |
-| `image_store_api_key` | Image store API key                                       |         \*Required         |
-| `create_pr_comment`   | Whether to create a PR comment with the rendered diagrams | Optional (default: `true`) |
+| Input                 | Description         | Required |
+| :-------------------- | :------------------ | :------: |
+| `image_store_api_key` | Image store API key | Required |
 
 ## Permissions
 
-When using the automatic PR comment feature (default behavior), your **calling workflow** needs the following permissions:
+Your **calling workflow** needs the following permissions:
 
 ```yaml
 permissions:
   contents: read # Required for checking out code and reading files
   pull-requests: write # Required for creating PR comments
-```
-
-If you disable PR comments by setting `create_pr_comment: "false"`, you only need:
-
-```yaml
-permissions:
-  contents: read # Only need read access
 ```
 
 ## Outputs
@@ -75,34 +66,6 @@ jobs:
           fetch-depth: 2
 
       - name: BPMN Diagram PR Preview
-        uses: sartography/github-actions-library/bpmn-diagram-pr-preview@main
-        with:
-          image_store_api_key: "your-api-key-here"
-          # create_pr_comment: "true"  # Optional, defaults to true
-```
-
-### Example with PR comment disabled
-
-If you want to handle the PR comment creation yourself or disable it entirely (no special permissions needed):
-
-```yaml
-name: Show Diagram Changes
-
-on:
-  pull_request:
-    paths:
-      - "**.bpmn"
-
-jobs:
-  render-bpmn:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v5
-        with:
-          fetch-depth: 2
-
-      - name: Add BPMN Diagram visual changes to PR
         uses: sartography/github-actions-library/bpmn-diagram-pr-preview@main
         with:
           image_store_api_key: "your-api-key-here"
