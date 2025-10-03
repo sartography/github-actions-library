@@ -1,0 +1,83 @@
+name: "Render BPMN Diagrams"
+description: "Renders BPMN diagrams for changed files in a pull request and uploads them to an image store"
+author: "GitHub Actions Library"
+
+inputs:
+  base_sha:
+    description: "Base commit SHA for comparison"
+    required: true
+  head_sha:
+    description: "Head commit SHA for comparison"
+    required: true
+
+outputs:
+  uploaded_urls:
+    description: "JSON object mapping BPMN file paths to their uploaded image URLs"
+    value: ${{ steps.render-and-upload.outputs.uploaded_urls }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Use Node.js
+      uses: actions/setup-node@v5
+      with:
+        node-version: 20
+
+    - name: Install dependencies
+      shell: bash
+      run: |
+        echo "🕐 $(date '+%Y-%m-%d %H:%M:%S') - Installing dependencies"
+        npm install bpmn-to-image node-fetch form-data
+
+    - name: Get changed BPMN file paths
+      id: get-bpmn-files
+      shell: bash
+      run: |
+        echo "🕐 $(date '+%Y-%m-%d %H:%M:%S') - Getting changed BPMN file paths"
+        # Make the script executable and run it
+        chmod +x ${{ github.action_path }}/scripts/get_changed_bpmn_files.sh
+        BPMN_FILES_LIST=$(${{ github.action_path }}/scripts/get_changed_bpmn_files.sh ${{ inputs.base_sha }} ${{ inputs.head_sha }})
+        echo "Detected BPMN files: $BPMN_FILES_LIST" >&2
+        # Set output as a multi-line string
+        echo "bpmn_files_list<<EOF" >> $GITHUB_OUTPUT
+        echo "$BPMN_FILES_LIST" >> $GITHUB_OUTPUT
+        echo "EOF" >> $GITHUB_OUTPUT
+        echo "🕐 $(date '+%Y-%m-%d %H:%M:%S') - Finished getting changed BPMN file paths"
+
+    - name: Render BPMN before and after and upload to image store
+      id: render-and-upload
+      shell: bash
+      env:
+        BASE_SHA: ${{ inputs.base_sha }}
+        HEAD_SHA: ${{ inputs.head_sha }}
+        IMAGE_STORE_API_URL: "https://qsnszlmyxesikwhheaaq.supabase.co/functions/v1/image-store-api"
+        SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+      run: |
+        echo "🕐 $(date '+%Y-%m-%d %H:%M:%S') - Starting BPMN rendering and upload"
+        BPMN_FILES_LIST="${{ steps.get-bpmn-files.outputs.bpmn_files_list }}"
+        if [ -z "$BPMN_FILES_LIST" ]; then
+          echo "No BPMN files to process. Skipping rendering and upload."
+          echo "uploaded_urls={}" >> $GITHUB_OUTPUT
+          exit 0
+        fi
+
+        echo "🕐 $(date '+%Y-%m-%d %H:%M:%S') - Processing file list"
+        # Convert multi-line string to array of arguments, handling potential spaces in paths
+        ARGS=()
+        while IFS= read -r file; do
+          if [ -n "$file" ]; then
+            ARGS+=("$file")
+          fi
+        done <<< "$BPMN_FILES_LIST"
+
+        echo "Processing BPMN files: ${ARGS[@]}" >&2
+
+        echo "🕐 $(date '+%Y-%m-%d %H:%M:%S') - Starting render.mjs execution"
+        # Render images and capture the JSON output containing the uploaded URLs
+        UPLOADED_URLS=$(node ${{ github.action_path }}/scripts/render.mjs "${ARGS[@]}" | tail -n 1)
+        echo "🕐 $(date '+%Y-%m-%d %H:%M:%S') - Finished render.mjs execution"
+        echo "Uploaded URLs JSON: $UPLOADED_URLS" >&2
+        echo "Setting uploaded_urls github output" >&2
+        echo "uploaded_urls=$UPLOADED_URLS" >> $GITHUB_OUTPUT
+        echo "Done setting github output" >&2
+        echo "🕐 $(date '+%Y-%m-%d %H:%M:%S') - Finished BPMN rendering and upload"

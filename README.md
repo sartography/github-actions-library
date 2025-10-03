@@ -5,3 +5,4 @@ Each directory is a github actions library that can be used in your github actio
 ## Library list
 
 [wait-for-ecr-scan-and-get-sarif](./wait-for-ecr-scan-and-get-sarif/README.md)
+[render-bpmn-diagrams](./render-bpmn-diagrams/README.md)
