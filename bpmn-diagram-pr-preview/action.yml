@@ -96,7 +96,7 @@ runs:
         echo "uploaded_urls=$UPLOADED_URLS" >> $GITHUB_OUTPUT
 
     - name: Create PR comment with diagrams
-      if: steps.check-event.outputs.is_pr == 'true'
+      if: steps.check-event.outputs.is_pr == 'true' && steps.render-and-upload.outputs.uploaded_urls != '{}'
       uses: actions/github-script@v7
       env:
         UPLOADED_URLS_JSON: ${{ steps.render-and-upload.outputs.uploaded_urls }}
@@ -106,7 +106,8 @@ runs:
           let commentBody = `## BPMN Diagram Changes\n\n`;
 
           if (Object.keys(uploadedUrls).length === 0) {
-            commentBody += `_No BPMN diagrams were added or modified in this pull request._`;
+            // This should not happen due to the if condition, but keeping as fallback
+            return;
           } else {
             // Separate files by status and sort alphabetically
             const addedFiles = [];
