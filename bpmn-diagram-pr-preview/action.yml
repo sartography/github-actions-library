@@ -20,11 +20,11 @@ runs:
       shell: bash
       run: |
         if [ "${{ github.event_name }}" != "pull_request" ]; then
-          echo "🕐 $(date '+%Y-%m-%d %H:%M:%S') - This action is designed for pull request events only. Current event: ${{ github.event_name }}"
+          echo "This action is designed for pull request events only. Current event: ${{ github.event_name }}"
           echo "Skipping BPMN diagram processing..."
           echo "is_pr=false" >> $GITHUB_OUTPUT
         else
-          echo "🕐 $(date '+%Y-%m-%d %H:%M:%S') - Confirmed this is a pull request event. Proceeding..."
+          echo "Confirmed this is a pull request event. Proceeding..."
           echo "is_pr=true" >> $GITHUB_OUTPUT
         fi
 
@@ -42,7 +42,7 @@ runs:
       if: steps.check-event.outputs.is_pr == 'true'
       shell: bash
       run: |
-        echo "🕐 $(date '+%Y-%m-%d %H:%M:%S') - Installing dependencies"
+        echo "Installing dependencies"
         cd "$GITHUB_WORKSPACE"
         npm install bpmn-to-image node-fetch form-data
 
@@ -51,7 +51,7 @@ runs:
       id: get-bpmn-files
       shell: bash
       run: |
-        echo "🕐 $(date '+%Y-%m-%d %H:%M:%S') - Getting changed BPMN file paths"
+        echo "Getting changed BPMN file paths"
         # Make the script executable and run it
         chmod +x ${{ github.action_path }}/scripts/get_changed_bpmn_files.sh
         BPMN_FILES_LIST=$(${{ github.action_path }}/scripts/get_changed_bpmn_files.sh ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }})
@@ -60,7 +60,6 @@ runs:
         echo "bpmn_files_list<<EOF" >> $GITHUB_OUTPUT
         echo "$BPMN_FILES_LIST" >> $GITHUB_OUTPUT
         echo "EOF" >> $GITHUB_OUTPUT
-        echo "🕐 $(date '+%Y-%m-%d %H:%M:%S') - Finished getting changed BPMN file paths"
 
     - name: Render BPMN before and after and upload to image store
       if: steps.check-event.outputs.is_pr == 'true'
@@ -72,7 +71,7 @@ runs:
         IMAGE_STORE_API_URL: "https://qsnszlmyxesikwhheaaq.supabase.co/functions/v1/image-store-api"
         SUPABASE_ANON_KEY: ${{ inputs.image_store_api_key }}
       run: |
-        echo "🕐 $(date '+%Y-%m-%d %H:%M:%S') - Starting BPMN rendering and upload"
+        echo "Starting BPMN rendering and upload"
         BPMN_FILES_LIST="${{ steps.get-bpmn-files.outputs.bpmn_files_list }}"
         if [ -z "$BPMN_FILES_LIST" ]; then
           echo "No BPMN files to process. Skipping rendering and upload."
@@ -80,7 +79,6 @@ runs:
           exit 0
         fi
 
-        echo "🕐 $(date '+%Y-%m-%d %H:%M:%S') - Processing file list"
         # Convert multi-line string to array of arguments, handling potential spaces in paths
         ARGS=()
         while IFS= read -r file; do
@@ -91,16 +89,11 @@ runs:
 
         echo "Processing BPMN files: ${ARGS[@]}" >&2
 
-        echo "🕐 $(date '+%Y-%m-%d %H:%M:%S') - Starting render.mjs execution"
         # Copy the script to workspace where node_modules was installed, then run it
         cp ${{ github.action_path }}/scripts/render.mjs "$GITHUB_WORKSPACE/render.mjs"
         UPLOADED_URLS=$(cd "$GITHUB_WORKSPACE" && node render.mjs "${ARGS[@]}" | tail -n 1)
-        echo "🕐 $(date '+%Y-%m-%d %H:%M:%S') - Finished render.mjs execution"
         echo "Uploaded URLs JSON: $UPLOADED_URLS" >&2
-        echo "Setting uploaded_urls github output" >&2
         echo "uploaded_urls=$UPLOADED_URLS" >> $GITHUB_OUTPUT
-        echo "Done setting github output" >&2
-        echo "🕐 $(date '+%Y-%m-%d %H:%M:%S') - Finished BPMN rendering and upload"
 
     - name: Create PR comment with diagrams
       if: steps.check-event.outputs.is_pr == 'true'
@@ -109,8 +102,7 @@ runs:
         UPLOADED_URLS_JSON: ${{ steps.render-and-upload.outputs.uploaded_urls }}
       with:
         script: |
-          console.log(`🕐 ${new Date().toISOString().replace('T', ' ').substring(0, 19)} - Starting PR comment creation`);
-          const uploadedUrls = JSON.parse(process.env.UPLOADED_URLS_JSON || '{}'); // Handle empty JSON
+          const uploadedUrls = JSON.parse(process.env.UPLOADED_URLS_JSON || '{}');
           let commentBody = `## BPMN Diagram Changes\n\n`;
 
           if (Object.keys(uploadedUrls).length === 0) {
@@ -178,11 +170,9 @@ runs:
             }
           }
 
-          console.log(`🕐 ${new Date().toISOString().replace('T', ' ').substring(0, 19)} - Creating GitHub comment`);
           await github.rest.issues.createComment({
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
             body: commentBody
           });
-          console.log(`🕐 ${new Date().toISOString().replace('T', ' ').substring(0, 19)} - Finished PR comment creation`);

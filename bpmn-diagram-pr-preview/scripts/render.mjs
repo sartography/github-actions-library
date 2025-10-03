@@ -5,9 +5,6 @@ import { execSync } from "child_process";
 import FormData from "form-data";
 import fetch from "node-fetch";
 
-function getTimestamp() {
-  return new Date().toISOString();
-}
 
 // npm install bpmn-to-image node-fetch form-data
 // Usage: node .github/scripts/render.mjs "A\tpath/to/new.bpmn" "M\tpath/to/modified.bpmn"
@@ -23,9 +20,7 @@ const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
  *   mapping temporary PNG file paths to their uploaded URLs.
  */
 async function uploadImages(filePaths) {
-  console.error(`[${getTimestamp()}] [uploadImages] Received filePaths (length: ${filePaths.length}):`, filePaths);
   if (filePaths.length === 0) {
-    console.error(`[${getTimestamp()}] [uploadImages] filePaths is empty, returning {}`);
     return {};
   }
 
@@ -35,15 +30,13 @@ async function uploadImages(filePaths) {
       const fileContent = await fs.readFile(filePath);
       form.append("images", fileContent, { filename: path.basename(filePath) });
     } catch (readErr) {
-      console.error(`[${getTimestamp()}] [uploadImages] Error reading file ${filePath}: ${readErr.message}`);
-      // Re-throw to ensure the main catch block handles it
+      console.error(`Error reading file ${filePath}: ${readErr.message}`);
       throw new Error(`Failed to read image file ${filePath}: ${readErr.message}`);
     }
   }
 
   let response;
   try {
-    console.error(`[${getTimestamp()}] [uploadImages] Starting fetch to image store API`);
     response = await fetch(IMAGE_STORE_API_URL, {
       method: "POST",
       body: form,
@@ -53,21 +46,20 @@ async function uploadImages(filePaths) {
       },
     });
   } catch (fetchErr) {
-    console.error(`[${getTimestamp()}] [uploadImages] Fetch error: ${fetchErr.message}`);
+    console.error(`Fetch error: ${fetchErr.message}`);
     throw new Error(`Failed to connect to image store API: ${fetchErr.message}`);
   }
 
 
   if (!response.ok) {
     const errorText = await response.text();
-    console.error(`[${getTimestamp()}] [uploadImages] API response not OK: ${response.status} ${response.statusText} - ${errorText}`);
+    console.error(`API response not OK: ${response.status} ${response.statusText} - ${errorText}`);
     throw new Error(
       `Failed to upload images: ${response.status} ${response.statusText} - ${errorText}`,
     );
   }
 
   const data = await response.json();
-  console.error(`[${getTimestamp()}] [uploadImages] API response data:`, JSON.stringify(data, null, 2));
 
   if (
     data.results &&
@@ -85,13 +77,12 @@ async function uploadImages(filePaths) {
       if (originalTempFilePath) {
         uploadedUrls[originalTempFilePath] = result.url;
       } else {
-        console.error(`[${getTimestamp()}] [uploadImages] Warning: Could not find original temp file path for uploaded filename: ${result.filename}`);
+        console.error(`Warning: Could not find original temp file path for uploaded filename: ${result.filename}`);
       }
     });
-    console.error(`[${getTimestamp()}] [uploadImages] Successfully mapped uploaded URLs:`, JSON.stringify(uploadedUrls, null, 2));
     return uploadedUrls;
   }
-  console.error(`[${getTimestamp()}] [uploadImages] Unexpected response from image store API. Expected ${filePaths.length} results, got ${data.results ? data.results.length : 'none'}. Full data: ${JSON.stringify(data)}`);
+  console.error(`Unexpected response from image store API. Expected ${filePaths.length} results, got ${data.results ? data.results.length : 'none'}. Full data: ${JSON.stringify(data)}`);
   throw new Error(
     `Unexpected response from image store API: ${JSON.stringify(data)}`,
   );
@@ -123,19 +114,15 @@ async function main() {
   const TEMP_DIR = "output";
 
   if (!BASE_SHA || !HEAD_SHA) {
-    console.error(
-      `[${getTimestamp()}] Error: BASE_SHA and HEAD_SHA environment variables must be set.`,
-    );
+    console.error("Error: BASE_SHA and HEAD_SHA environment variables must be set.");
     process.exit(1);
   }
 
   if (bpmnFilePaths.length === 0) {
-    console.error(`[${getTimestamp()}] No BPMN files provided to render.`);
+    console.error("No BPMN files provided to render.");
     process.stdout.write(JSON.stringify({}));
     process.exit(0);
   }
-
-  console.error(`[${getTimestamp()}] [main] Creating temp directory: ${TEMP_DIR}`);
   await fs.mkdir(TEMP_DIR, { recursive: true });
 
   const conversions = [];
@@ -183,7 +170,7 @@ async function main() {
         beforeContentExists = true;
       } catch (e) {
         console.error(
-          `[${getTimestamp()}] Warning: Could not retrieve 'before' content for ${bpmnFilePath} from ${BASE_SHA}. It might be a new file. Error: ${e.message.split("\n")[0]}`,
+          `Warning: Could not retrieve 'before' content for ${bpmnFilePath} from ${BASE_SHA}. It might be a new file. Error: ${e.message.split("\n")[0]}`,
         );
       }
 
@@ -202,12 +189,12 @@ async function main() {
         afterContentExists = true;
       } catch (e) {
         console.error(
-          `[${getTimestamp()}] Error: Could not retrieve 'after' content for ${bpmnFilePath} from ${HEAD_SHA}. This should not happen. Error: ${e.message.split("\n")[0]}`,
+          `Error: Could not retrieve 'after' content for ${bpmnFilePath} from ${HEAD_SHA}. This should not happen. Error: ${e.message.split("\n")[0]}`,
         );
         finalOutput[bpmnFilePath] = {
           error: `Failed to get 'after' content: ${e.message.split("\n")[0]}`,
         };
-        continue; // <--- If 'after' fails, this file is skipped for further processing.
+        continue;
       }
 
       bpmnFileToPngMap[bpmnFilePath] = {
@@ -216,31 +203,18 @@ async function main() {
       };
     }
 
-    console.error(`[${getTimestamp()}] [main] Conversions prepared (length: ${conversions.length}):`, conversions.map(c => c.input));
-    console.error(`[${getTimestamp()}] [main] Files to upload prepared (length: ${filesToUpload.length}):`, filesToUpload);
-
     if (conversions.length > 0) {
-      console.error(
-        `[${getTimestamp()}] Successfully prepared ${conversions.length} BPMN file(s) for rendering.`,
-      );
-      console.error(`[${getTimestamp()}] [main] Starting BPMN to image conversion`);
-      await convertAll(conversions); // Use default scale (1.0)
-      console.error(
-        `[${getTimestamp()}] Successfully rendered ${conversions.length} BPMN file(s).`,
-      );
+      console.error(`Successfully prepared ${conversions.length} BPMN file(s) for rendering.`);
+      await convertAll(conversions);
+      console.error(`Successfully rendered ${conversions.length} BPMN file(s).`);
     } else {
-      console.error(`[${getTimestamp()}] No valid BPMN files to render after content retrieval.`);
+      console.error("No valid BPMN files to render after content retrieval.");
       process.stdout.write(JSON.stringify({}));
       process.exit(0);
     }
 
-    console.error(`[${getTimestamp()}] [main] filesToUpload before calling uploadImages (length: ${filesToUpload.length}):`, filesToUpload);
-    console.error(`[${getTimestamp()}] Uploading rendered images to image store...`);
+    console.error("Uploading rendered images to image store...");
     const uploadedUrls = await uploadImages(filesToUpload);
-    console.error(
-      `[${getTimestamp()}] Uploaded image URLs (from uploadImages return):`,
-      JSON.stringify(uploadedUrls, null, 2),
-    );
 
     for (const bpmnFilePath in bpmnFileToPngMap) {
       const pngPaths = bpmnFileToPngMap[bpmnFilePath];
@@ -256,17 +230,13 @@ async function main() {
 
     process.stdout.write(JSON.stringify(finalOutput));
   } catch (err) {
-    console.error(`[${getTimestamp()}] Failed to render or upload BPMN file(s):`, err);
+    console.error("Failed to render or upload BPMN file(s):", err);
     process.exit(1);
   } finally {
     try {
-      console.error(`[${getTimestamp()}] [main] Starting cleanup of temp directory: ${TEMP_DIR}`);
       await fs.rm(TEMP_DIR, { recursive: true, force: true });
-      console.error(`[${getTimestamp()}] Cleaned up temporary directory: ${TEMP_DIR}`);
     } catch (e) {
-      console.error(
-        `[${getTimestamp()}] Error cleaning up temporary directory ${TEMP_DIR}: ${e.message}`,
-      );
+      console.error(`Error cleaning up temporary directory ${TEMP_DIR}: ${e.message}`);
     }
   }
   
