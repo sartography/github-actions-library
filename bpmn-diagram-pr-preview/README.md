@@ -1,6 +1,6 @@
-# Render BPMN Diagrams GitHub Action
+# BPMN Diagram PR Preview GitHub Action
 
-This action renders BPMN diagrams for changed files in a pull request and uploads them to an image store. It's designed to automatically generate visual representations of BPMN files that have been added or modified in a PR.
+This action automatically generates visual previews of BPMN diagram changes in pull requests. It detects modified or added BPMN files, renders them as images, and posts the visual comparisons as PR comments.
 
 ## Usage
 
@@ -12,8 +12,8 @@ Inside your `.github/workflows/workflow.yml` file:
 
 ```yaml
 steps:
-  - name: Render BPMN Diagrams
-    uses: your-org/github-actions-library/render-bpmn-diagrams@main
+  - name: BPMN Diagram PR Preview
+    uses: your-org/github-actions-library/bpmn-diagram-pr-preview@main
     with:
       base_sha: ${{ github.event.pull_request.base.sha }}
       head_sha: ${{ github.event.pull_request.head.sha }}
@@ -81,8 +81,8 @@ jobs:
         with:
           fetch-depth: 2
 
-      - name: Render BPMN Diagrams
-        uses: sartography/github-actions-library/render-bpmn-diagrams@main
+      - name: BPMN Diagram PR Preview
+        uses: sartography/github-actions-library/bpmn-diagram-pr-preview@main
         with:
           base_sha: ${{ github.event.pull_request.base.sha }}
           head_sha: ${{ github.event.pull_request.head.sha }}
@@ -117,9 +117,9 @@ jobs:
         with:
           fetch-depth: 2
 
-      - name: Render BPMN Diagrams
+      - name: BPMN Diagram PR Preview
         id: render-diagrams
-        uses: sartography/github-actions-library/render-bpmn-diagrams@main
+        uses: sartography/github-actions-library/bpmn-diagram-pr-preview@main
         with:
           base_sha: ${{ github.event.pull_request.base.sha }}
           head_sha: ${{ github.event.pull_request.head.sha }}

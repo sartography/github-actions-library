@@ -1,5 +1,5 @@
-name: "Render BPMN Diagrams"
-description: "Renders BPMN diagrams for changed files in a pull request and uploads them to an image store"
+name: "BPMN Diagram PR Preview"
+description: "Automatically generates visual previews of BPMN diagram changes in pull requests"
 author: "GitHub Actions Library"
 
 inputs:
