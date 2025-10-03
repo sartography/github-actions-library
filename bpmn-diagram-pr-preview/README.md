@@ -15,22 +15,18 @@ steps:
   - name: BPMN Diagram PR Preview
     uses: your-org/github-actions-library/bpmn-diagram-pr-preview@main
     with:
-      base_sha: ${{ github.event.pull_request.base.sha }}
-      head_sha: ${{ github.event.pull_request.head.sha }}
       image_store_api_key: "your-api-key-here"
-      create_pr_comment: "true"  # Optional, defaults to true
+      create_pr_comment: "true" # Optional, defaults to true
 ```
 
 ## Arguments
 
 This Action supports inputs from the user. These inputs are listed in the table below:
 
-| Input              | Description                              |  Required  |
-| :----------------- | :--------------------------------------- | :--------: |
-| `base_sha`         | Base commit SHA for comparison           | \*Required |
-| `head_sha`         | Head commit SHA for comparison           | \*Required |
-| `image_store_api_key`| Image store API key | \*Required |
-| `create_pr_comment`| Whether to create a PR comment with the rendered diagrams | Optional (default: `true`) |
+| Input                 | Description                                               |          Required          |
+| :-------------------- | :-------------------------------------------------------- | :------------------------: |
+| `image_store_api_key` | Image store API key                                       |         \*Required         |
+| `create_pr_comment`   | Whether to create a PR comment with the rendered diagrams | Optional (default: `true`) |
 
 ## Permissions
 
@@ -38,15 +34,15 @@ When using the automatic PR comment feature (default behavior), your **calling w
 
 ```yaml
 permissions:
-  contents: read        # Required for checking out code and reading files
-  pull-requests: write  # Required for creating PR comments
+  contents: read # Required for checking out code and reading files
+  pull-requests: write # Required for creating PR comments
 ```
 
 If you disable PR comments by setting `create_pr_comment: "false"`, you only need:
 
 ```yaml
 permissions:
-  contents: read  # Only need read access
+  contents: read # Only need read access
 ```
 
 ## Outputs
@@ -67,7 +63,7 @@ on:
 
 permissions:
   contents: read
-  pull-requests: write  # Required for creating PR comments
+  pull-requests: write # Required for creating PR comments
 
 jobs:
   render-bpmn:
@@ -81,8 +77,6 @@ jobs:
       - name: BPMN Diagram PR Preview
         uses: sartography/github-actions-library/bpmn-diagram-pr-preview@main
         with:
-          base_sha: ${{ github.event.pull_request.base.sha }}
-          head_sha: ${{ github.event.pull_request.head.sha }}
           image_store_api_key: "your-api-key-here"
           # create_pr_comment: "true"  # Optional, defaults to true
 ```
@@ -99,9 +93,6 @@ on:
     paths:
       - "**.bpmn"
 
-permissions:
-  contents: read  # Only need read access when PR comments are disabled
-
 jobs:
   render-bpmn:
     runs-on: ubuntu-latest
@@ -111,17 +102,10 @@ jobs:
         with:
           fetch-depth: 2
 
-      - name: BPMN Diagram PR Preview
-        id: render-diagrams
+      - name: Add BPMN Diagram visual changes to PR
         uses: sartography/github-actions-library/bpmn-diagram-pr-preview@main
         with:
-          base_sha: ${{ github.event.pull_request.base.sha }}
-          head_sha: ${{ github.event.pull_request.head.sha }}
           image_store_api_key: "your-api-key-here"
-          create_pr_comment: "false"
-
-      # Now you can use ${{ steps.render-diagrams.outputs.uploaded_urls }} 
-      # for custom processing if needed
 ```
 
 ## How it works

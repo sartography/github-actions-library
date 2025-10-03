@@ -3,12 +3,6 @@ description: "Automatically generates visual previews of BPMN diagram changes in
 author: "GitHub Actions Library"
 
 inputs:
-  base_sha:
-    description: "Base commit SHA for comparison"
-    required: true
-  head_sha:
-    description: "Head commit SHA for comparison"
-    required: true
   image_store_api_key:
     description: "Image store API key"
     required: true
@@ -47,7 +41,7 @@ runs:
         echo "🕐 $(date '+%Y-%m-%d %H:%M:%S') - Getting changed BPMN file paths"
         # Make the script executable and run it
         chmod +x ${{ github.action_path }}/scripts/get_changed_bpmn_files.sh
-        BPMN_FILES_LIST=$(${{ github.action_path }}/scripts/get_changed_bpmn_files.sh ${{ inputs.base_sha }} ${{ inputs.head_sha }})
+        BPMN_FILES_LIST=$(${{ github.action_path }}/scripts/get_changed_bpmn_files.sh ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }})
         echo "Detected BPMN files: $BPMN_FILES_LIST" >&2
         # Set output as a multi-line string
         echo "bpmn_files_list<<EOF" >> $GITHUB_OUTPUT
@@ -59,8 +53,8 @@ runs:
       id: render-and-upload
       shell: bash
       env:
-        BASE_SHA: ${{ inputs.base_sha }}
-        HEAD_SHA: ${{ inputs.head_sha }}
+        BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         IMAGE_STORE_API_URL: "https://qsnszlmyxesikwhheaaq.supabase.co/functions/v1/image-store-api"
         SUPABASE_ANON_KEY: ${{ inputs.image_store_api_key }}
       run: |
