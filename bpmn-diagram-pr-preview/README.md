@@ -57,7 +57,7 @@ permissions:
   pull-requests: write # Required for creating PR comments
 
 jobs:
-  render-bpmn:
+  show-visual-diagram-changes:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -65,7 +65,7 @@ jobs:
         with:
           fetch-depth: 2
 
-      - name: BPMN Diagram PR Preview
+      - name: Add BPMN Diagram visual changes to PR
         uses: sartography/github-actions-library/bpmn-diagram-pr-preview@main
         with:
           image_store_api_key: "your-api-key-here"
@@ -77,6 +77,7 @@ jobs:
 2. **Content Retrieval**: Uses `git show` to get the file contents from both commits
 3. **Image Rendering**: Converts BPMN files to PNG images using the `bpmn-to-image` library
 4. **Upload**: Uploads the generated images to the specified image store API
-5. **Output**: Returns a JSON mapping of file paths to their uploaded image URLs
+5. **PR Comment**: Adds a comment to the PR indicating what has changed
+6. **Output**: Returns a JSON mapping of file paths to their uploaded image URLs
 
 The action handles both newly added files (where only the "after" image is generated) and modified files (where both "before" and "after" images are generated for comparison).
