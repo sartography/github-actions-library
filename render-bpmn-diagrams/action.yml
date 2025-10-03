@@ -76,8 +76,8 @@ runs:
         echo "Processing BPMN files: ${ARGS[@]}" >&2
 
         echo "🕐 $(date '+%Y-%m-%d %H:%M:%S') - Starting render.mjs execution"
-        # Render images and capture the JSON output containing the uploaded URLs
-        UPLOADED_URLS=$(node ${{ github.action_path }}/scripts/render.mjs "${ARGS[@]}" | tail -n 1)
+        # Change to the working directory where node_modules was installed, then run the script
+        UPLOADED_URLS=$(cd "$GITHUB_WORKSPACE" && node ${{ github.action_path }}/scripts/render.mjs "${ARGS[@]}" | tail -n 1)
         echo "🕐 $(date '+%Y-%m-%d %H:%M:%S') - Finished render.mjs execution"
         echo "Uploaded URLs JSON: $UPLOADED_URLS" >&2
         echo "Setting uploaded_urls github output" >&2
