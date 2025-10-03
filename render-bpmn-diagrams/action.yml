@@ -128,7 +128,7 @@ runs:
 
             // Process added files first
             if (addedFiles.length > 0) {
-              commentBody += `### 📄 New Files\n\n`;
+              commentBody += `### New Files\n\n`;
               for (const bpmnFilePath of addedFiles) {
                 const { afterUrl } = uploadedUrls[bpmnFilePath];
                 commentBody += `#### \`${bpmnFilePath}\`\n\n`;
@@ -139,7 +139,7 @@ runs:
 
             // Process modified files next
             if (modifiedFiles.length > 0) {
-              commentBody += `### ✏️ Modified Files\n\n`;
+              commentBody += `### Modified Files\n\n`;
               for (const bpmnFilePath of modifiedFiles) {
                 const { beforeUrl, afterUrl } = uploadedUrls[bpmnFilePath];
                 commentBody += `#### \`${bpmnFilePath}\`\n\n`;
@@ -157,7 +157,7 @@ runs:
 
             // Process error files last
             if (errorFiles.length > 0) {
-              commentBody += `### ⚠️ Processing Errors\n\n`;
+              commentBody += `### Processing Errors\n\n`;
               for (const bpmnFilePath of errorFiles) {
                 const { error } = uploadedUrls[bpmnFilePath];
                 commentBody += `#### \`${bpmnFilePath}\`\n\n`;
