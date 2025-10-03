@@ -4,6 +4,7 @@ import path from "path";
 import { execSync } from "child_process";
 import FormData from "form-data";
 import fetch from "node-fetch";
+import crypto from "crypto";
 
 
 // npm install bpmn-to-image node-fetch form-data
@@ -12,6 +13,35 @@ import fetch from "node-fetch";
 
 const IMAGE_STORE_API_URL = process.env.IMAGE_STORE_API_URL;
 const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
+
+/**
+ * Compares two image files to check if they are identical.
+ * @param {string} filePath1 Path to the first image file
+ * @param {string} filePath2 Path to the second image file
+ * @returns {Promise<boolean>} True if the images are identical, false otherwise
+ */
+async function areImagesIdentical(filePath1, filePath2) {
+  try {
+    const [file1Content, file2Content] = await Promise.all([
+      fs.readFile(filePath1),
+      fs.readFile(filePath2)
+    ]);
+    
+    // Compare file sizes first (quick check)
+    if (file1Content.length !== file2Content.length) {
+      return false;
+    }
+    
+    // Compare file hashes
+    const hash1 = crypto.createHash('sha256').update(file1Content).digest('hex');
+    const hash2 = crypto.createHash('sha256').update(file2Content).digest('hex');
+    
+    return hash1 === hash2;
+  } catch (error) {
+    console.error(`Error comparing images ${filePath1} and ${filePath2}: ${error.message}`);
+    return false;
+  }
+}
 
 /**
  * Uploads multiple image files to the image store API.
@@ -220,6 +250,15 @@ async function main() {
       const pngPaths = bpmnFileToPngMap[bpmnFilePath];
       const fileEntry = bpmnFileEntries.find(entry => entry.path === bpmnFilePath);
       const status = fileEntry ? fileEntry.status : 'M';
+      
+      // Check if before and after images are identical (skip if they are)
+      if (pngPaths.beforePng && pngPaths.afterPng) {
+        const imagesIdentical = await areImagesIdentical(pngPaths.beforePng, pngPaths.afterPng);
+        if (imagesIdentical) {
+          console.error(`Skipping ${bpmnFilePath} - before and after images are identical`);
+          continue; // Skip this file entirely
+        }
+      }
       
       finalOutput[bpmnFilePath] = {
         beforeUrl: pngPaths.beforePng ? uploadedUrls[pngPaths.beforePng] : null,
